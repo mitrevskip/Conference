@@ -5,6 +5,7 @@
  */
 package com.conferencemanagement.conference.DAO;
 
+import com.conferencemanagement.conference.models.Roles;
 import java.util.List;
 
 /**
@@ -16,6 +17,6 @@ public interface IRolesDAO {
     public List<Roles> getAllRoles();
     public Roles getRolesById(int rolesId);
     public void updateRoles(Roles roles);
-    public void deleteRoles(Roles roles);
-    boolean rolesExists();
+    public void deleteRoles(int rolesId);
+    boolean rolesExists(int rolesId, int category);
 }
