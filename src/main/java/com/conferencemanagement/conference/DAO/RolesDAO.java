@@ -21,7 +21,7 @@ public class RolesDAO implements IRolesDAO
 
     @Override
     public Roles getRolesById(int rolesId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return entityManager.find(Roles.class, rolesId);
     }
 
     @Override
