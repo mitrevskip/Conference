@@ -5,17 +5,28 @@
  */
 package com.conferencemanagement.conference.DAO;
 
+import com.conferencemanagement.conference.models.Roles;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Petar
  */
-public class RolesDAO implements IRolesDAO
-{
+@Transactional
+@Repository
+public class RolesDAO implements IRolesDAO{
+    
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public List<Roles> getAllRoles() {
+        String hql = "FROM Roles as roles1 ORDER BY roles1.rolesId";
+        return (List<Roles>)entityManager.createQuery(hql).getResultList();
         
     }
 
@@ -26,17 +37,22 @@ public class RolesDAO implements IRolesDAO
 
     @Override
     public void updateRoles(Roles roles) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Roles roles1 = getRolesById(roles.getRolesId());
+        roles1.setCategory(roles.getCategory());
+        entityManager.flush();
     }
 
     @Override
-    public void deleteRoles(Roles roles) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deleteRoles(int rolesId) {
+        entityManager.remove(getRolesById(rolesId));
     }
 
     @Override
-    public boolean rolesExists() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean rolesExists(int rolesId, int category) {
+        String hql = "FROM Roles as roles1 WHERE roles1.rolesId = ? and roles1.category = ?";
+        int count = entityManager.createQuery(hql).setParameter(1, rolesId)
+                .setParameter(2, category).getResultList().size();
+        return count > 0 ? true : false;  
     }
     
     
