@@ -54,6 +54,11 @@ public class RolesDAO implements IRolesDAO{
                 .setParameter(2, category).getResultList().size();
         return count > 0 ? true : false;  
     }
+
+    @Override
+    public void addRoles(Roles roles) {
+        entityManager.persist(roles);
+    }
     
     
 }

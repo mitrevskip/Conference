@@ -18,5 +18,6 @@ public interface IRolesDAO {
     public Roles getRolesById(int rolesId);
     public void updateRoles(Roles roles);
     public void deleteRoles(int rolesId);
+    public void addRoles (Roles roles);
     boolean rolesExists(int rolesId, int category);
 }
