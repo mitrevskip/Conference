@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package conferencemanagement.conference.DAO;
+package com.conferencemanagement.conference.DAO;
 
 import java.util.List;
 
