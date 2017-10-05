@@ -19,13 +19,13 @@ import javax.persistence.Table;
  * @author Mario HP
  */
 @Entity
-@Table(name = "ROOM")
+@Table(name = "Room")
 public class Room implements Serializable {
     
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int ID;
+    private int id;
     
     @Column(name = "capacity")
     private int capacity;
@@ -38,12 +38,12 @@ public class Room implements Serializable {
     
     List<Reservation> reservations;
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getCapacity() {
