@@ -15,24 +15,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Roles")
-public class Roles implements Serializable {
+@Table(name = "Role")
+public class Role implements Serializable {
     
      private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int rolesId;
+    private int roleId;
     
     
     private int category;
 
-    public int getRolesId() {
-        return rolesId;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setRolesId(int rolesId) {
-        this.rolesId = rolesId;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
     public int getCategory() {
@@ -46,7 +46,7 @@ public class Roles implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 67 * hash + this.rolesId;
+        hash = 67 * hash + this.roleId;
         return hash;
     }
 
@@ -61,8 +61,8 @@ public class Roles implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Roles other = (Roles) obj;
-        if (this.rolesId != other.rolesId) {
+        final Role other = (Role) obj;
+        if (this.roleId != other.roleId) {
             return false;
         }
         return true;
