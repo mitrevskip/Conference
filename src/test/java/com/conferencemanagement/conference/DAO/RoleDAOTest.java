@@ -6,7 +6,7 @@
 package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.SpringBoot;
-import com.conferencemanagement.conference.models.Roles;
+import com.conferencemanagement.conference.models.Role;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
@@ -34,13 +34,13 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @SpringBootTest(classes = SpringBoot.class)
 @RunWith(SpringRunner.class)
- public class RolesDAOTest {
+ public class RoleDAOTest {
     
     @Autowired
-    IRolesDAO rolesDAO;
+    IRoleDAO rolesDAO;
     
  
-    public RolesDAOTest() {
+    public RoleDAOTest() {
     }
     
     @BeforeClass
@@ -68,16 +68,16 @@ import org.springframework.test.context.junit4.SpringRunner;
     @Transactional
     @Test
      public void testAddRoles() {
-//        System.out.println("1"); 
-//        Roles roles = new Roles();
-//        roles.setCategory(0);
-//        
-//        rolesDAO.addRoles(roles);
-//        
-//        
-//        assertEquals(2, roles.getRolesId());
-//      
-//        
+        System.out.println("1"); 
+        Role roles = new Role();
+        roles.setCategory(0);
+        
+        rolesDAO.addRole(roles);
+        
+        
+        assertEquals(2, roles.getRoleId());
+      
+        
       
         
     }
@@ -85,7 +85,7 @@ import org.springframework.test.context.junit4.SpringRunner;
     @Test()
     public void testGetAllRoles() {
        System.out.println("2");
-       List<Roles> lista;
+       List<Role> lista;
         
         lista = rolesDAO.getAllRoles();
         
@@ -103,12 +103,12 @@ import org.springframework.test.context.junit4.SpringRunner;
     @Test
     public void testGetRolesById() {
            System.out.println("3");
-        Roles result;
+        Role result;
                 
-      result= rolesDAO.getRolesById(1);
+      result= rolesDAO.getRoleById(1);
       
-      Roles expRes = new Roles();
-      expRes.setRolesId(1);
+      Role expRes = new Role();
+      expRes.setRoleId(1);
       expRes.setCategory(0);
         assertEquals(expRes , result);
      
@@ -121,15 +121,15 @@ import org.springframework.test.context.junit4.SpringRunner;
     @Test
     public void testUpdateRoles() {
         System.out.println("4");
-        Roles roles = new Roles();
-        roles.setRolesId(1);
+        Role roles = new Role();
+        roles.setRoleId(1);
         roles.setCategory(1);
         
-        rolesDAO.updateRoles(roles);
+        rolesDAO.updateRole(roles);
         
-        Roles result = new Roles();
+        Role result = new Role();
         
-        result = rolesDAO.getRolesById(1);
+        result = rolesDAO.getRoleById(1);
         
         assertEquals(roles,result);
         
@@ -143,11 +143,11 @@ import org.springframework.test.context.junit4.SpringRunner;
     @Test
     public void testDeleteRoles() {
         System.out.println("5");
-        Roles roles;
-      roles = rolesDAO.getRolesById(1);
+        Role roles;
+      roles = rolesDAO.getRoleById(1);
      
       
-       rolesDAO.deleteRoles(1);
+       rolesDAO.deleteRole(1);
       
        
       
@@ -162,7 +162,7 @@ import org.springframework.test.context.junit4.SpringRunner;
       System.out.println("6");
       boolean postoi;
         
-      postoi = rolesDAO.rolesExists(1, 0);
+      postoi = rolesDAO.roleExists(1, 0);
          
       assertEquals(true, postoi);
       
