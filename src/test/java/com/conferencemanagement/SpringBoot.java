@@ -3,22 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.conferencemanagement.conference.DAO;
+package com.conferencemanagement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.TestPropertySource;
+ 
+
+ 
 
 /**
  *
  * @author Mario HP
  */
 @SpringBootApplication
-@ComponentScan("com.conferencemanagement.conference.DAO")
-@TestPropertySource(locations="classpath:applicationTest.properties")
-class SpringBoot {
+@ComponentScan("com.conferencemanagement.conference.*")
+@TestPropertySource(locations = "classpath:application.properties")
+public class SpringBoot {
     
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(SpringBoot.class, args);
