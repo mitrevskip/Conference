@@ -5,14 +5,22 @@
  */
 package com.conferencemanagement.conference.DAO;
 
+import com.conferencemanagement.conference.models.User;
+import java.util.List;
+
 /**
  *
  * @author Petar
  */
 public interface IUserDAO {
     
-    public List<Reservation> getAllReservations;
-    public 
+    
+    List<User> getAllUsers();
+    User getUserById(int userId);
+    void addUser(User user);
+    void updateUser(User user);
+    void deleteUser(int userId);
+    boolean userExists(String userName, String email);
     
     
 }
