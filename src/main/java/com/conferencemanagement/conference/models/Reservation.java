@@ -6,7 +6,6 @@
 package com.conferencemanagement.conference.models;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +27,7 @@ public class Reservation implements Serializable {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name = "meeting starts")
     LocalDateTime meetingStart;
@@ -38,11 +37,11 @@ public class Reservation implements Serializable {
     
     Room room;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
