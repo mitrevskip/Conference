@@ -21,7 +21,7 @@ public class ReservationDAO implements IReservationDAO{
     
     @Override
     public List<Reservation> getAllReservations() {
-        String hql = "FROM Reservation as res1 ORDER BY res1.resId";
+        String hql = "FROM Reservation as res1 ORDER BY res1.id";
         return (List<Reservation>)entityManager.createQuery(hql).getResultList();
     }
 
