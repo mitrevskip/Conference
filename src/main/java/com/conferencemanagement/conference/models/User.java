@@ -10,10 +10,16 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -28,26 +34,27 @@ public class User implements Serializable {
     
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "USER_ID")
     private int userId;
 
       
-    @Column(name = "email",unique = true)
+    
     private String email;
     
     @Column(name = "username", unique = true)
     private String userName;
     
-    @Column(name = "password")
+    
     private String password;
     
-    @Column(name = "log")
+    
     private boolean log;
     
-    @OneToOne(cascade = CascadeType.PERSIST,mappedBy = "User")
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+    @JoinColumn(name = "ROLE_ID")
     private Role role;
     
-    List<Reservation> reservations;
+   // List<Reservation> reservations;
 
     public int getUserId() {
         return userId;
@@ -97,13 +104,13 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
+//    public List<Reservation> getReservations() {
+//        return reservations;
+//    }
+//
+//    public void setReservations(List<Reservation> reservations) {
+//        this.reservations = reservations;
+//    }
 
     
     

@@ -9,10 +9,15 @@ package com.conferencemanagement.conference.models;
 
 import java.io.Serializable;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -20,14 +25,17 @@ import javax.persistence.Table;
 public class Role implements Serializable {
     
      private static final long serialVersionUID = 1L;
+     
     
     @Id
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ROLE_ID")
     private int roleId;
     
-    
+    @Column(name = "category")
     private int category;
+    
+    
 
     public int getRoleId() {
         return roleId;
@@ -37,10 +45,10 @@ public class Role implements Serializable {
         this.roleId = roleId;
     }
 
+ 
     public int getCategory() {
-        return category;
+        return category; 
     }
-
     public void setCategory(int category) {
         this.category = category;
     }
@@ -69,6 +77,8 @@ public class Role implements Serializable {
         }
         return true;
     }
+
+   
     
     
     
