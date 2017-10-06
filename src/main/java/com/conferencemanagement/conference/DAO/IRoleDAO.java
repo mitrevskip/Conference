@@ -16,6 +16,7 @@ public interface IRoleDAO {
     
     public List<Role> getAllRoles();
     public Role getRoleById(int roleId);
+    public Role getRoleByCat(int category);
     public void updateRole(Role role);
     public void deleteRole(int roleId);
     public void addRole (Role role);

@@ -9,11 +9,15 @@ import com.conferencemanagement.conference.models.User;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Petar
  */
+@Transactional
+@Repository
 public class UserDAO implements IUserDAO{
     
     @PersistenceContext
