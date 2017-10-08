@@ -59,6 +59,13 @@ public class RoleDAO implements IRoleDAO{
     public void addRole(Role role) {
         entityManager.persist(role);
     }
+
+    @Override
+    public Role getRoleByCat(int category) {
+         return entityManager.find(Role.class, category);
+        
+       
+    }
     
     
 }

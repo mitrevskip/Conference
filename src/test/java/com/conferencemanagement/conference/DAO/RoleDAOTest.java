@@ -65,15 +65,21 @@ import org.springframework.test.context.junit4.SpringRunner;
      * Test of getAllRoles method, of class RolesDAO.
      */
    
-    @Transactional
+    
     @Test
      public void testAddRole() {
-        System.out.println("1"); 
+        
         Role role = new Role();
         role.setCategory(0);
-        
         roleDAO.addRole(role);
         
+         Role role2 = new Role();
+        role2.setCategory(1);
+        roleDAO.addRole(role2);
+        
+         Role role3 = new Role();
+        role3.setCategory(2);
+        roleDAO.addRole(role3);
         
         assertEquals(1, role.getRoleId());
       
