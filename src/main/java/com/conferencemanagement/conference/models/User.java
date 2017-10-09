@@ -32,7 +32,6 @@ public class User implements Serializable {
     @Column(name = "USER_ID")
     private int userId;
 
-      
     
     private String email;
     
