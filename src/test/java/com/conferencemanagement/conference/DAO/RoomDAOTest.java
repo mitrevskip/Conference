@@ -122,6 +122,8 @@ public class RoomDAOTest {
         
         roomDAO.addRoom(r);
         
+        assertEquals(roomDAO, r);
+        
 //        System.out.println("addRoom");
 //        Room room = null;
 //        RoomDAO instance = new RoomDAO();
