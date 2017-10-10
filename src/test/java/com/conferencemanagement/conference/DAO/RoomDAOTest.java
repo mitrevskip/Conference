@@ -120,23 +120,6 @@ public class RoomDAOTest {
         r.setCapacity(30);
         r.setDesc("Large video conferencing room (air conditioned)");
         
-        Reservation reservation = new Reservation();
-        
-        String resStarts = "2017-12-03 10:30";
-        String resEnds = "2017-12-03 11:30";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyy-MM-dd HH:mm");
-        LocalDateTime formatDateTimeStarts = LocalDateTime.parse(resStarts, formatter);
-        LocalDateTime formatDateTimeEnds = LocalDateTime.parse(resEnds, formatter);
-        
-        reservation.setMeetStarts(formatDateTimeStarts);
-        reservation.setMeetEnds(formatDateTimeEnds);
-        reservation.setRoom(r);
-        resDAO.addRes(reservation);
-        
-        
-        
-        
-        
 //        System.out.println("addRoom");
 //        Room room = null;
 //        RoomDAO instance = new RoomDAO();
