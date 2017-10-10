@@ -55,56 +55,58 @@ public class RoomDAOTest {
     /**
      * Test of getAllRooms method, of class RoomDAO.
      */
-//    @Test
+    @Test
     public void testGetAllRooms() {
-        System.out.println("getAllRooms");
-        RoomDAO instance = new RoomDAO();
-        List<Room> expResult = null;
-        List<Room> result = instance.getAllRooms();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        List<Room> r;
+        r = roomDAO.getAllRooms();
+        assertEquals(roomDAO.getAllRooms().size(), 0);
+        
     }
 
     /**
      * Test of getRoomById method, of class RoomDAO.
      */
-//    @Test
+    @Test
     public void testGetRoomById() {
-        System.out.println("getRoomById");
-        int roomId = 0;
-        RoomDAO instance = new RoomDAO();
-        Room expResult = null;
-        Room result = instance.getRoomById(roomId);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Room r = new Room();
+        r.setRoomName("Conference3");
+        roomDAO.addRoom(r);
+        
+        Room r2 = roomDAO.getRoomById(1);
+        assertEquals(r.getRoomId(), r2.getRoomId());
     }
 
     /**
      * Test of updateRoom method, of class RoomDAO.
      */
-//    @Test
+    @Test
     public void testUpdateRoom() {
-        System.out.println("updateRoom");
-        Room room = null;
-        RoomDAO instance = new RoomDAO();
-        instance.updateRoom(room);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       Room r = new Room();
+       r.setCapacity(15);
+       r.setDesc("Big Hall");
+       r.setRoomName("Big Bang");
+       roomDAO.addRoom(r);
+       
+       r = roomDAO.getRoomById(1);
+       
+       
+       roomDAO.updateRoom(r);
+        assertEquals(roomDAO.getRoomById(1).getDesc(), "Big Hall");
     }
 
     /**
      * Test of deleteRoom method, of class RoomDAO.
      */
-//    @Test
+    @Test
     public void testDeleteRoom() {
-        System.out.println("deleteRoom");
-        int roomId = 0;
-        RoomDAO instance = new RoomDAO();
-        instance.deleteRoom(roomId);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       Room r = new Room();
+       r.setCapacity(15);
+       r.setDesc("Big Hall");
+       r.setRoomName("Big Bang");
+       roomDAO.addRoom(r);
+       
+       roomDAO.deleteRoom(1);
+        assertEquals(0, roomDAO.getAllRooms().size());
     }
 
     /**
@@ -121,28 +123,21 @@ public class RoomDAOTest {
         
         assertEquals(roomDAO.getAllRooms().size(), 1);
         
-//        System.out.println("addRoom");
-//        Room room = null;
-//        RoomDAO instance = new RoomDAO();
-//        instance.addRoom(room);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
     }
 
     /**
      * Test of roomExists method, of class RoomDAO.
      */
-//    @Test
+    @Test
     public void testRoomExists() {
-        System.out.println("roomExists");
-        int roomId = 0;
-        String roomName = "";
-        RoomDAO instance = new RoomDAO();
-        boolean expResult = false;
-        boolean result = instance.roomExists(roomId, roomName);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Room r = new Room();
+        r.setRoomName("Conference 2");
+        r.setCapacity(30);
+        r.setDesc("Large video conferencing room (air conditioned)");
+        
+        roomDAO.addRoom(r);
+        
+        assertEquals(true, roomDAO.roomExists(1, "Conference 2"));
     }
     
 }
