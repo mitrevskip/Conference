@@ -21,7 +21,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Role")
 public class Role implements Serializable {
     
      private static final long serialVersionUID = 1L;
@@ -29,10 +28,9 @@ public class Role implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ROLE_ID")
     private int roleId;
     
-    @Column(name = "category")
+   
     private int category;
     
     

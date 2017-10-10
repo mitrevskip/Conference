@@ -9,6 +9,7 @@ import com.conferencemanagement.SpringBoot;
 import com.conferencemanagement.conference.models.Role;
 import com.conferencemanagement.conference.models.User;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,6 +19,8 @@ import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -32,6 +35,9 @@ public class UserDAOTest {
     
     @Autowired
     IRoleDAO roleDAO;
+    
+    @Autowired
+    IUserRepository iuserrep;
     
     public UserDAOTest() {
     }
@@ -55,30 +61,26 @@ public class UserDAOTest {
     /**
      * Test of getAllUsers method, of class UserDAO.
      */
-//    @Test
+    @Test
     public void testGetAllUsers() {
-        System.out.println("getAllUsers");
-        UserDAO instance = new UserDAO();
-        List<User> expResult = null;
-        List<User> result = instance.getAllUsers();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+            List<User> u ;
+            
+            u = userDAO.getAllUsers();
+            assertEquals(13, u.size());
     }
 
     /**
      * Test of getUserById method, of class UserDAO.
      */
-//    @Test
+    @Test
     public void testGetUserById() {
-        System.out.println("getUserById");
-        int userId = 0;
-        UserDAO instance = new UserDAO();
-        User expResult = null;
-        User result = instance.getUserById(userId);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        User u = new User();
+        u.setUserName("MARRIIOO2");
+        userDAO.addUser(u);
+        
+        User u2 = userDAO.getUserById(19);
+        
+        assertEquals(u.getUserId(),u2.getUserId());
     }
 
     /**
@@ -87,89 +89,56 @@ public class UserDAOTest {
     @Test
     public void testAddUser() {
         User u = new User();
-        u.setUserName("petar8");
+        u.setUserName("bbb2222");
         u.setPassword("aaaaa");
+        u.setEmail("aaa");
         
         Role role = new Role();
-        role = roleDAO.getRoleByCat(4);
-         
+        role = iuserrep.getRoleByCat(0);         
         
         u.setRole(role);
         userDAO.addUser(u);
+             
         
-//        User u2 = new User();
-//        u2.setUserName("Mario2");
-//        u2.setPassword("aaaaa");
-//        Role role2 = new Role();
-//        role2.setCategory(3);
-//        u2.setRole(role2);
-//        userDAO.addUser(u2);
-//        
-//        User u3 = new User();
-//        u3.setUserName("Mario3");
-//        u3.setPassword("aaaaa");
-//        Role role3 = new Role();
-//        role3.setCategory(3);
-//        role3.getRoleId();
-//        u3.setRole(role3);
-//        userDAO.addUser(u3);
-//        
-//        User u4 = new User();
-//        u4.setUserName("Mario4");
-//        u4.setPassword("aaaaa");
-//        Role role4 = new Role();
-//        role4.setCategory(3);
-//        u4.setRole(role4);
-//        userDAO.addUser(u4);
-//        
-        
-        
-        
-        
-     //   assertEquals(role.getRoleId(), u.getRole().getRoleId());
+      // assertEquals(userDAO.getUserById(15), u.toString());
        
     }
 
     /**
      * Test of updateUser method, of class UserDAO.
      */
-//    @Test
+    @Test
     public void testUpdateUser() {
-        System.out.println("updateUser");
-        User user = null;
-        UserDAO instance = new UserDAO();
-        instance.updateUser(user);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        User u = new User();
+        
+        u = userDAO.getUserById(9);
+        u.setEmail("NOV_MAIL");
+        
+        userDAO.updateUser(u);
+        
+        assertEquals(userDAO.getUserById(9).getEmail(), "NOV_MAIL");
     }
 
     /**
      * Test of deleteUser method, of class UserDAO.
      */
-//    @Test
+    @Test
     public void testDeleteUser() {
-        System.out.println("deleteUser");
-        int userId = 0;
-        UserDAO instance = new UserDAO();
-        instance.deleteUser(userId);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        userDAO.deleteUser(10);
+        assertEquals(11, userDAO.getAllUsers().size());
     }
 
     /**
      * Test of userExists method, of class UserDAO.
      */
-//    @Test
+    @Test
     public void testUserExists() {
-        System.out.println("userExists");
-        String userName = "";
-        String email = "";
-        UserDAO instance = new UserDAO();
-        boolean expResult = false;
-        boolean result = instance.userExists(userName, email);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        
+        
+        assertEquals(true, userDAO.userExists("bbb", "aaa"));
+        
+        
     }
     
     

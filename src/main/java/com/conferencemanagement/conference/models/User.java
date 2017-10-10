@@ -34,7 +34,6 @@ public class User implements Serializable {
     
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_ID")
     private int userId;
 
       
@@ -53,6 +52,16 @@ public class User implements Serializable {
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinColumn(name = "ROLE_ID")
     private Role role;
+    
+    String picture;
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
     
    // List<Reservation> reservations;
 
