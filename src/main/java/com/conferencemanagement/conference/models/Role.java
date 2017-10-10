@@ -32,7 +32,7 @@ public class Role implements Serializable {
     @Column(name = "ROLE_ID")
     private int roleId;
     
-    @Column(name = "category")
+    @Column(name = "CATEGORY")
     private int category;
     
     
