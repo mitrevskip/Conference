@@ -7,6 +7,8 @@ package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.conference.models.Role;
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -16,9 +18,10 @@ public interface IRoleDAO {
     
     public List<Role> getAllRoles();
     public Role getRoleById(int roleId);
-    public Role getRoleByCat(int category);
+ //   public Role getRoleByCat(int category);
     public void updateRole(Role role);
-    public void deleteRole(int roleId);
-    public void addRole (Role role);
+//    public void deleteRole(int roleId);
+//    public void addRole (Role role);
     boolean roleExists(int roleId, int category);
 }
+ 

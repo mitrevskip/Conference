@@ -9,8 +9,11 @@ import com.conferencemanagement.conference.models.Role;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 
 /**
  *
@@ -25,7 +28,7 @@ public class RoleDAO implements IRoleDAO{
 
     @Override
     public List<Role> getAllRoles() {
-        String hql = "FROM Role as role1 ORDER BY role1.rolesId";
+        String hql = "FROM Role as role1 ORDER BY role1.roleId";
         return (List<Role>)entityManager.createQuery(hql).getResultList();
         
     }
@@ -42,10 +45,10 @@ public class RoleDAO implements IRoleDAO{
         entityManager.flush();
     }
 
-    @Override
-    public void deleteRole(int roleId) {
-        entityManager.remove(getRoleById(roleId));
-    }
+//    @Override
+//    public void deleteRole(int roleId) {
+//        entityManager.remove(getRoleById(roleId));
+//    }
 
     @Override
     public boolean roleExists(int roleId, int category) {
@@ -55,17 +58,16 @@ public class RoleDAO implements IRoleDAO{
         return count > 0 ? true : false;  
     }
 
-    @Override
-    public void addRole(Role role) {
-        entityManager.persist(role);
-    }
+//    @Override
+//    public void addRole(Role role) {
+//        entityManager.persist(role);
+//    }
 
-    @Override
-    public Role getRoleByCat(int category) {
-         return entityManager.find(Role.class, category);
-        
-       
-    }
-    
-    
+
+//    @Override
+//    public Role getRoleByCat(int category) {
+//      return  entityManager.find(Role.class, category);
+//    }
+
+   
 }
