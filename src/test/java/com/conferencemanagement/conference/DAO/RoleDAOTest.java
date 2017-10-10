@@ -65,28 +65,28 @@ import org.springframework.test.context.junit4.SpringRunner;
      * Test of getAllRoles method, of class RolesDAO.
      */
    
-    
-    @Test
-     public void testAddRole() {
-        
-        Role role = new Role();
-        role.setCategory(0);
-        roleDAO.addRole(role);
-        
-         Role role2 = new Role();
-        role2.setCategory(1);
-        roleDAO.addRole(role2);
-        
-         Role role3 = new Role();
-        role3.setCategory(2);
-        roleDAO.addRole(role3);
-        
-        assertEquals(1, role.getRoleId());
-      
-        
-      
-        
-    }
+//    @Transactional
+//    @Test
+//     public void testAddRole() {
+//        
+//        Role role = new Role();
+//        role.setCategory(0);
+//        roleDAO.addRole(role);
+//        
+//         Role role2 = new Role();
+//        role2.setCategory(1);
+//        roleDAO.addRole(role2);
+//        
+//         Role role3 = new Role();
+//        role3.setCategory(2);
+//        roleDAO.addRole(role3);
+//        
+//        assertEquals(1, role.getRoleId());
+//      
+//        
+//      
+//        
+//    }
     @Transactional()
     @Test()
     public void testGetAllRoles() {
@@ -95,7 +95,7 @@ import org.springframework.test.context.junit4.SpringRunner;
         
         lista = roleDAO.getAllRoles();
         
-        
+        assertEquals(lista.size(),3 );
         
         
         
@@ -145,19 +145,21 @@ import org.springframework.test.context.junit4.SpringRunner;
     /**
      * Test of deleteRoles method, of class RolesDAO.
      */
-    @Transactional
-    @Test
-    public void testDeleteRole() {
-        System.out.println("5");
-        Role role;
-      role = roleDAO.getRoleById(1);
      
-      
-       roleDAO.deleteRole(1);
-      
-       
-      
-    }
+//    @Test
+//    public void testDeleteRole() {
+//       
+//        Role role;
+//      role = roleDAO.getRoleById(1);
+//     
+//      
+//       roleDAO.deleteRole(2);
+//       
+//        assertEquals(roleDAO.getAllRoles().size(), 2);
+//      
+//       
+//      
+//    }
 
     /**
      * Test of rolesExists method, of class RolesDAO.
