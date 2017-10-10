@@ -30,7 +30,8 @@ public class Role implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int roleId;
     
-   
+
+
     private int category;
     
     
