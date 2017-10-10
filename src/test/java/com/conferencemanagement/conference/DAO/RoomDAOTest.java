@@ -116,13 +116,10 @@ public class RoomDAOTest {
         r.setRoomName("Conference 2");
         r.setCapacity(30);
         r.setDesc("Large video conferencing room (air conditioned)");
-        r.setRoomId(1);
-        
-        
         
         roomDAO.addRoom(r);
         
-        assertEquals(roomDAO, r);
+        assertEquals(roomDAO.getAllRooms().size(), 1);
         
 //        System.out.println("addRoom");
 //        Room room = null;
