@@ -9,20 +9,24 @@ import com.conferencemanagement.conference.models.Room;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Petar
  */
-public class RoomDAO implements IRoomDAO{
-    
+@Transactional
+@Repository
+public class RoomDAO implements IRoomDAO {
+
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public List<Room> getAllRooms() {
         String hql = "FROM Room as room1 ORDER BY room1.roomId";
-        return (List<Room>)entityManager.createQuery(hql).getResultList();
+        return (List<Room>) entityManager.createQuery(hql).getResultList();
     }
 
     @Override
@@ -57,5 +61,5 @@ public class RoomDAO implements IRoomDAO{
                 .setParameter(2, roomName).getResultList().size();
         return count > 0 ? true : false;
     }
-    
+
 }

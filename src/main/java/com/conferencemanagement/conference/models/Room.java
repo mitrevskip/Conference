@@ -21,26 +21,30 @@ import javax.persistence.Table;
  *
  * @author Petar
  */
-
 @Entity
-@Table (name = "Room")
-public class Room implements Serializable{
-    
+@Table(name = "Room")
+public class Room implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ROOM_ID")
     private int roomId;
+
     
     private int capacity;
-    private String roomName;
-    private String desc;
+
     
+    private String roomName;
+
+    @Column(name = "DESCRIPTION")
+    private String desc;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<Reservation> reservation;
-    
-     public int getRoomId() {
+
+    public int getRoomId() {
         return roomId;
     }
 
@@ -79,8 +83,5 @@ public class Room implements Serializable{
     public void setReservation(List<Reservation> reservation) {
         this.reservation = reservation;
     }
-    
-    
 
-   
 }

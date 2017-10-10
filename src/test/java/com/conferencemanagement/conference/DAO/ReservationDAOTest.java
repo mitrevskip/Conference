@@ -33,6 +33,7 @@ public class ReservationDAOTest {
     @Autowired
     IReservationDAO resDAO;
     
+    @Autowired
     IRoomDAO roomDAO;
     
     public ReservationDAOTest() {
@@ -143,6 +144,10 @@ public class ReservationDAOTest {
         
         res.setMeetStarts(formatDateTimeStarts);
         res.setMeetEnds(formatDateTimeEnds);
+        
+        resDAO.addRes(res);
+        
+        
         
         
 //        System.out.println("addRes");

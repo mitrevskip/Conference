@@ -6,10 +6,7 @@
 package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.SpringBoot;
-import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Room;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -119,6 +116,11 @@ public class RoomDAOTest {
         r.setRoomName("Conference 2");
         r.setCapacity(30);
         r.setDesc("Large video conferencing room (air conditioned)");
+        r.setRoomId(1);
+        
+        
+        
+        roomDAO.addRoom(r);
         
 //        System.out.println("addRoom");
 //        Room room = null;
