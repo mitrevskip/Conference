@@ -7,6 +7,7 @@ package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.conference.models.Reservation;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -35,15 +36,15 @@ public class ReservationDAO implements IReservationDAO{
         return entityManager.find(Reservation.class, resId);
     }
 
-    @Override
-    public Reservation getResByMeetStarts(LocalDateTime meetStarts) {
-        return entityManager.find(Reservation.class, meetStarts);
-    }
+//    @Override
+//    public Reservation getResByMeetStarts(Date meetStarts) {
+//        return entityManager.find(Reservation.class, meetStarts);
+//    }
 
     @Override
     public void updateRes(Reservation reservation) {
         Reservation res1 = getResById(reservation.getResId());
-        res1.setRoom(reservation.getRoom());
+     //   res1.setRoom(reservation.getRoom());
         res1.setMeetStarts(reservation.getMeetStarts());
         res1.setMeetEnds(reservation.getMeetEnds());
         entityManager.flush();
@@ -59,12 +60,13 @@ public class ReservationDAO implements IReservationDAO{
         entityManager.persist(reservation);
     }
 
-    @Override
-    public boolean resExists(int resId, LocalDateTime meetStarts) {
+    public boolean resExists(int resId, Date meetStarts) {
         String hql = "FROM Reservation as res1 WHERE res1.resId = ? and res1.meetStarts = ?";
         int count = entityManager.createQuery(hql).setParameter(1, resId)
                 .setParameter(2, meetStarts).getResultList().size();
         return count > 0 ? true : false;
     }
+
+   
     
 }
