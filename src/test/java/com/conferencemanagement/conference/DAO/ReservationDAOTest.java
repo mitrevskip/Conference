@@ -128,6 +128,33 @@ public class ReservationDAOTest {
         assertEquals(all, res2);
         
     }
+    
+    @Test
+    public void testGetResByMeetEnds() throws ParseException {
+        Reservation res = new Reservation();
+            
+        String resStarts = "03-12-2017 10:30";
+        String resEnds = "03-12-2017 11:30";
+
+        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        
+        Date dateS = format.parse(resStarts);
+        Date dateE = format.parse(resEnds);
+        res.setMeetStarts(dateS);
+        res.setMeetEnds(dateE);
+       
+        resDAO.addRes(res);
+        
+        List<Reservation> res2;
+        
+        res2 = (List<Reservation>) iuserrep.getResByMeetEnds(dateE);
+        
+        List<Reservation> all;
+        all = resDAO.getAllRes();
+        
+        assertEquals(all, res2);
+        
+    }
 
     /**
      * Test of updateRes method, of class ReservationDAO.

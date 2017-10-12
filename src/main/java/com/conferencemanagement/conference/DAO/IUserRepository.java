@@ -34,5 +34,8 @@ public interface IUserRepository extends JpaRepository <Role,Long>,JpaSpecificat
     @Query("SELECT r FROM Reservation r WHERE r.meetStarts = ?")
     public List<Reservation> getResByMeetStarts(Date meetStarts);
     
+    @Query("SELECT r FROM Reservation r WHERE r.meetEnds = ?")
+    public List<Reservation> getResByMeetEnds(Date meetEnds);
+    
    
  }
