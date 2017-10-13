@@ -5,7 +5,10 @@
  */
 package com.conferencemanagement.conference.DAO;
 
+import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Role;
+import java.util.Date;
+import java.util.List;
 import javax.annotation.Resource;
 import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +29,13 @@ public interface IUserRepository extends JpaRepository <Role,Long>,JpaSpecificat
 
   
     @Query("SELECT r FROM Role r WHERE r.category = ?")
-    public Role getRoleByCat(int category);
+    public  Role  getRoleByCat(int category);
+    
+    @Query("SELECT r FROM Reservation r WHERE r.meetStarts = ?")
+    public List<Reservation> getResByMeetStarts(Date meetStarts);
+    
+    @Query("SELECT r FROM Reservation r WHERE r.meetEnds = ?")
+    public List<Reservation> getResByMeetEnds(Date meetEnds);
     
    
  }

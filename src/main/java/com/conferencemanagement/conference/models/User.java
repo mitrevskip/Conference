@@ -6,6 +6,7 @@
 package com.conferencemanagement.conference.models;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -47,7 +50,10 @@ public class User implements Serializable {
     @JoinColumn(name = "ROLE_ID")
     private Role role;
     
-    String picture;
+    private String picture;
+    
+    @OneToMany(mappedBy = "user",cascade = CascadeType.MERGE, orphanRemoval = true)
+    List<Reservation> reservations;
 
     public String getPicture() {
         return picture;
@@ -57,7 +63,7 @@ public class User implements Serializable {
         this.picture = picture;
     }
     
-   // List<Reservation> reservations;
+
 
     public int getUserId() {
         return userId;
@@ -107,13 +113,13 @@ public class User implements Serializable {
         this.role = role;
     }
 
-//    public List<Reservation> getReservations() {
-//        return reservations;
-//    }
-//
-//    public void setReservations(List<Reservation> reservations) {
-//        this.reservations = reservations;
-//    }
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 
     
     

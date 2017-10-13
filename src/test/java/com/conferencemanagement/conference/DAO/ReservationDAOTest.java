@@ -8,9 +8,21 @@ package com.conferencemanagement.conference.DAO;
 import com.conferencemanagement.SpringBoot;
 import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Room;
+import com.conferencemanagement.conference.models.User;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Month;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import static javassist.CtMethod.ConstParameter.string;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -36,6 +48,12 @@ public class ReservationDAOTest {
     @Autowired
     IRoomDAO roomDAO;
     
+    @Autowired
+    IUserRepository iuserrep;
+    
+    @Autowired
+    IUserDAO iuserDAO;
+    
     public ReservationDAOTest() {
     }
     
@@ -58,120 +76,231 @@ public class ReservationDAOTest {
     /**
      * Test of getAllRes method, of class ReservationDAO.
      */
-//    @Test
-    public void testGetAllRes() {
-        System.out.println("getAllRes");
-        ReservationDAO instance = new ReservationDAO();
-        List<Reservation> expResult = null;
-        List<Reservation> result = instance.getAllRes();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @Test
+    public void testGetAllRes() throws ParseException {
+       List<Reservation> res;
+       
+       res = resDAO.getAllRes();
+       
+       String resStarts = "03-12-2017 10:30";
+       DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+       Date dateS = format.parse(resStarts);
+       List<Reservation> res2;
+       res2 = (List<Reservation>) iuserrep.getResByMeetStarts(dateS);
+       
+        assertEquals(res2,res);
     }
 
     /**
      * Test of getResById method, of class ReservationDAO.
      */
-//    @Test
+    @Test
     public void testGetResById() {
-        System.out.println("getResById");
-        int resId = 0;
-        ReservationDAO instance = new ReservationDAO();
-        Reservation expResult = null;
-        Reservation result = instance.getResById(resId);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       Reservation res = new Reservation();
+       
+       res = resDAO.getResById(5);
+       
+       
+        assertEquals(5,res.getResId());
     }
 
     /**
      * Test of getResByMeetStarts method, of class ReservationDAO.
      */
-//    @Test
-    public void testGetResByMeetStarts() {
-        System.out.println("getResByMeetStarts");
-        LocalDateTime meetStarts = null;
-        ReservationDAO instance = new ReservationDAO();
-        Reservation expResult = null;
-        Reservation result = instance.getResByMeetStarts(meetStarts);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @Test
+    public void testGetResByMeetStarts() throws ParseException {
+        Reservation res = new Reservation();
+            
+        String resStarts = "03-12-2017 10:30";
+        String resEnds = "03-12-2017 11:30";
+
+        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        
+        Date dateS = format.parse(resStarts);
+        Date dateE = format.parse(resEnds);
+        res.setMeetStarts(dateS);
+        res.setMeetEnds(dateE);
+       
+        resDAO.addRes(res);
+        
+        List<Reservation> res2;
+        
+        res2 = (List<Reservation>) iuserrep.getResByMeetStarts(dateS);
+        
+        List<Reservation> all;
+        all = resDAO.getAllRes();
+        
+        assertEquals(all, res2);
+        
+    }
+    
+    @Test
+    public void testGetResByMeetEnds() throws ParseException {
+        Reservation res = new Reservation();
+            
+        String resStarts = "03-12-2017 10:30";
+        String resEnds = "03-12-2017 11:30";
+
+        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        
+        Date dateS = format.parse(resStarts);
+        Date dateE = format.parse(resEnds);
+        res.setMeetStarts(dateS);
+        res.setMeetEnds(dateE);
+       
+        resDAO.addRes(res);
+        
+        List<Reservation> res2;
+        
+        res2 = (List<Reservation>) iuserrep.getResByMeetEnds(dateE);
+        
+        List<Reservation> all;
+        all = resDAO.getAllRes();
+        
+        assertEquals(all, res2);
+        
     }
 
     /**
      * Test of updateRes method, of class ReservationDAO.
      */
-//    @Test
-    public void testUpdateRes() {
-        System.out.println("updateRes");
-        Reservation reservation = null;
-        ReservationDAO instance = new ReservationDAO();
-        instance.updateRes(reservation);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @Test
+    public void testUpdateRes() throws ParseException {
+        Reservation res = new Reservation();
+        
+        res = resDAO.getResById(5);
+        
+        String resStarts = "04-12-2017 10:30";
+        String resEnds = "04-12-2017 11:30";
+        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        Date dateS = format.parse(resStarts);
+        Date dateE = format.parse(resEnds);
+       
+        
+        res.setMeetStarts(dateS);
+        res.setMeetEnds(dateE);
+        
+        resDAO.updateRes(res);
+        
+        assertEquals(dateE, res.getMeetEnds());
     }
 
     /**
      * Test of deleteRes method, of class ReservationDAO.
      */
-//    @Test
-    public void testDeleteRes() {
-        System.out.println("deleteRes");
-        int resId = 0;
-        ReservationDAO instance = new ReservationDAO();
-        instance.deleteRes(resId);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @Test
+    public void testDeleteRes() throws ParseException {
+            Reservation res = new Reservation();
+            
+        String resStarts = "03-12-2017 10:30";
+        String resEnds = "03-12-2017 11:30";
+
+        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        
+        Date dateS = format.parse(resStarts);
+        Date dateE = format.parse(resEnds);
+        res.setMeetStarts(dateS);
+        res.setMeetEnds(dateE);
+       
+        resDAO.addRes(res);
+        
+        
+        resDAO.deleteRes(1);
+        
+        assertEquals(0, resDAO.getAllRes().size());
+        
+        
     }
 
     /**
      * Test of addRes method, of class ReservationDAO.
      */
     @Test
-    public void testAddRes() {
+    public void testAddRes() throws ParseException {
         Reservation res = new Reservation();
-        Room room = roomDAO.getRoomById(2);
+       // Room room = roomDAO.getRoomById(2);
         
        
+      //  res.setRoom(room);
+        
+        String resStarts = "03-12-2017 10:30";
+        String resEnds = "03-12-2017 11:30";
+
+        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        
+        Date dateS = format.parse(resStarts);
+        Date dateE = format.parse(resEnds);
+        res.setMeetStarts(dateS);
+        res.setMeetEnds(dateE);
+        
+        Room room = new Room();
+        
+        room = roomDAO.getRoomById(1);
         res.setRoom(room);
         
-        String resStarts = "2017-12-03 10:30";
-        String resEnds = "2017-12-03 11:30";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyy-MM-dd HH:mm");
-        LocalDateTime formatDateTimeStarts = LocalDateTime.parse(resStarts, formatter);
-        LocalDateTime formatDateTimeEnds = LocalDateTime.parse(resEnds, formatter);
+        User u = new User();
+        u = iuserDAO.getUserById(6);
+       
+        List<Reservation> resv= new ArrayList<>();
         
-        res.setMeetStarts(formatDateTimeStarts);
-        res.setMeetEnds(formatDateTimeEnds);
+        resv.add(res);
+        u.setReservations(resv);
+        res.setUser(u);
+        iuserDAO.updateUser(u);
         
         resDAO.addRes(res);
+//        User u = iuserDAO.getUserById(3);
+//        List<Reservation> resv= new ArrayList<>();
+//        resv.add(resDAO.getResById(1));
+//        u.setReservations(resv);
+//       // res.se
+//        res.setRoom(room);
+//       resDAO.addRes(res);
+//       User u = new User();
+//       u = iuserDAO.getUserById(1);
+//       u.setReservations((List<Reservation>) res);
+//       
+//       iuserDAO.updateUser(u);
+      
+       
+       
+       
+        
+        Date dateE2 = resDAO.getResById(1).getMeetEnds();
+        
+       assertEquals(dateE2.getTime(), dateE.getTime());
         
         
-        
-        
-//        System.out.println("addRes");
-//        Reservation reservation = null;
-//        ReservationDAO instance = new ReservationDAO();
-//        instance.addRes(reservation);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+
     }
 
     /**
      * Test of resExists method, of class ReservationDAO.
      */
-//    @Test
-    public void testResExists() {
-        System.out.println("resExists");
-        int resId = 0;
-        LocalDateTime meetStarts = null;
-        ReservationDAO instance = new ReservationDAO();
-        boolean expResult = false;
-        boolean result = instance.resExists(resId, meetStarts);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @Test
+    public void testResExists() throws ParseException {
+          Reservation res = new Reservation();
+            
+        String resStarts = "03-12-2017 10:30";
+        String resEnds = "03-12-2017 11:30";
+
+        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        
+        Date dateS = format.parse(resStarts);
+        Date dateE = format.parse(resEnds);
+        res.setMeetStarts(dateS);
+        res.setMeetEnds(dateE);
+       
+        resDAO.addRes(res);
+        
+//        
+//       DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//       LocalDateTime ldt = LocalDateTime.parse(dateS.toString(), DATEFORMATTER);
+       
+        assertEquals(true,  resDAO.resExists(1,dateS));
+       
     }
+
+    
     
 }

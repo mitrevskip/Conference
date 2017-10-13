@@ -46,6 +46,7 @@ public class UserDAO implements IUserDAO{
         user1.setPassword(user1.getPassword());
         user1.setUserName(user1.getUserName());
         user1.setRole(user1.getRole());
+        user1.setReservations(user1.getReservations());
         entityManager.flush();
         
     }

@@ -7,6 +7,7 @@ package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.conference.models.Reservation;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,10 +18,10 @@ public interface IReservationDAO {
     
     public List<Reservation> getAllRes();
     public Reservation getResById(int resId);
-    public Reservation getResByMeetStarts(LocalDateTime meetStarts);
+   // public Reservation getResByMeetStarts(Date meetStarts);
     public void updateRes(Reservation reservation);
     public void deleteRes(int resId);
     public void addRes(Reservation reservation);
-    boolean resExists(int resId, LocalDateTime meetStarts);
+    boolean resExists(int resId, Date meetStarts);
     
 }
