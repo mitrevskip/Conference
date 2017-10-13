@@ -20,7 +20,7 @@ public interface IReservationService {
     
     boolean addRes(Reservation reservation);
     
-    void updateRes(Reservation reservation);
+    boolean updateRes(Reservation reservation);
     
     void deleteRes(int resId);
 }

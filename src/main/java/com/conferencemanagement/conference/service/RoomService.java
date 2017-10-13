@@ -34,7 +34,7 @@ public class RoomService implements IRoomService {
 
     @Override
     public synchronized boolean addRoom(Room room) {
-        if (roomDAO.roomExists(room.getRoomId(), room.getRoomName())) {
+        if (roomDAO.roomExists(room.getRoomName())) {
             return false;
         } else {
             roomDAO.addRoom(room);

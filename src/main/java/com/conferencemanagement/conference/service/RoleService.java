@@ -35,7 +35,7 @@ public class RoleService implements IRoleService {
 
     @Override
     public boolean addRole(Role role) {
-        if (roleDAO.roleExists(role.getRoleId(), role.getCategory())) {
+        if (roleDAO.roleExists(role.getCategory())) {
             return false;
         } else {
             roleDAO.addRole(role);
