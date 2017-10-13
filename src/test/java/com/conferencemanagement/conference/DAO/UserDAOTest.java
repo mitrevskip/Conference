@@ -9,9 +9,10 @@ import com.conferencemanagement.SpringBoot;
 import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Role;
 import com.conferencemanagement.conference.models.User;
-import java.util.ArrayList;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.List;
-import javax.transaction.Transactional;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,8 +22,6 @@ import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -32,30 +31,34 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = SpringBoot.class)
 @RunWith(SpringRunner.class)
 public class UserDAOTest {
+
     @Autowired
     IUserDAO userDAO;
-    
+
     @Autowired
     IRoleDAO roleDAO;
-    
+
     @Autowired
     IUserRepository iuserrep;
     
+    @Autowired
+    IRoomDAO roomDAO;
+
     public UserDAOTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -65,10 +68,10 @@ public class UserDAOTest {
      */
     @Test
     public void testGetAllUsers() {
-            List<User> u ;
-            
-            u = userDAO.getAllUsers();
-            assertEquals(13, u.size());
+        List<User> u;
+
+        u = userDAO.getAllUsers();
+        assertEquals(13, u.size());
     }
 
     /**
@@ -79,10 +82,10 @@ public class UserDAOTest {
         User u = new User();
         u.setUserName("MARRIIOO2");
         userDAO.addUser(u);
-        
+
         User u2 = userDAO.getUserById(19);
-        
-        assertEquals(u.getUserId(),u2.getUserId());
+
+        assertEquals(u.getUserId(), u2.getUserId());
     }
 
     /**
@@ -91,19 +94,17 @@ public class UserDAOTest {
     @Test
     public void testAddUser() {
         User u = new User();
-        u.setUserName("bbbwewe");
+        u.setUserName("Mario");
         u.setPassword("aaaaa");
         u.setEmail("aaa");
-        
+
         Role role = new Role();
-        role = iuserrep.getRoleByCat(0);         
-        
+        role = iuserrep.getRoleByCat(1);
+
         u.setRole(role);
         userDAO.addUser(u);
-             
-        
-      // assertEquals(userDAO.getUserById(15), u.toString());
-       
+
+        // assertEquals(userDAO.getUserById(15), u.toString());
     }
 
     /**
@@ -112,12 +113,12 @@ public class UserDAOTest {
     @Test
     public void testUpdateUser() {
         User u = new User();
-        
+
         u = userDAO.getUserById(9);
         u.setEmail("NOV_MAIL");
-        
+
         userDAO.updateUser(u);
-        
+
         assertEquals(userDAO.getUserById(9).getEmail(), "NOV_MAIL");
     }
 
@@ -134,15 +135,16 @@ public class UserDAOTest {
      * Test of userExists method, of class UserDAO.
      */
     @Test
-    public void testUserExists() {
+    public void testUserExists() throws JsonProcessingException {
+            
+   //     List<Reservation> res = userDAO.getUserById(2).getReservations();
+           List<Reservation> res =  roomDAO.getRoomById(2).getReservation();
+        ObjectMapper mapper = new ObjectMapper();
         
+        String json = mapper.writeValueAsString(res);
+        System.out.println(json);
         
-        List<Reservation> res = userDAO.getUserById(4).getReservations();
-       
 //        assertEquals(true, userDAO.userExists("bbb", "aaa"));
-        
-        
     }
-    
-    
+
 }

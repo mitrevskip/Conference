@@ -40,7 +40,7 @@ public class RoomDAO implements IRoomDAO {
         room1.setCapacity(room.getCapacity());
         room1.setDesc(room.getDesc());
         room1.setRoomName(room.getRoomName());
-        room1.setReservation(room.getReservation());
+//        room1.setReservation(room.getReservation());
         entityManager.flush();
     }
 
