@@ -58,10 +58,10 @@ public class RoleDAO implements IRoleDAO{
         return count > 0 ? true : false;  
     }
 
-//    @Override
-//    public void addRole(Role role) {
-//        entityManager.persist(role);
-//    }
+    @Override
+    public void addRole(Role role) {
+        entityManager.persist(role);
+    }
 
 
 //    @Override

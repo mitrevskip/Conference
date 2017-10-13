@@ -44,7 +44,7 @@ public class ReservationDAO implements IReservationDAO{
     @Override
     public void updateRes(Reservation reservation) {
         Reservation res1 = getResById(reservation.getResId());
-     //   res1.setRoom(reservation.getRoom());
+        res1.setRoom(reservation.getRoom());
         res1.setMeetStarts(reservation.getMeetStarts());
         res1.setMeetEnds(reservation.getMeetEnds());
         entityManager.flush();

@@ -21,7 +21,7 @@ public interface IRoleDAO {
  //   public Role getRoleByCat(int category);
     public void updateRole(Role role);
 //    public void deleteRole(int roleId);
-//    public void addRole (Role role);
+    public void addRole (Role role);
     boolean roleExists(int roleId, int category);
 }
  

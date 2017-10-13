@@ -6,8 +6,10 @@
 package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.SpringBoot;
+import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Role;
 import com.conferencemanagement.conference.models.User;
+import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.junit.After;
@@ -89,7 +91,7 @@ public class UserDAOTest {
     @Test
     public void testAddUser() {
         User u = new User();
-        u.setUserName("bbb2222");
+        u.setUserName("bbbwewe");
         u.setPassword("aaaaa");
         u.setEmail("aaa");
         
@@ -135,8 +137,9 @@ public class UserDAOTest {
     public void testUserExists() {
         
         
-        
-        assertEquals(true, userDAO.userExists("bbb", "aaa"));
+        List<Reservation> res = userDAO.getUserById(4).getReservations();
+       
+//        assertEquals(true, userDAO.userExists("bbb", "aaa"));
         
         
     }
