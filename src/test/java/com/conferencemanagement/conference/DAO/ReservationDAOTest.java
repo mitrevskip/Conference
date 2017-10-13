@@ -8,6 +8,7 @@ package com.conferencemanagement.conference.DAO;
 import com.conferencemanagement.SpringBoot;
 import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Room;
+import com.conferencemanagement.conference.models.User;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,6 +18,7 @@ import java.time.LocalTime;
 import java.time.Month;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -48,6 +50,9 @@ public class ReservationDAOTest {
     
     @Autowired
     IUserRepository iuserrep;
+    
+    @Autowired
+    IUserDAO iuserDAO;
     
     public ReservationDAOTest() {
     }
@@ -227,8 +232,39 @@ public class ReservationDAOTest {
         Date dateE = format.parse(resEnds);
         res.setMeetStarts(dateS);
         res.setMeetEnds(dateE);
+        
+        Room room = new Room();
+        
+        room = roomDAO.getRoomById(1);
+        res.setRoom(room);
+        
+        User u = new User();
+        u = iuserDAO.getUserById(6);
        
+        List<Reservation> resv= new ArrayList<>();
+        
+        resv.add(res);
+        u.setReservations(resv);
+        res.setUser(u);
+        iuserDAO.updateUser(u);
+        
         resDAO.addRes(res);
+//        User u = iuserDAO.getUserById(3);
+//        List<Reservation> resv= new ArrayList<>();
+//        resv.add(resDAO.getResById(1));
+//        u.setReservations(resv);
+//       // res.se
+//        res.setRoom(room);
+//       resDAO.addRes(res);
+//       User u = new User();
+//       u = iuserDAO.getUserById(1);
+//       u.setReservations((List<Reservation>) res);
+//       
+//       iuserDAO.updateUser(u);
+      
+       
+       
+       
         
         Date dateE2 = resDAO.getResById(1).getMeetEnds();
         

@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -50,6 +51,9 @@ public class User implements Serializable {
     private Role role;
     
     private String picture;
+    
+    @OneToMany(mappedBy = "user",cascade = CascadeType.MERGE, orphanRemoval = true)
+    List<Reservation> reservations;
 
     public String getPicture() {
         return picture;
@@ -59,8 +63,7 @@ public class User implements Serializable {
         this.picture = picture;
     }
     
-    @OneToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
-    List<Reservation> reservations;
+
 
     public int getUserId() {
         return userId;
@@ -110,13 +113,13 @@ public class User implements Serializable {
         this.role = role;
     }
 
-//    public List<Reservation> getReservations() {
-//        return reservations;
-//    }
-//
-//    public void setReservations(List<Reservation> reservations) {
-//        this.reservations = reservations;
-//    }
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 
     
     

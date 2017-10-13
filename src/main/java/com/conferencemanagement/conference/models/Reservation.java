@@ -17,6 +17,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -36,9 +38,25 @@ public class Reservation implements Serializable{
     private Date meetStarts;
     private Date meetEnds;
     
-//    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-//    @JoinColumn(name = "ROOM_ID")
-//    private Room room;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "ROOM_ID")
+    private Room room;
+    
+    
+    @ManyToOne(fetch = FetchType.EAGER )
+    @JoinColumn(name = "USER_ID")
+    private User user;
+    
+    
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
+
     
     public int getResId() {
         return resId;
@@ -64,14 +82,14 @@ public class Reservation implements Serializable{
         this.meetEnds = meetEnds;
     }
 
-//    public Room getRoom() {
-//        return room;
-//    }
-//
-//    public void setRoom(Room room) {
-//        this.room = room;
-//    }
-//    
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+    
 
     @Override
     public int hashCode() {

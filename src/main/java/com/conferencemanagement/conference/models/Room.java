@@ -41,7 +41,7 @@ public class Room implements Serializable {
     @Column(name = "DESCRIPTION")
     private String desc;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE,mappedBy = "room")
     private List<Reservation> reservation;
 
     public int getRoomId() {
