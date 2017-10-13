@@ -51,10 +51,10 @@ public class RoleDAO implements IRoleDAO{
 //    }
 
     @Override
-    public boolean roleExists(int roleId, int category) {
-        String hql = "FROM Role as role1 WHERE role1.roleId = ? and role1.category = ?";
-        int count = entityManager.createQuery(hql).setParameter(1, roleId)
-                .setParameter(2, category).getResultList().size();
+    public boolean roleExists(int category) {
+        String hql = "FROM Role as role1 WHERE role1.category = ?";
+        int count = entityManager.createQuery(hql).setParameter(1, category)
+                .getResultList().size();
         return count > 0 ? true : false;  
     }
 

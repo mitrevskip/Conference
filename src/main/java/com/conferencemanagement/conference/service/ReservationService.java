@@ -6,6 +6,7 @@
 package com.conferencemanagement.conference.service;
 
 import com.conferencemanagement.conference.DAO.IReservationDAO;
+import com.conferencemanagement.conference.DAO.IUserRepository;
 import com.conferencemanagement.conference.models.Reservation;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class ReservationService implements IReservationService{
 
     @Autowired
     private IReservationDAO resDAO;
+    
+    @Autowired
+    private IUserRepository iuserrep;
     
     @Override
     public List<Reservation> getAllRes() {
@@ -41,8 +45,15 @@ public class ReservationService implements IReservationService{
     }
 
     @Override
-    public void updateRes(Reservation reservation) {
-        resDAO.updateRes(reservation);
+    public boolean updateRes(Reservation reservation) {
+        if(iuserrep.resRoomExists(reservation.getRoom().getRoomId(), reservation.getMeetStarts())) {
+            return false;
+        }
+        else {
+            resDAO.updateRes(reservation);
+            return true;
+        }
+        
     }
 
     @Override

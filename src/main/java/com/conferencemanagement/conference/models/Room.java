@@ -37,7 +37,7 @@ public class Room implements Serializable {
     
     private int capacity;
 
-    
+    @Column(unique = true)
     private String roomName;
 
     @Column(name = "DESCRIPTION")
