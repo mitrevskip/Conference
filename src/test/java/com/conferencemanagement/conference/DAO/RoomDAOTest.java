@@ -115,9 +115,11 @@ public class RoomDAOTest {
     @Test
     public void testAddRoom() {
         Room r = new Room();
-        r.setRoomName("Conference 666666");
-        r.setCapacity(30);
-        r.setDesc("0000////000sdsdssdsd00");
+
+        r.setRoomName("Conference 3");
+        r.setCapacity(25);
+        r.setDesc("Large video conferencing room (air conditioned)");
+
         
         roomDAO.addRoom(r);
         
