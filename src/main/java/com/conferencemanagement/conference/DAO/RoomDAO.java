@@ -55,10 +55,10 @@ public class RoomDAO implements IRoomDAO {
     }
 
     @Override
-    public boolean roomExists(int roomId, String roomName) {
-        String hql = "FROM Room as room1 WHERE room1.roomId = ? and room1.roomName = ?";
-        int count = entityManager.createQuery(hql).setParameter(1, roomId)
-                .setParameter(2, roomName).getResultList().size();
+    public boolean roomExists(String roomName) {
+        String hql = "FROM Room as room1 WHERE  room1.roomName = ?";
+        int count = entityManager.createQuery(hql).setParameter(1, roomName)
+                .getResultList().size();
         return count > 0 ? true : false;
     }
 

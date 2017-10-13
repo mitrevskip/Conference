@@ -20,6 +20,6 @@ public interface IRoomDAO {
     public void updateRoom(Room room);
     public void deleteRoom(int roomId);
     public void addRoom (Room room);
-    boolean roomExists(int roomId, String roomName);
+    boolean roomExists(String roomName);
     
 }
