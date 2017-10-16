@@ -139,7 +139,7 @@ public class RoomDAOTest {
         
         roomDAO.addRoom(r);
         
-        assertEquals(true, roomDAO.roomExists(1, "Conference 2"));
+        assertEquals(true, roomDAO.roomExists("Conference 2"));
     }
     
 }

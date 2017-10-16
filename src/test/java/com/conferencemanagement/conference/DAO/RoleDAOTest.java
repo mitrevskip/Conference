@@ -7,23 +7,17 @@ package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.SpringBoot;
 import com.conferencemanagement.conference.models.Role;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.util.List;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.annotation.Order;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
@@ -170,7 +164,7 @@ import org.springframework.test.context.junit4.SpringRunner;
       System.out.println("6");
       boolean postoi;
         
-      postoi = roleDAO.roleExists(1, 0);
+      postoi = roleDAO.roleExists(1);
          
       assertEquals(true, postoi);
       
