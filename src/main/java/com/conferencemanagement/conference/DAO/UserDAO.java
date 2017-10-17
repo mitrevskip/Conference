@@ -7,6 +7,7 @@ package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.conference.models.User;
 import java.util.List;
+import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -23,10 +24,16 @@ public class UserDAO implements IUserDAO {
     @PersistenceContext
     private EntityManager entityManager;
     
+    
+    
     @Override
     public List<User> getAllUsers() {
+        EntityGraph eg = entityManager.createEntityGraph(User.class);
+        eg.addAttributeNodes("reservations");
+        eg.addSubgraph("reservations").addAttributeNodes("reservation");
+        EntityGraph postGraph = entityManager.getEntityGraph("User");
         String hql = "FROM User as user1 ORDER BY user1.userId";
-        return (List<User>) entityManager.createQuery(hql).getResultList();
+        return (List<User>) entityManager.createQuery(hql,User.class).setHint("javax.persistence.fetchgraph", postGraph).setParameter("id", this.getUserById(1)).getResultList();
     }
     
     @Override

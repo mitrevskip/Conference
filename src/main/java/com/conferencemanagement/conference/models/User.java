@@ -7,6 +7,7 @@ package com.conferencemanagement.conference.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -23,6 +24,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedEntityGraphs;
+import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -33,6 +38,23 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "User")
+//@NamedEntityGraphs({
+//    @NamedEntityGraph(
+//    name = "reservations",
+//            attributeNodes = {
+//                @NamedAttributeNode(value = "Reservation", subgraph = "reservationsGraph")
+//            },
+//            subgraphs = {
+//                @NamedSubgraph(
+//                        name = "reservationsGraph",
+//                        attributeNodes = {
+//                          @NamedAttributeNode("userReservationsRooms")
+//                            
+//                        }
+//                )
+//            }
+//    )
+//})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
