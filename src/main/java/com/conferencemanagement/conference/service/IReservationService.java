@@ -22,5 +22,5 @@ public interface IReservationService {
     
     boolean updateRes(Reservation reservation);
     
-    void deleteRes(int resId);
+    boolean deleteRes(int resId);
 }

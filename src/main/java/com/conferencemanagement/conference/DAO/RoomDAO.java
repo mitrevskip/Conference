@@ -36,17 +36,13 @@ public class RoomDAO implements IRoomDAO {
 
     @Override
     public void updateRoom(Room room) {
-        Room room1 = getRoomById(room.getRoomId());
-        room1.setCapacity(room.getCapacity());
-        room1.setDesc(room.getDesc());
-        room1.setRoomName(room.getRoomName());
-//        room1.setReservation(room.getReservation());
-        entityManager.flush();
+  
+        entityManager.merge(room);
     }
 
     @Override
-    public void deleteRoom(int roomId) {
-        entityManager.remove(getRoomById(roomId));
+    public void deleteRoom(int roomid) {
+        entityManager.remove(getRoomById(roomid));
     }
 
     @Override
@@ -57,8 +53,7 @@ public class RoomDAO implements IRoomDAO {
     @Override
     public boolean roomExists(String roomName) {
         String hql = "FROM Room as room1 WHERE  room1.roomName = ?";
-        int count = entityManager.createQuery(hql).setParameter(1, roomName)
-                .getResultList().size();
+        int count = entityManager.createQuery(hql).setParameter(1, roomName).getResultList().size();
         return count > 0 ? true : false;
     }
 

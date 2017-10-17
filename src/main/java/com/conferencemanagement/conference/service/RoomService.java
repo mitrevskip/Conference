@@ -43,13 +43,29 @@ public class RoomService implements IRoomService {
     }
 
     @Override
-    public void updateRoom(Room room) {
-        roomDAO.updateRoom(room);
+    public synchronized boolean updateRoom(Room room) {
+        if (roomDAO.roomExists(room.getRoomName())) {
+            return false;
+        } else {
+            roomDAO.addRoom(room);
+            return true;
+        }
+       
     }
 
     @Override
-    public void deleteRoom(int roomId) {
-        roomDAO.deleteRoom(roomId);
+    public synchronized boolean deleteRoom(int roomid) {
+        Room r = roomDAO.getRoomById(roomid);
+         if (roomDAO.roomExists(r.getRoomName())) {
+            roomDAO.deleteRoom(roomid);
+             return true;
+            
+        } else {
+                   
+            return false;
+        }
+       
+ 
     }
 
 }

@@ -20,6 +20,8 @@ public class UserService implements IUserService{
     @Autowired
     private IUserDAO userDAO;
     
+    
+    
     @Override
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
@@ -33,7 +35,7 @@ public class UserService implements IUserService{
 
     @Override
     public synchronized boolean addUser(User user) {
-        if (userDAO.userExists(user.getUserName(), user.getEmail())) {
+        if (userDAO.userExists(user.getUserName())) {
             return false;
         }else{
             userDAO.addUser(user);
@@ -42,13 +44,36 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public void updateUser(User user) {
-        userDAO.updateUser(user);
+    public synchronized boolean updateUser(User user) {
+         if (userDAO.userExists(user.getUserName())) {
+            return false;
+        }else{
+            userDAO.updateUser(user);
+            return true;
+        }
+         
     }
 
     @Override
-    public void deleteUser(int userId) {
-        userDAO.deleteUser(userId);
+    public synchronized boolean deleteUser(int userId) {
+        User u = userDAO.getUserById(userId);
+        if (userDAO.userExists(u.getUserName())) {
+           userDAO.deleteUser(userId);
+            return true;
+        }else{
+           return false;
+        }
+        
+    }
+
+    @Override
+    public boolean userExists(String userName) {
+        if (userDAO.userExists(userName)) {
+            return true;
+        }else{
+            
+            return false;
+        }
     }
     
 }

@@ -6,7 +6,9 @@
 package com.conferencemanagement.conference.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -39,7 +41,7 @@ public class User implements Serializable {
     
     private String email;
     
-    @Column(name = "username", unique = true)
+    @Column(unique = true)
     private String userName;
     
     
@@ -54,8 +56,9 @@ public class User implements Serializable {
     
     private String picture;
     
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.MERGE, orphanRemoval = true)
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JsonManagedReference
+    @JsonBackReference
     List<Reservation> reservations;
 
     public String getPicture() {

@@ -67,10 +67,15 @@ public class UserDAOTest {
      * Test of getAllUsers method, of class UserDAO.
      */
     @Test
-    public void testGetAllUsers() {
+    public void testGetAllUsers() throws JsonProcessingException {
         List<User> u;
 
         u = userDAO.getAllUsers();
+        
+          ObjectMapper mapper = new ObjectMapper();
+        
+        String json = mapper.writeValueAsString(u);
+        System.out.println(json);
         assertEquals(13, u.size());
     }
 
@@ -94,7 +99,7 @@ public class UserDAOTest {
     @Test
     public void testAddUser() {
         User u = new User();
-        u.setUserName("Mario");
+        u.setUserName("Mario000000");
         u.setPassword("aaaaa");
         u.setEmail("aaa");
 
@@ -114,12 +119,19 @@ public class UserDAOTest {
     public void testUpdateUser() {
         User u = new User();
 
-        u = userDAO.getUserById(9);
-        u.setEmail("NOV_MAIL");
+        
+        u = userDAO.getUserById(1);
+        u.setEmail("NOV_MAIL1000");
+        u.setUserName("MarioBOZINOVSKI");
+        u.setLog(false);
+        u.setPicture("211111121");
+        u.setPassword("ddddddddddddddddd");
+        u.setReservations(u.getReservations());
+        u.setRole(u.getRole());
 
         userDAO.updateUser(u);
 
-        assertEquals(userDAO.getUserById(9).getEmail(), "NOV_MAIL");
+        assertEquals(userDAO.getUserById(1).getEmail(), "NOV_MAIL2");
     }
 
     /**
