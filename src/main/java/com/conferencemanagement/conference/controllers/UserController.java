@@ -40,13 +40,14 @@ public class UserController {
         userService.addUser(user);
     }
     
-    @RequestMapping(method = RequestMethod.POST, value = "/user")
+    @RequestMapping(method = RequestMethod.PUT, value = "/user")
     public void updateUser(@RequestBody User user) {
         userService.updateUser(user);
     }
     
     @RequestMapping("/user/{id}")
     public boolean deleteUser(@PathVariable int id) {
-        userService.deleteUser(id);
+        return userService.deleteUser(id);
+        
     }
 }
