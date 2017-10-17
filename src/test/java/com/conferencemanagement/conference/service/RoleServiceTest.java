@@ -5,7 +5,11 @@
  */
 package com.conferencemanagement.conference.service;
 
+import com.conferencemanagement.SpringBoot;
+import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Role;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,12 +17,20 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  *
- * @author Petar
+ * @author Mario HP
  */
+@SpringBootTest(classes = SpringBoot.class)
+@RunWith(SpringRunner.class)
 public class RoleServiceTest {
+    @Autowired
+    IRoleService roleService;
     
     public RoleServiceTest() {
     }
@@ -43,29 +55,27 @@ public class RoleServiceTest {
      * Test of getAllRoles method, of class RoleService.
      */
     @Test
-    public void testGetAllRoles() {
-        System.out.println("getAllRoles");
-        RoleService instance = new RoleService();
-        List<Role> expResult = null;
-        List<Role> result = instance.getAllRoles();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetAllRoles() throws JsonProcessingException {
+         List<Role> r =  roleService.getAllRoles();
+        ObjectMapper mapper = new ObjectMapper();
+        
+        String json = mapper.writeValueAsString(r);
+        System.out.println(json);
+        assertEquals(3, roleService.getAllRoles().size());
     }
 
     /**
      * Test of getRoleById method, of class RoleService.
      */
     @Test
-    public void testGetRoleById() {
-        System.out.println("getRoleById");
-        int roleId = 0;
-        RoleService instance = new RoleService();
-        Role expResult = null;
-        Role result = instance.getRoleById(roleId);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetRoleById() throws JsonProcessingException {
+      Role r = new Role();
+      r = roleService.getRoleById(1);
+      ObjectMapper mapper = new ObjectMapper();
+        
+        String json = mapper.writeValueAsString(r);
+        System.out.println(json);
+        assertEquals(r, roleService.getRoleById(1));
     }
 
     /**
@@ -73,14 +83,9 @@ public class RoleServiceTest {
      */
     @Test
     public void testAddRole() {
-        System.out.println("addRole");
-        Role role = null;
-        RoleService instance = new RoleService();
-        boolean expResult = false;
-        boolean result = instance.addRole(role);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        Role r = new Role();
+//        r.setCategory(0);
+//        roleService.addRole(r);
     }
 
     /**
@@ -88,12 +93,10 @@ public class RoleServiceTest {
      */
     @Test
     public void testUpdateRole() {
-        System.out.println("updateRole");
-        Role role = null;
-        RoleService instance = new RoleService();
-        instance.updateRole(role);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Role r = new Role();
+        r = roleService.getRoleById(1);
+        r.setCategory(0);
+        roleService.updateRole(r);
     }
     
 }

@@ -20,8 +20,8 @@ public interface IRoomService {
     
     boolean addRoom(Room room);
     
-    void updateRoom(Room room);
+    boolean updateRoom(Room room);
     
-    void deleteRoom(int roomId);
+    boolean deleteRoom(int roomid);
     
 }

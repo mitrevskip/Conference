@@ -18,7 +18,7 @@ public interface IRoomDAO {
     public Room getRoomById(int roomId);
 //    public Room getRoomByName(String roomName);
     public void updateRoom(Room room);
-    public void deleteRoom(int roomId);
+    public void deleteRoom(int roomid);
     public void addRoom (Room room);
     boolean roomExists(String roomName);
     

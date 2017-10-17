@@ -20,7 +20,7 @@ public interface IRoleService {
     
     boolean addRole(Role role);
     
-    void updateRole(Role role);
+    boolean updateRole(Role role);
     
 
     

@@ -5,7 +5,10 @@
  */
 package com.conferencemanagement.conference.service;
 
+import com.conferencemanagement.SpringBoot;
 import com.conferencemanagement.conference.models.Room;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,12 +16,21 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  *
- * @author Petar
+ * @author Mario HP
  */
+@SpringBootTest(classes = SpringBoot.class)
+@RunWith(SpringRunner.class)
 public class RoomServiceTest {
+    
+    @Autowired
+    IRoomService roomService;
     
     public RoomServiceTest() {
     }
@@ -43,29 +55,27 @@ public class RoomServiceTest {
      * Test of getAllRooms method, of class RoomService.
      */
     @Test
-    public void testGetAllRooms() {
-        System.out.println("getAllRooms");
-        RoomService instance = new RoomService();
-        List<Room> expResult = null;
-        List<Room> result = instance.getAllRooms();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetAllRooms() throws JsonProcessingException {
+       List<Room> r = roomService.getAllRooms();
+       ObjectMapper mapper = new ObjectMapper();
+        
+        String json = mapper.writeValueAsString(r);
+        System.out.println(json);
+         assertEquals(2, r.size());
     }
 
     /**
      * Test of getRoomById method, of class RoomService.
      */
     @Test
-    public void testGetRoomById() {
-        System.out.println("getRoomById");
-        int roomId = 0;
-        RoomService instance = new RoomService();
-        Room expResult = null;
-        Room result = instance.getRoomById(roomId);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetRoomById() throws JsonProcessingException {
+        Room r = new Room();
+        r = roomService.getRoomById(2);
+        ObjectMapper mapper = new ObjectMapper();
+        
+        String json = mapper.writeValueAsString(r);
+        System.out.println(json);
+         
     }
 
     /**
@@ -73,14 +83,13 @@ public class RoomServiceTest {
      */
     @Test
     public void testAddRoom() {
-        System.out.println("addRoom");
-        Room room = null;
-        RoomService instance = new RoomService();
-        boolean expResult = false;
-        boolean result = instance.addRoom(room);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Room r = new Room();
+        r.setCapacity(14);
+        r.setDesc("NOVA SOBA 22222");
+        r.setRoomName("ROOOMvv2222222222");
+        roomService.addRoom(r);
+        assertEquals(4, roomService.getAllRooms().size());
+        
     }
 
     /**
@@ -88,12 +97,12 @@ public class RoomServiceTest {
      */
     @Test
     public void testUpdateRoom() {
-        System.out.println("updateRoom");
-        Room room = null;
-        RoomService instance = new RoomService();
-        instance.updateRoom(room);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+     Room r = new Room();
+     r = roomService.getRoomById(3);
+     r.setRoomName("Conference 5");
+     r.setDesc("Large video");
+     r.setCapacity(17);
+     roomService.updateRoom(r);
     }
 
     /**
@@ -101,12 +110,8 @@ public class RoomServiceTest {
      */
     @Test
     public void testDeleteRoom() {
-        System.out.println("deleteRoom");
-        int roomId = 0;
-        RoomService instance = new RoomService();
-        instance.deleteRoom(roomId);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
+      roomService.deleteRoom(5);
     }
     
 }
