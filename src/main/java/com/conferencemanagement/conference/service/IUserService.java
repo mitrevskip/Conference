@@ -20,8 +20,9 @@ public interface IUserService {
     
     boolean addUser(User user);
     
-    void updateUser(User user);
+    boolean updateUser(User user);
     
-    void deleteUser(int userId);
+    boolean deleteUser(int userId);
     
+    boolean userExists(String userName);
 }

@@ -164,7 +164,9 @@ import org.springframework.test.context.junit4.SpringRunner;
       System.out.println("6");
       boolean postoi;
         
-      postoi = roleDAO.roleExists(1);
+
+      postoi = roleDAO.roleExists(0);
+
          
       assertEquals(true, postoi);
       

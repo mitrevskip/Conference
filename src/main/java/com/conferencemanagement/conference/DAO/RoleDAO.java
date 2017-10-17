@@ -40,9 +40,7 @@ public class RoleDAO implements IRoleDAO{
 
     @Override
     public void updateRole(Role role) {
-        Role role1 = getRoleById(role.getRoleId());
-        role1.setCategory(role.getCategory());
-        entityManager.flush();
+        entityManager.merge(role);
     }
 
 //    @Override

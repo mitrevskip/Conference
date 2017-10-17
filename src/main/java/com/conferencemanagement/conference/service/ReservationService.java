@@ -10,11 +10,13 @@ import com.conferencemanagement.conference.DAO.IUserRepository;
 import com.conferencemanagement.conference.models.Reservation;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Petar
  */
+@Service
 public class ReservationService implements IReservationService{
 
     @Autowired
@@ -57,8 +59,15 @@ public class ReservationService implements IReservationService{
     }
 
     @Override
-    public void deleteRes(int resId) {
-        resDAO.deleteRes(resId);
+    public synchronized boolean deleteRes(int resId) {
+        Reservation reservation = resDAO.getResById(resId);
+        if (resDAO.resExists(reservation.getResId(), reservation.getMeetStarts())) {
+             resDAO.deleteRes(resId);
+            return true;
+        }else{
+            return false;
+        }
+        
     }
     
 }

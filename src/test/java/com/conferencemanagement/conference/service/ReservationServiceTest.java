@@ -5,7 +5,17 @@
  */
 package com.conferencemanagement.conference.service;
 
+import com.conferencemanagement.SpringBoot;
 import com.conferencemanagement.conference.models.Reservation;
+import com.conferencemanagement.conference.models.Room;
+import com.conferencemanagement.conference.models.User;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,12 +23,30 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  *
- * @author Petar
+ * @author Mario HP
  */
+@SpringBootTest(classes = SpringBoot.class)
+@RunWith(SpringRunner.class)
 public class ReservationServiceTest {
+    
+    @Autowired
+    IReservationService resService;
+    
+    @Autowired
+    IUserService iuserrep;
+    
+    @Autowired
+    IRoomService roomService;
+    
+    @Autowired
+    IUserService userService;
     
     public ReservationServiceTest() {
     }
@@ -43,14 +71,14 @@ public class ReservationServiceTest {
      * Test of getAllRes method, of class ReservationService.
      */
     @Test
-    public void testGetAllRes() {
-        System.out.println("getAllRes");
-        ReservationService instance = new ReservationService();
-        List<Reservation> expResult = null;
-        List<Reservation> result = instance.getAllRes();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetAllRes() throws JsonProcessingException {
+        List<Reservation> r = resService.getAllRes();
+        
+        ObjectMapper mapper = new ObjectMapper();
+        
+        String json = mapper.writeValueAsString(r);
+        System.out.println(json);
+        
     }
 
     /**
@@ -72,15 +100,36 @@ public class ReservationServiceTest {
      * Test of addRes method, of class ReservationService.
      */
     @Test
-    public void testAddRes() {
-        System.out.println("addRes");
-        Reservation reservation = null;
-        ReservationService instance = new ReservationService();
-        boolean expResult = false;
-        boolean result = instance.addRes(reservation);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testAddRes() throws ParseException {
+        Reservation res = new Reservation();
+            
+        String resStarts = "03-12-2017 10:30";
+        String resEnds = "03-12-2017 11:30";
+
+        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        
+        Date dateS = format.parse(resStarts);
+        Date dateE = format.parse(resEnds);
+        res.setMeetStarts(dateS);
+        res.setMeetEnds(dateE);
+       
+        Room room = new Room();
+        room = roomService.getRoomById(2);
+        res.setRoom(room);
+        
+        User u = new User();
+        u = userService.getUserById(1);
+        res.setUser(u);
+        List<Reservation> resv= new ArrayList<>();
+        
+        resv.add(res);
+        u.setReservations(resv);
+        res.setUser(u);
+        userService.updateUser(u);
+        
+        resService.addRes(res);
+        
+     
     }
 
     /**
@@ -91,7 +140,9 @@ public class ReservationServiceTest {
         System.out.println("updateRes");
         Reservation reservation = null;
         ReservationService instance = new ReservationService();
-        instance.updateRes(reservation);
+        boolean expResult = false;
+        boolean result = instance.updateRes(reservation);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

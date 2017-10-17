@@ -7,6 +7,8 @@ package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.SpringBoot;
 import com.conferencemanagement.conference.models.Room;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -56,9 +58,14 @@ public class RoomDAOTest {
      * Test of getAllRooms method, of class RoomDAO.
      */
     @Test
-    public void testGetAllRooms() {
+    public void testGetAllRooms() throws JsonProcessingException {
         List<Room> r;
         r = roomDAO.getAllRooms();
+          ObjectMapper mapper = new ObjectMapper();
+        
+        String json = mapper.writeValueAsString(r);
+        System.out.println(json);
+        
         assertEquals(roomDAO.getAllRooms().size(), 0);
         
     }
@@ -105,7 +112,7 @@ public class RoomDAOTest {
        r.setRoomName("Big Bang");
        roomDAO.addRoom(r);
        
-       roomDAO.deleteRoom(1);
+       roomDAO.deleteRoom(r.getRoomId());
         assertEquals(0, roomDAO.getAllRooms().size());
     }
 
@@ -116,7 +123,7 @@ public class RoomDAOTest {
     public void testAddRoom() {
         Room r = new Room();
 
-        r.setRoomName("Conference 3");
+        r.setRoomName("Conference 4");
         r.setCapacity(25);
         r.setDesc("Large video conferencing room (air conditioned)");
 

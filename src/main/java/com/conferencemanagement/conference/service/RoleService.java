@@ -44,10 +44,18 @@ public class RoleService implements IRoleService {
     }
 
     @Override
-    public void updateRole(Role role) {
-        roleDAO.updateRole(role);
+    public synchronized boolean updateRole(Role role) {
+         if (roleDAO.roleExists(role.getCategory())) {
+              roleDAO.updateRole(role);
+            return true;
+        } else {
+             return false;
+            
+        }
+      
     }
 
+    
     
 
 }
