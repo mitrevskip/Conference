@@ -7,6 +7,7 @@ package com.conferencemanagement.conference.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import java.io.Serializable;
@@ -44,13 +45,13 @@ public class Reservation implements Serializable{
     
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "ROOM_ID")
-    @JsonBackReference
+    @JsonIgnoreProperties("reservations")
     private Room room;
     
     
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name = "USER_ID")
-    @JsonBackReference
+    @JsonIgnoreProperties("reservations")
     private User user;
     
     
