@@ -27,6 +27,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedEntityGraphs;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -38,23 +40,17 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "User")
-//@NamedEntityGraphs({
-//    @NamedEntityGraph(
-//    name = "reservations",
-//            attributeNodes = {
-//                @NamedAttributeNode(value = "Reservation", subgraph = "reservationsGraph")
-//            },
-//            subgraphs = {
-//                @NamedSubgraph(
-//                        name = "reservationsGraph",
-//                        attributeNodes = {
-//                          @NamedAttributeNode("userReservationsRooms")
-//                            
-//                        }
-//                )
-//            }
-//    )
+//@NamedQueries({
+//    @NamedQuery(name = "User.findAll", query = "FROM User as user1 ORDER BY user1.userId")
 //})
+@NamedEntityGraphs({
+    @NamedEntityGraph(
+    name = "UserReservations",
+            attributeNodes = {
+                @NamedAttributeNode("userName")
+            })
+            
+})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -6,7 +6,9 @@
 package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.conference.models.User;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,12 +30,16 @@ public class UserDAO implements IUserDAO {
     
     @Override
     public List<User> getAllUsers() {
-        EntityGraph eg = entityManager.createEntityGraph(User.class);
-        eg.addAttributeNodes("reservations");
-        eg.addSubgraph("reservations").addAttributeNodes("reservation");
-        EntityGraph postGraph = entityManager.getEntityGraph("User");
-        String hql = "FROM User as user1 ORDER BY user1.userId";
-        return (List<User>) entityManager.createQuery(hql,User.class).setHint("javax.persistence.fetchgraph", postGraph).setParameter("id", this.getUserById(1)).getResultList();
+        EntityGraph graph = entityManager.createEntityGraph(User.class);
+//        eg.addAttributeNodes("reservations");
+//        eg.addSubgraph("reservations").addAttributeNodes("user");
+        graph.addAttributeNodes("userName");
+        
+        EntityGraph postGraph = entityManager.getEntityGraph("UserReservations");
+        
+         String hql = "FROM User as user1 ORDER BY user1.userId";
+      return entityManager.createQuery(hql).setHint("javax.persistence.fetchgraph", postGraph).getResultList();
+//    return (List<User>) entityManager.createQuery(hql).setHint("javax.persistence.loadgraph", postGraph).getResultList();
     }
     
     @Override
