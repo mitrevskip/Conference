@@ -11,6 +11,7 @@ import com.conferencemanagement.conference.models.Role;
 import com.conferencemanagement.conference.models.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.util.List;
 import org.junit.After;
@@ -72,9 +73,11 @@ public class UserDAOTest {
 
         u = userDAO.getAllUsers();
         
-          ObjectMapper mapper = new ObjectMapper();
-        
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
         String json = mapper.writeValueAsString(u);
+        
+        
         System.out.println(json);
         assertEquals(13, u.size());
     }
