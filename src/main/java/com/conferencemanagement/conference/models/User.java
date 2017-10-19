@@ -5,7 +5,9 @@
  */
 package com.conferencemanagement.conference.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -72,7 +74,7 @@ public class User implements Serializable {
     private String picture;
     
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties("user")
+    @JsonManagedReference
     List<Reservation> reservations;
 
     public String getPicture() {

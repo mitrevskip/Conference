@@ -45,15 +45,15 @@ public class Reservation implements Serializable{
     
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "ROOM_ID")
-   @JsonIgnoreProperties("reservations")
-//    @JsonBackReference
+   //@JsonIgnoreProperties("reservations")
+    @JsonManagedReference
     private Room room;
     
     
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name = "USER_ID")
-    @JsonIgnoreProperties("reservations")
-   //@JsonBackReference
+   // @JsonIgnoreProperties("reservations")
+   @JsonBackReference
     private User user;
     
     

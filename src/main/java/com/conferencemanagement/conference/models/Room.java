@@ -45,7 +45,7 @@ public class Room implements Serializable {
     private String desc;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE,mappedBy = "room")
- //   @JsonIgnoreProperties("room")
+   //@JsoMnIgnoreProperties("room")
     @JsonBackReference
     private List<Reservation> reservation;
 

@@ -5,6 +5,7 @@
  */
 package com.conferencemanagement.conference.controllers;
 
+import com.conferencemanagement.conference.DAO.IUserRepository;
 import com.conferencemanagement.conference.models.Room;
 import com.conferencemanagement.conference.service.IRoomService;
 import java.util.List;
@@ -26,9 +27,12 @@ public class RoomController {
     @Autowired
     private IRoomService roomService;
     
+    @Autowired
+    private IUserRepository iuserrep;
+    
     @RequestMapping("/getall")
     public List<Room> getAllRooms() {
-        return roomService.getAllRooms();
+        return iuserrep.getAllRooms();
     }
     
     @RequestMapping("/{roomId}")
