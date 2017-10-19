@@ -6,8 +6,6 @@
 package com.conferencemanagement.conference.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
@@ -47,7 +45,8 @@ public class Room implements Serializable {
     private String desc;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE,mappedBy = "room")
-    @JsonIgnoreProperties("room")
+ //   @JsonIgnoreProperties("room")
+    @JsonBackReference
     private List<Reservation> reservation;
 
     public int getRoomId() {

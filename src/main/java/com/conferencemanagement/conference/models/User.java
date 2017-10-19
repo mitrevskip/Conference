@@ -5,14 +5,7 @@
  */
 package com.conferencemanagement.conference.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.annotation.ObjectIdGenerator;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -23,13 +16,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
-import javax.persistence.NamedEntityGraphs;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -43,14 +29,22 @@ import javax.persistence.Table;
 //@NamedQueries({
 //    @NamedQuery(name = "User.findAll", query = "FROM User as user1 ORDER BY user1.userId")
 //})
-@NamedEntityGraphs({
-    @NamedEntityGraph(
-    name = "UserReservations",
-            attributeNodes = {
-                @NamedAttributeNode("userName")
-            })
-            
-})
+//@NamedEntityGraphs({
+//    @NamedEntityGraph(
+//    name = "UserReservations",
+//            attributeNodes = {
+//                @NamedAttributeNode("userName")
+//            })
+//            
+//})
+//@FetchProfile(
+//        name = "user",
+//        fetchOverrides = { @FetchProfile.FetchOverride(
+//            entity = User.class,
+//            association = "project",
+//            mode = FetchMode.JOIN
+//        })
+//)
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;

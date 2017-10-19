@@ -20,32 +20,33 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Petar
  */
 @RestController
+@RequestMapping("/room")
 public class RoomController {
     
     @Autowired
     private IRoomService roomService;
     
-    @RequestMapping("/room")
+    @RequestMapping("/getall")
     public List<Room> getAllRooms() {
         return roomService.getAllRooms();
     }
     
-    @RequestMapping("/room/{roomId}")
+    @RequestMapping("/{roomId}")
     public Room getRoomById(@PathVariable int roomId) {
         return roomService.getRoomById(roomId);
     }
     
-    @RequestMapping(method = RequestMethod.POST, value = "/room")
+    @RequestMapping(method = RequestMethod.POST, value = "/add")
     public void addRoom (@RequestBody Room room) {
         roomService.addRoom(room);
     }
     
-    @RequestMapping(method = RequestMethod.PUT, value = "/room/{roomId}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/update/{roomId}")
     public void updateRoom(@RequestBody Room room) {
         roomService.updateRoom(room);
     }
     
-    @RequestMapping(method = RequestMethod.DELETE, value = "/room/{roomId}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{roomId}")
     public void deleteRoom(@PathVariable int roomId) {
         roomService.deleteRoom(roomId);
     }
