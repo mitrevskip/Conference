@@ -7,6 +7,7 @@ package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Role;
+import com.conferencemanagement.conference.models.Room;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
@@ -39,6 +40,9 @@ public interface IUserRepository extends JpaRepository <Role,Long>,JpaSpecificat
     
     @Query("SELECT r FROM Reservation r WHERE r.room = :roomId and r.meetStarts = :meetStarts")
     public  boolean  resRoomExists(int roomid, Date meetStarts);
+    
+    @Query("SELECT r FROM Room r join Reservation res ON r.roomId=res.roomId WHERE r.roomId='2'")
+    public List<Room>  getAllRooms();
     
    
  }
