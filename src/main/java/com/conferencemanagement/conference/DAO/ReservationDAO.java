@@ -6,6 +6,7 @@
 package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.conference.models.Reservation;
+import com.conferencemanagement.conference.models.Room;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +31,12 @@ public class ReservationDAO implements IReservationDAO{
     public List<Reservation> getAllRes() {
         String hql = "FROM Reservation as res1 ORDER BY res1.resId";
         return (List<Reservation>)entityManager.createQuery(hql).getResultList();
+    }
+    
+    @Override
+    public List<Room> getAvailableRooms(int meetStarts, int meetEnds) {
+        String hql = "FROM Reservation as room ORDER BY meetStarts WHERE room.meetStarts != ? and room.meetEnds != ?";
+        return entityManager.createQuery(hql).setParameter(1, meetStarts).setParameter(2, meetEnds).getResultList();
     }
 
     @Override
@@ -63,6 +70,8 @@ public class ReservationDAO implements IReservationDAO{
                 .setParameter(2, meetStarts).getResultList().size();
         return count > 0 ? true : false;
     }
+
+    
 
    
     

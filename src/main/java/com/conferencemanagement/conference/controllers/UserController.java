@@ -5,6 +5,7 @@
  */
 package com.conferencemanagement.conference.controllers;
 
+import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.User;
 import com.conferencemanagement.conference.service.IUserService;
 import java.util.List;
@@ -25,32 +26,41 @@ public class UserController {
 
     @Autowired
     private IUserService userService;
-    
-    @RequestMapping("/getall")
+
+    @RequestMapping("/getAll")
     public List<User> getAllUsers() {
-        
-       
-      return  userService.getAllUsers();
+
+        return userService.getAllUsers();
     }
     
+    @RequestMapping("/getAllReservations/{userId}")
+    public List<Reservation> getAllReservations(@PathVariable int userId) {
+        return userService.getAllReservations(userId);
+    }
+
     @RequestMapping("/{userId}")
     public User getUserById(@PathVariable int userId) {
         return userService.getUserById(userId);
     }
-    
+
     @RequestMapping(method = RequestMethod.POST, value = "/add")
     public void addUser(@RequestBody User user) {
         userService.addUser(user);
     }
-    
+
     @RequestMapping(method = RequestMethod.PUT, value = "/update/{userId}")
     public void updateUser(@RequestBody User user) {
         userService.updateUser(user);
     }
-    
+
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{userId}")
     public void deleteUser(@PathVariable int userId) {
         userService.deleteUser(userId);
-        
+
+    }
+    
+    @RequestMapping("/forgotPassword/{email}")
+    public void forgotPassword(@PathVariable String email) {
+        userService.forgotPassword(email);
     }
 }

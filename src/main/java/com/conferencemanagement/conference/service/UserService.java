@@ -6,8 +6,10 @@
 package com.conferencemanagement.conference.service;
 
 import com.conferencemanagement.conference.DAO.IUserDAO;
+import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.User;
 import java.util.List;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +18,19 @@ import org.springframework.stereotype.Service;
  * @author Petar
  */
 @Service
-public class UserService implements IUserService{
+public class UserService implements IUserService {
+
     @Autowired
     private IUserDAO userDAO;
-    
-    
-    
+
     @Override
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
+    }
+
+    @Override
+    public List<Reservation> getAllReservations(int userId) {
+        return userDAO.getAllReservations(userId);
     }
 
     @Override
@@ -37,7 +43,7 @@ public class UserService implements IUserService{
     public synchronized boolean addUser(User user) {
         if (userDAO.userExists(user.getUserName())) {
             return false;
-        }else{
+        } else {
             userDAO.addUser(user);
             return true;
         }
@@ -45,35 +51,45 @@ public class UserService implements IUserService{
 
     @Override
     public synchronized boolean updateUser(User user) {
-         if (userDAO.userExists(user.getUserName())) {
-            return false;
-        }else{
+        if (userDAO.userExists(user.getUserName())) {
             userDAO.updateUser(user);
             return true;
+        } else {
+            return false;
         }
-         
+
     }
 
     @Override
     public synchronized boolean deleteUser(int userId) {
         User u = userDAO.getUserById(userId);
         if (userDAO.userExists(u.getUserName())) {
-           userDAO.deleteUser(userId);
+            userDAO.deleteUser(userId);
             return true;
-        }else{
-           return false;
+        } else {
+            return false;
         }
-        
+
     }
 
     @Override
     public boolean userExists(String userName) {
         if (userDAO.userExists(userName)) {
             return true;
-        }else{
-            
+        } else {
+
             return false;
         }
     }
-    
+
+    @Override
+    public void forgotPassword(String email) {
+        User u = userDAO.getUserByEmail(email);
+        if (userDAO.emailExists(email)) {
+            u.setPassword(RandomStringUtils.randomAlphanumeric(8));
+        }else{
+            System.out.println("No such email in database!");
+        }
+    }
+
 }

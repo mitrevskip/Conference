@@ -8,6 +8,7 @@ package com.conferencemanagement.conference.service;
 import com.conferencemanagement.conference.DAO.IReservationDAO;
 import com.conferencemanagement.conference.DAO.IUserRepository;
 import com.conferencemanagement.conference.models.Reservation;
+import com.conferencemanagement.conference.models.Room;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -30,6 +31,13 @@ public class ReservationService implements IReservationService{
     public List<Reservation> getAllRes() {
         return resDAO.getAllRes();
     }
+    
+    @Override
+    public List<Room> getAvailableRooms(int meetStarts, int meetEnds) {
+        return resDAO.getAvailableRooms(meetStarts, meetEnds);
+    }
+    
+    
 
     @Override
     public Reservation getResById(int resId) {
@@ -70,5 +78,7 @@ public class ReservationService implements IReservationService{
         }
         
     }
+
+    
     
 }
