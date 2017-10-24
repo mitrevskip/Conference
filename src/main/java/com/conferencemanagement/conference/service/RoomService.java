@@ -6,6 +6,7 @@
 package com.conferencemanagement.conference.service;
 
 import com.conferencemanagement.conference.DAO.IRoomDAO;
+import com.conferencemanagement.conference.DAO.IUserRepository;
 import com.conferencemanagement.conference.models.Room;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,15 @@ public class RoomService implements IRoomService {
 
     @Autowired
     private IRoomDAO roomDAO;
+    
+   
 
     @Override
     public List<Room> getAllRooms() {
         return roomDAO.getAllRooms();
     }
+    
+    
 
     @Override
     public Room getRoomById(int roomId) {
