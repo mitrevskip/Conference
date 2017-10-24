@@ -126,11 +126,11 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         
-        try {
-            this.password = hashPassword(password);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            this.password = hashPassword(password);
+//        } catch (NoSuchAlgorithmException ex) {
+//            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     public boolean isLog() {

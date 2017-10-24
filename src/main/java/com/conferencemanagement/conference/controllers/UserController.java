@@ -27,12 +27,11 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @RequestMapping("/getAll")
+    @RequestMapping("/getall")
     public List<User> getAllUsers() {
-
         return userService.getAllUsers();
     }
-    
+
     @RequestMapping("/getAllReservations/{userId}")
     public List<Reservation> getAllReservations(@PathVariable int userId) {
         return userService.getAllReservations(userId);
@@ -58,10 +57,10 @@ public class UserController {
         userService.deleteUser(userId);
 
     }
-    
+
     @RequestMapping("/forgotPassword/{email}")
     public void forgotPassword(@PathVariable String email) {
 //        userService.forgotPassword(email);
-System.out.println("zdravo");
+        System.out.println("zdravo");
     }
 }
