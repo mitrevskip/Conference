@@ -29,16 +29,9 @@ public class UserDAO implements IUserDAO {
     
     
     @Override
-    public List<User> getAllUsers() {
-        EntityGraph graph = entityManager.createEntityGraph(User.class);
-//        eg.addAttributeNodes("reservations");
-//        eg.addSubgraph("reservations").addAttributeNodes("user");
-        graph.addAttributeNodes("userName");
-        
-        EntityGraph postGraph = entityManager.getEntityGraph("UserReservations");
-        
-         String hql = "FROM User as user1 ORDER BY user1.userId";
-      return entityManager.createQuery(hql).setHint("javax.persistence.fetchgraph", postGraph).getResultList();
+    public List<User> getAllUsers(){
+      String hql = "FROM User as user1 ORDER BY user1.userId";
+      return entityManager.createQuery(hql).getResultList();
 //    return (List<User>) entityManager.createQuery(hql).setHint("javax.persistence.loadgraph", postGraph).getResultList();
     }
     

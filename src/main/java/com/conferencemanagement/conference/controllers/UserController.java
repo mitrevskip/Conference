@@ -20,32 +20,35 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Petar
  */
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private IUserService userService;
     
-    @RequestMapping("/user")
+    @RequestMapping("/getall")
     public List<User> getAllUsers() {
-        return userService.getAllUsers();
+        
+       
+      return  userService.getAllUsers();
     }
     
-    @RequestMapping("/user/{id}")
+    @RequestMapping("/{userId}")
     public User getUserById(@PathVariable int userId) {
         return userService.getUserById(userId);
     }
     
-    @RequestMapping(method = RequestMethod.POST, value = "/user")
+    @RequestMapping(method = RequestMethod.POST, value = "/add")
     public void addUser(@RequestBody User user) {
         userService.addUser(user);
     }
     
-    @RequestMapping(method = RequestMethod.PUT, value = "/user/{userId}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/update/{userId}")
     public void updateUser(@RequestBody User user) {
         userService.updateUser(user);
     }
     
-    @RequestMapping(method = RequestMethod.DELETE, value = "/user/{userId}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{userId}")
     public void deleteUser(@PathVariable int userId) {
         userService.deleteUser(userId);
         

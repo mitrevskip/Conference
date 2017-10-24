@@ -25,7 +25,8 @@ public class RoomDAO implements IRoomDAO {
 
     @Override
     public List<Room> getAllRooms() {
-        String hql = "FROM Room as room1 ORDER BY room1.roomId";
+       String hql = "FROM Room as room1 ORDER BY room1.roomId";
+//         String hql = "SELECT r FROM Room r JOIN r.reservation res JOIN res.user u WHERE r.roomId='2'";
         return (List<Room>) entityManager.createQuery(hql).getResultList();
     }
 

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Petar
  */
 @RestController
+@RequestMapping("/role")
 public class RoleController {
     
     @Autowired
@@ -30,17 +31,17 @@ public class RoleController {
         return roleService.getAllRoles();
     }
     
-    @RequestMapping("/role/{roleId}")
+    @RequestMapping("/get/{roleId}")
     public Role getRoleById(@PathVariable int roleId) {
         return roleService.getRoleById(roleId);
     }
     
-    @RequestMapping(method = RequestMethod.POST, value = "/role")
+    @RequestMapping(method = RequestMethod.POST, value = "/add")
     public void addRole(@RequestBody Role role) {
         roleService.addRole(role);
     }
     
-    @RequestMapping(method = RequestMethod.PUT, value = "/role/{roleId}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/update/{roleId}")
     public void updateRole(@RequestBody Role role) {
         roleService.updateRole(role);
     }
