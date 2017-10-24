@@ -23,6 +23,9 @@ public class UserService implements IUserService {
     @Autowired
     private IUserDAO userDAO;
 
+    @Autowired
+    private IEmailService emailService;
+
     @Override
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
@@ -86,8 +89,17 @@ public class UserService implements IUserService {
     public void forgotPassword(String email) {
         User u = userDAO.getUserByEmail(email);
         if (userDAO.emailExists(email)) {
-            u.setPassword(RandomStringUtils.randomAlphanumeric(8));
-        }else{
+
+            String randomPassword;
+            randomPassword = new RandomStringUtils().randomAlphanumeric(8);
+            String text = "You requested that your password should be changed,"
+                + " we changed it and this is it " + randomPassword + ", please login "
+                + "and change it at your earliest convenience";
+
+            u.setPassword(randomPassword);
+            emailService.sendPassword(email, "Password Changed", text);
+
+        } else {
             System.out.println("No such email in database!");
         }
     }
