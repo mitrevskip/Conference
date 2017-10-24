@@ -5,10 +5,11 @@
  */
 package com.conferencemanagement.conference.models;
 
+
 import static com.conferencemanagement.conference.models.HashPassword.hashPassword;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -82,7 +83,7 @@ public class User implements Serializable {
     private String picture;
     
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
-    @JsonManagedReference
+    @JsonIgnoreProperties("user")
     List<Reservation> reservations;
 
     public String getPicture() {

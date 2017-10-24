@@ -8,8 +8,10 @@ package com.conferencemanagement.conference.controllers;
 import com.conferencemanagement.conference.DAO.IUserRepository;
 import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Room;
+import com.conferencemanagement.conference.models.User;
 import com.conferencemanagement.conference.service.IRoomService;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,18 +29,19 @@ public class RoomController {
     
     @Autowired
     private IRoomService roomService;
-    
-    @Autowired
+     @Autowired 
     private IUserRepository iuserrep;
     
-    @RequestMapping("/getAll")
-    public List<Room> getAllRooms() {
-        return roomService.getAllRooms();
-    }
+
     
     @RequestMapping("/getAllReservations/{roomId}")
     public List<Reservation> getAllReservations(@PathVariable int roomId) {
         return roomService.getAllReservations(roomId);
+
+    @RequestMapping("/getall")
+    public List<Reservation> getAllRooms() {
+        return iuserrep.getAllRooms2();
+
     }
     
     @RequestMapping("/{roomId}")
