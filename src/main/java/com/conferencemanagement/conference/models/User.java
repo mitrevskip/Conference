@@ -5,9 +5,17 @@
  */
 package com.conferencemanagement.conference.models;
 
+
+import static com.conferencemanagement.conference.models.HashPassword.hashPassword;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -63,11 +71,14 @@ public class User implements Serializable {
     private String password;
     
     
+    
     private boolean log;
     
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinColumn(name = "ROLE_ID")
     private Role role;
+    
+    private HashPassword hashPassword;
     
     private String picture;
     
@@ -114,7 +125,12 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        
+        try {
+            this.password = hashPassword(password);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public boolean isLog() {
@@ -139,8 +155,6 @@ public class User implements Serializable {
 
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
-    }
-
-    
+    } 
     
 }

@@ -42,10 +42,8 @@ public interface IUserRepository extends JpaRepository <Role,Long>,JpaSpecificat
     
     @Query("SELECT r FROM Reservation r WHERE r.room = :roomId and r.meetStarts = :meetStarts")
     public  boolean  resRoomExists(int roomid, Date meetStarts);
-    
+
     @Query("SELECT r FROM Reservation r JOIN r.room res WHERE res.roomId='2'")
     public List<Reservation>  getAllRooms2();
-//    
 
- 
  }

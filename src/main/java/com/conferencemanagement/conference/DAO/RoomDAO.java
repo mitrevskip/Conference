@@ -5,6 +5,7 @@
  */
 package com.conferencemanagement.conference.DAO;
 
+import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Room;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -28,6 +29,14 @@ public class RoomDAO implements IRoomDAO {
        String hql = "FROM Room as room1 ORDER BY room1.roomId";
 //         String hql = "SELECT r FROM Room r JOIN r.reservation res JOIN res.user u WHERE r.roomId='2'";
         return (List<Room>) entityManager.createQuery(hql).getResultList();
+    }
+    
+   
+    @Override
+    public List<Reservation> getAllReservations(int roomId) {
+        String hql = "FROM Reservation as res ORDER BY meetStarts WHERE res.roomId = ?";
+        return entityManager.createQuery(hql).setParameter(1, roomId).getResultList();
+        
     }
 
     @Override
@@ -58,4 +67,5 @@ public class RoomDAO implements IRoomDAO {
         return count > 0 ? true : false;
     }
 
+    
 }

@@ -6,6 +6,7 @@
 package com.conferencemanagement.conference.controllers;
 
 import com.conferencemanagement.conference.models.Reservation;
+import com.conferencemanagement.conference.models.Room;
 import com.conferencemanagement.conference.service.IReservationService;
 import java.util.List;
 import javax.inject.Inject;
@@ -31,6 +32,11 @@ public class ReservationController {
     @RequestMapping("/getall")
     public List<Reservation> getAllReservations() {
         return resService.getAllRes();
+    }
+    
+    @RequestMapping("/getAvailableRooms/{meetStarts}, {meetEnds}")
+    public List<Room> getAvailableRooms(@PathVariable("meetStarts") int meetStarts, @PathVariable("meetEnds") int meetEnds) {
+        return resService.getAvailableRooms(meetStarts, meetEnds);
     }
 
     @RequestMapping("/{resId}")

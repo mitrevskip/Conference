@@ -5,6 +5,7 @@
  */
 package com.conferencemanagement.conference.DAO;
 
+import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Room;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public interface IRoomDAO {
     
     public List<Room> getAllRooms();
+    public List<Reservation> getAllReservations(int roomId);
     public Room getRoomById(int roomId);
 //    public Room getRoomByName(String roomName);
     public void updateRoom(Room room);

@@ -5,6 +5,7 @@
  */
 package com.conferencemanagement.conference.service;
 
+import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.User;
 import java.util.List;
 
@@ -16,7 +17,11 @@ public interface IUserService {
     
     List<User> getAllUsers();
     
+    List<Reservation> getAllReservations(int userId);
+    
     User getUserById(int userId);
+    
+    void forgotPassword(String email);//Not sure if this belongs here
     
     boolean addUser(User user);
     
