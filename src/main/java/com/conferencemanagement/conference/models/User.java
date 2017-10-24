@@ -78,7 +78,7 @@ public class User implements Serializable {
     @JoinColumn(name = "ROLE_ID")
     private Role role;
     
-    private HashPassword hashPassword;
+//    private HashPassword hashPassword;
     
     private String picture;
     
