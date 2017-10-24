@@ -32,15 +32,9 @@ public class RoomController {
     @Autowired
     private IUserRepository iuserrep;
 
-    @RequestMapping("/getAllReservations/{roomId}")
-    public List<Reservation> getAllReservations(@PathVariable int roomId) {
-        return roomService.getAllReservations(roomId);
-    }
-
     @RequestMapping("/getall")
     public List<Reservation> getAllRooms() {
         return iuserrep.getAllRooms2();
-
     }
 
     @RequestMapping("/{roomId}")
@@ -66,3 +60,4 @@ public class RoomController {
         roomService.deleteRoom(roomId);
     }
 }
+
