@@ -42,7 +42,7 @@ public class UserController {
         return userService.getUserById(userId);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/add")
+    @RequestMapping(method = RequestMethod.POST, value = "/add", consumes = "application/json")
     public void addUser(@RequestBody User user) {
         userService.addUser(user);
     }
@@ -58,9 +58,8 @@ public class UserController {
 
     }
 
-    @RequestMapping("/forgotPassword/{email}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/forgotPassword/{email}")
     public void forgotPassword(@PathVariable String email) {
-//        userService.forgotPassword(email);
-        System.out.println("zdravo");
+        userService.forgotPassword(email);
     }
 }
