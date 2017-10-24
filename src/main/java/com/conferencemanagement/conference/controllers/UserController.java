@@ -61,6 +61,7 @@ public class UserController {
     
     @RequestMapping("/forgotPassword/{email}")
     public void forgotPassword(@PathVariable String email) {
-        userService.forgotPassword(email);
+//        userService.forgotPassword(email);
+System.out.println("zdravo");
     }
 }

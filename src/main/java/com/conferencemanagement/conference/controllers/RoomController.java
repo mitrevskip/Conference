@@ -33,7 +33,7 @@ public class RoomController {
     
     @RequestMapping("/getAll")
     public List<Room> getAllRooms() {
-        return iuserrep.getAllRooms();
+        return roomService.getAllRooms();
     }
     
     @RequestMapping("/getAllReservations/{roomId}")
