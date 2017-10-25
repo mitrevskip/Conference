@@ -7,13 +7,7 @@ package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.User;
-import java.security.SecureRandom;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
-import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -79,8 +73,10 @@ public class UserDAO implements IUserDAO {
         int count = entityManager.createQuery(hql).setParameter(1, email)
                 .getResultList().size();
         return count > 0 ? true : false;
+        
     }
 
+    @Override
     public User getUserByEmail(String email) {
         return entityManager.find(User.class, email);
     }

@@ -7,21 +7,11 @@ package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Role;
-import com.conferencemanagement.conference.models.Room;
-import com.conferencemanagement.conference.models.User;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import javax.annotation.Resource;
-import org.hibernate.annotations.Parameter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  *

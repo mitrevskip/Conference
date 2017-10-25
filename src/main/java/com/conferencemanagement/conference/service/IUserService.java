@@ -14,20 +14,23 @@ import java.util.List;
  * @author Petar
  */
 public interface IUserService {
-    
+
     List<User> getAllUsers();
-    
+
     List<Reservation> getAllReservations(int userId);
-    
+
     User getUserById(int userId);
-    
-    void forgotPassword(String email);//Not sure if this belongs here
-    
+
+    User getUserByEmail(String email);
+
     boolean addUser(User user);
-    
+
     boolean updateUser(User user);
-    
+
     boolean deleteUser(int userId);
-    
+
     boolean userExists(String userName);
+
+    void forgotPassword(String email);
+
 }

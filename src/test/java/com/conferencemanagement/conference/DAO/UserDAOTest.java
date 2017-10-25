@@ -121,7 +121,7 @@ public class UserDAOTest {
         u.setRole(role);
         userDAO.addUser(u);
 
-         assertEquals(userDAO.getUserById(5), u.getUserId());
+         assertEquals(userDAO.getUserById(6), u.getUserId());
     }
 
     /**

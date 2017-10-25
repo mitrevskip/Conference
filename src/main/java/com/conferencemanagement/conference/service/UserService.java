@@ -11,6 +11,10 @@ import com.conferencemanagement.conference.models.User;
 import java.util.List;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,7 +28,9 @@ public class UserService implements IUserService {
     private IUserDAO userDAO;
 
     @Autowired
-    private IEmailService emailService;
+    private IHashService hashService;
+
+    public JavaMailSender emailSender;
 
     @Override
     public List<User> getAllUsers() {
@@ -86,22 +92,34 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void forgotPassword(String email) {
+    public User getUserByEmail(String email) {
         User u = userDAO.getUserByEmail(email);
-        if (userDAO.emailExists(email)) {
-
-            String randomPassword;
-            randomPassword = new RandomStringUtils().randomAlphanumeric(8);
-            String text = "You requested that your password should be changed,"
-                + " we changed it and this is it " + randomPassword + ", please login "
-                + "and change it at your earliest convenience";
-
-            u.setPassword(randomPassword);
-            emailService.sendPassword(email, "Password Changed", text);
-
-        } else {
-            System.out.println("No such email in database!");
-        }
+        return u;
     }
 
+    @Override
+    public void forgotPassword(String email) {
+        User u = userDAO.getUserByEmail(email);
+
+        if (u == null) {
+            System.out.println("User with email " + email + " not found");
+
+        } else {
+
+            String randomPassword = RandomStringUtils.randomAlphanumeric(8);
+            String text = "You requested that your password should be changed,"
+                    + " we changed it and this is it " + randomPassword + ", please login "
+                    + "and change it at your earliest convenience";
+
+            u.setPassword(hashService.hashPassword(randomPassword));
+            userDAO.updateUser(u);
+
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(email);
+            message.setSubject("Password reset");
+            message.setText(text);
+            emailSender.send(message);
+
+        }
+    }
 }

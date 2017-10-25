@@ -6,16 +6,9 @@
 package com.conferencemanagement.conference.models;
 
 
-import static com.conferencemanagement.conference.models.HashPassword.hashPassword;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -56,33 +49,28 @@ import javax.persistence.Table;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
-    @Id 
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
     
     private String email;
-    
+
     @Column(unique = true)
     private String userName;
-    
-    
+
     private String password;
-    
-    
-    
+
     private boolean log;
-    
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "ROLE_ID")
     private Role role;
-    
-//    private HashPassword hashPassword;
-    
+
     private String picture;
-    
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("user")
     List<Reservation> reservations;
 
@@ -93,8 +81,6 @@ public class User implements Serializable {
     public void setPicture(String picture) {
         this.picture = picture;
     }
-    
-
 
     public int getUserId() {
         return userId;
@@ -125,12 +111,9 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) {
-        
-//        try {
-//            this.password = hashPassword(password);
-//        } catch (NoSuchAlgorithmException ex) {
-//            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
+        this.password = password;
+
     }
 
     public boolean isLog() {
@@ -155,6 +138,6 @@ public class User implements Serializable {
 
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
-    } 
-    
+    }
+
 }
