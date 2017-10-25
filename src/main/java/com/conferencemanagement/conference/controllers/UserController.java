@@ -7,19 +7,14 @@ package com.conferencemanagement.conference.controllers;
 
 import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.User;
-import com.conferencemanagement.conference.service.IHashService;
 import com.conferencemanagement.conference.service.IUserService;
 import java.util.List;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -32,9 +27,6 @@ public class UserController {
 
     @Autowired
     private IUserService userService;
-
-    @Autowired
-    private IHashService hashService;
 
     @RequestMapping("/getall")
     public List<User> getAllUsers() {
@@ -68,9 +60,8 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/forgotpassword/{email}")
-    public void forgotPassword (@RequestBody User user, @RequestParam ("email") String email) {
+    public void forgotPassword(@RequestBody User user, @RequestParam("email") String email) {
         userService.forgotPassword(email);
-        
 
     }
 }
