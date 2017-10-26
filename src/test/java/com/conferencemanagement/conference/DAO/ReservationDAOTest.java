@@ -81,8 +81,8 @@ public class ReservationDAOTest {
         String json = mapper.writeValueAsString(res);
         System.out.println(json);
        
-       String resStarts = "03-12-2017 10:30";
-       DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+       String resStarts = "2017-03-12 10:30";
+       DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
        Date dateS = format.parse(resStarts);
        List<Reservation> res2;
        res2 = (List<Reservation>) iuserrep.getResByMeetStarts(dateS);
@@ -110,10 +110,10 @@ public class ReservationDAOTest {
     public void testGetResByMeetStarts() throws ParseException {
         Reservation res = new Reservation();
             
-        String resStarts = "03-12-2017 10:30";
-        String resEnds = "03-12-2017 11:30";
+        String resStarts = "2017-03-12 10:30";
+        String resEnds = "2017-03-12 11:30";
 
-        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         
         Date dateS = format.parse(resStarts);
         Date dateE = format.parse(resEnds);
@@ -137,10 +137,10 @@ public class ReservationDAOTest {
     public void testGetResByMeetEnds() throws ParseException {
         Reservation res = new Reservation();
             
-        String resStarts = "03-12-2017 10:30";
-        String resEnds = "03-12-2017 11:30";
+       String resStarts = "2017-03-12 10:30";
+        String resEnds = "2017-03-12 11:30";
 
-        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         
         Date dateS = format.parse(resStarts);
         Date dateE = format.parse(resEnds);
@@ -169,9 +169,10 @@ public class ReservationDAOTest {
         
         res = resDAO.getResById(5);
         
-        String resStarts = "04-12-2017 10:30";
-        String resEnds = "04-12-2017 11:30";
-        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+      String resStarts = "2017-03-12 10:30";
+        String resEnds = "2017-03-12 11:30";
+
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date dateS = format.parse(resStarts);
         Date dateE = format.parse(resEnds);
        
@@ -191,10 +192,10 @@ public class ReservationDAOTest {
     public void testDeleteRes() throws ParseException {
             Reservation res = new Reservation();
             
-        String resStarts = "03-12-2017 10:30";
-        String resEnds = "03-12-2017 11:30";
+    String resStarts = "2017-03-12 10:30";
+        String resEnds = "2017-03-12 11:30";
 
-        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         
         Date dateS = format.parse(resStarts);
         Date dateE = format.parse(resEnds);
@@ -218,10 +219,10 @@ public class ReservationDAOTest {
     public void testAddRes() throws ParseException {
         Reservation res = new Reservation();
              
-            String resStarts = "03-12-2017 19:30";
-        String resEnds = "03-12-2017 21:30";
+          String resStarts = "2017-03-12 10:30";
+        String resEnds = "2017-03-12 11:30";
 
-        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         
         Date dateS = format.parse(resStarts);
         Date dateE = format.parse(resEnds);

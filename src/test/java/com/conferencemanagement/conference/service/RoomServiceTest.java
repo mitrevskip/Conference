@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -125,10 +126,10 @@ public class RoomServiceTest {
     public void testGetAllFreeRooms() throws ParseException, JsonProcessingException {
         System.out.println("getAllFreeRooms");
         List<Room> r;
-        String resStarts = "03-12-2017 18:30";
-        String resEnds = "03-12-2017 20:00";
+        String resStarts = "2017-03-12 10:00";
+        String resEnds = "2017-03-12 15:00";
 
-        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         
         Date dateS = format.parse(resStarts);
         Date dateE = format.parse(resEnds);
