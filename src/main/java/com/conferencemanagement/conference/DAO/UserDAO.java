@@ -7,7 +7,9 @@ package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.User;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -28,7 +30,7 @@ public class UserDAO implements IUserDAO {
     public List<User> getAllUsers() {
         String hql = "FROM User as user1 ORDER BY user1.userId";
         return entityManager.createQuery(hql).getResultList();
-//    return (List<User>) entityManager.createQuery(hql).setHint("javax.persistence.loadgraph", postGraph).getResultList();
+
     }
 
     @Override
@@ -78,14 +80,15 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public User getUserByEmail(String email) {
-        String hql = "FROM User u where u.email = ? ";
+        String hql = "FROM User as user ORDER BY user.userId";
+        List<User> users = entityManager.createQuery(hql).getResultList();
+        List<User> usersEmail = users.stream().filter(u -> u.getEmail().toString().equals(email));
+                
+                
+        int userId = users.get(0).getUserId();
+        return entityManager.find(User.class, userId);
         
-        User user = (User) entityManager.createQuery(hql).setParameter(1, email)
-                .getResultList().get(0);
-        
-//        return entityManager.find(User.class, email);
-        return user;
-        
+
         
     }
 

@@ -91,8 +91,8 @@ public class UserService implements IUserService {
 
     @Override
     public User getUserByEmail(String email) {
-        User u = userDAO.getUserByEmail(email);
-        return u;
+        User user = userDAO.getUserByEmail(email);
+        return user;
     }
 
     @Override
