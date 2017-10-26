@@ -171,4 +171,15 @@ public class UserDAOTest {
 //        assertEquals(true, userDAO.userExists("bbb", "aaa"));
     }
 
+    @Test
+    public void testGetUserByEmail() {
+        User u = new User();
+        u.setUserName("Petar3");
+        u.setEmail("mitrevski.pca@gmail.com");
+        userDAO.addUser(u);
+
+        User u2 = userDAO.getUserByEmail("mitrevski.pca@gmail.com");
+
+        assertEquals(u.getEmail(), u2.getEmail());
+    }
 }

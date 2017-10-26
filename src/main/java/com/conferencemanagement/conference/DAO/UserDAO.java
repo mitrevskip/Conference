@@ -78,7 +78,10 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public User getUserByEmail(String email) {
+//        String hql = "FROM USER as user1 WHERE user1.email = ?";
         return entityManager.find(User.class, email);
+        
+        
     }
 
 }

@@ -9,12 +9,16 @@ import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.User;
 import com.conferencemanagement.conference.service.IUserService;
 import java.util.List;
+import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -28,6 +32,7 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    /*Works through Postman*/
     @RequestMapping("/getall")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
@@ -38,11 +43,13 @@ public class UserController {
         return userService.getAllReservations(userId);
     }
 
+    /*Works through Postman*/
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     public User getUserById(@PathVariable int userId) {
         return userService.getUserById(userId);
     }
 
+    /*Works through Postman*/
     @RequestMapping(method = RequestMethod.POST, value = "/add", consumes = "application/json")
     public void addUser(@RequestBody User user) {
         userService.addUser(user);
@@ -53,6 +60,7 @@ public class UserController {
         userService.updateUser(user);
     }
 
+    /*Works with Postman*/
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{userId}")
     public void deleteUser(@PathVariable int userId) {
         userService.deleteUser(userId);
@@ -60,8 +68,8 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/forgotpassword/{email}")
-    public void forgotPassword(@RequestBody User user, @RequestParam("email") String email) {
-        userService.forgotPassword(email);
+    public void forgotPassword(@PathVariable String email) {
+       userService.forgotPassword(email);
 
     }
 }

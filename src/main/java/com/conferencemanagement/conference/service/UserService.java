@@ -103,7 +103,6 @@ public class UserService implements IUserService {
             System.out.println("User with email " + email + " not found");
 
         } else {
-
             String randomPassword = RandomStringUtils.randomAlphanumeric(8);
             String text = "You requested that your password should be changed,"
                     + " we changed it and this is it " + randomPassword + ", please login "
@@ -117,7 +116,8 @@ public class UserService implements IUserService {
             message.setSubject("Password reset");
             message.setText(text);
             emailSender.send(message);
-
+            System.out.println("Password sent to email");
         }
+//        return System.out.println("Your password has been sent to your email");
     }
 }
