@@ -80,13 +80,14 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public User getUserByEmail(String email) {
-        String hql = "FROM User as user ORDER BY user.userId";
-        List<User> users = entityManager.createQuery(hql).getResultList();
-        List<User> usersEmail = users.stream().filter(u -> u.getEmail().toString().equals(email));
+        String hql = "FROM User as user ORDER BY user.userId WHERE user.email = ?";
+        List<User> users = entityManager.createQuery(hql).setParameter(1, email).getResultList();
+        User usersEmail =(User) users.get(0);
+        return usersEmail;
                 
                 
-        int userId = users.get(0).getUserId();
-        return entityManager.find(User.class, userId);
+        
+//        return entityManager.find(User.class, userId);
         
 
         
