@@ -72,4 +72,10 @@ public class UserController {
        userService.forgotPassword(email);
 
     }
+    
+    @RequestMapping(method = RequestMethod.GET, value = "/{email}")
+    public User getUserByEmail(@PathVariable String email) {
+       return userService.getUserByEmail(email);
+
+    }
 }
