@@ -5,6 +5,7 @@
  */
 package com.conferencemanagement.conference.service;
 
+import com.conferencemanagement.SpringBoot;
 import com.conferencemanagement.conference.DAO.IUserDAO;
 import com.conferencemanagement.conference.DAO.IUserRepository;
 import com.conferencemanagement.conference.models.User;
@@ -23,7 +24,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  *
  * @author Petar
  */
-@SpringBootTest(classes = SpringBootTest.class)
+@SpringBootTest(classes = SpringBoot.class)
 @RunWith(SpringRunner.class)
 public class HashServiceTest {
 
@@ -67,10 +68,11 @@ public class HashServiceTest {
     @Test
     public void testHashPassword() {
 
-        User u = userDAO.getUserByEmail("mitrevski.pca@gmail.com");
+        User u = userDAO.getUserById(12);
         String passToHash = "hashed";
         String hashedPassword = hashService.hashPassword(passToHash);
         u.setPassword(hashedPassword);
+        userSERVICE.updateUser(u);
         System.out.println("hashPassword");
 
         String expResult = hashedPassword;
