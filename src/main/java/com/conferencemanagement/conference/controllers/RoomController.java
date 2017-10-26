@@ -37,7 +37,7 @@ public class RoomController {
         return iuserrep.getAllRooms2();
     }
     
-    @RequestMapping("/{roomId}")
+    @RequestMapping("/getroombyid")
     public Room getRoomById(@PathVariable int roomId) {
         return roomService.getRoomById(roomId);
     }
@@ -47,12 +47,12 @@ public class RoomController {
         roomService.addRoom(room);
     }
     
-    @RequestMapping(method = RequestMethod.PUT, value = "/update/{roomId}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/update")
     public void updateRoom(@RequestBody Room room) {
         roomService.updateRoom(room);
     }
     
-    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{roomId}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete")
     public void deleteRoom(@PathVariable int roomId) {
         roomService.deleteRoom(roomId);
     }

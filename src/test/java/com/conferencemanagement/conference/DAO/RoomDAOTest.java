@@ -9,6 +9,10 @@ import com.conferencemanagement.SpringBoot;
 import com.conferencemanagement.conference.models.Room;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -148,5 +152,9 @@ public class RoomDAOTest {
         
         assertEquals(true, roomDAO.roomExists("Conference 2"));
     }
-    
+
+    /**
+     * Test of getAllFreeRooms method, of class RoomDAO.
+     */
+   
 }

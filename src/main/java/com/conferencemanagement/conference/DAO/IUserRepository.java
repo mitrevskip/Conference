@@ -46,6 +46,8 @@ public interface IUserRepository extends JpaRepository <Role,Long>,JpaSpecificat
     @Query("SELECT r FROM Reservation r JOIN r.room res WHERE res.roomId='2'")
     public List<Reservation>  getAllRooms2();
 //    
+    @Query("SELECT r FROM Reservation r JOIN r.room res WHERE res.roomId = ?")
+    public List<Reservation> getAllReservationsByRoom(int roomId);
 
  
  }

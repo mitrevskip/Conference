@@ -23,5 +23,6 @@ public interface IReservationDAO {
     public void deleteRes(int resId);
     public void addRes(Reservation reservation);
     boolean resExists(int resId, Date meetStarts);
+    boolean resExistsInTimeInterval(int resId);
     
 }

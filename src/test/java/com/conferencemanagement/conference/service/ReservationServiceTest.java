@@ -103,8 +103,8 @@ public class ReservationServiceTest {
     public void testAddRes() throws ParseException {
         Reservation res = new Reservation();
             
-        String resStarts = "03-12-2017 10:30";
-        String resEnds = "03-12-2017 11:30";
+        String resStarts = "03-12-2017 17:00";
+        String resEnds = "03-12-2017 18:00";
 
         DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
         

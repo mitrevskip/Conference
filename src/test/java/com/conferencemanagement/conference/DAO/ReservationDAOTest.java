@@ -218,8 +218,8 @@ public class ReservationDAOTest {
     public void testAddRes() throws ParseException {
         Reservation res = new Reservation();
              
-        String resStarts = "03-12-2017 10:30";
-        String resEnds = "03-12-2017 11:30";
+            String resStarts = "03-12-2017 19:30";
+        String resEnds = "03-12-2017 21:30";
 
         DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
         
@@ -230,7 +230,7 @@ public class ReservationDAOTest {
         
         Room room = new Room();
         
-        room = roomDAO.getRoomById(2);
+        room = roomDAO.getRoomById(3);
         res.setRoom(room);
         
         User u = new User();
@@ -243,7 +243,7 @@ public class ReservationDAOTest {
         res.setUser(u);
         iuserDAO.updateUser(u);
         
-        resDAO.addRes(res);
+       // resDAO.addRes(res);
 //        User u = iuserDAO.getUserById(3);
 //        List<Reservation> resv= new ArrayList<>();
 //        resv.add(resDAO.getResById(1));

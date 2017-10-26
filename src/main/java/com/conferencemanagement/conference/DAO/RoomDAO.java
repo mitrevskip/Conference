@@ -6,6 +6,9 @@
 package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.conference.models.Room;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -57,5 +60,7 @@ public class RoomDAO implements IRoomDAO {
         int count = entityManager.createQuery(hql).setParameter(1, roomName).getResultList().size();
         return count > 0 ? true : false;
     }
+
+    
 
 }

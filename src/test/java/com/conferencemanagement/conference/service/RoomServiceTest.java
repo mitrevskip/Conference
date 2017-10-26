@@ -9,6 +9,10 @@ import com.conferencemanagement.SpringBoot;
 import com.conferencemanagement.conference.models.Room;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -112,6 +116,30 @@ public class RoomServiceTest {
     public void testDeleteRoom() {
        
       roomService.deleteRoom(5);
+    }
+
+    /**
+     * Test of getAllFreeRooms method, of class RoomService.
+     */
+    @Test
+    public void testGetAllFreeRooms() throws ParseException, JsonProcessingException {
+        System.out.println("getAllFreeRooms");
+        List<Room> r;
+        String resStarts = "03-12-2017 18:30";
+        String resEnds = "03-12-2017 20:00";
+
+        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        
+        Date dateS = format.parse(resStarts);
+        Date dateE = format.parse(resEnds);
+        Long DS = dateS.getTime();
+        Long DE = dateE.getTime();
+        r = roomService.getAllFreeRooms(DS,DE);
+          ObjectMapper mapper = new ObjectMapper();
+        
+        String json = mapper.writeValueAsString(r);
+        System.out.println(json);
+        
     }
     
 }

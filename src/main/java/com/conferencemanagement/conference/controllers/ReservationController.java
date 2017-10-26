@@ -33,7 +33,7 @@ public class ReservationController {
         return resService.getAllRes();
     }
 
-    @RequestMapping("/{resId}")
+    @RequestMapping("/getresbyid")
     public Reservation getResById(@PathVariable int resId) {
         return resService.getResById(resId);
     }
@@ -43,12 +43,12 @@ public class ReservationController {
         resService.addRes(reservation);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/update/{resId}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/update")
     public void updateReservation(@RequestBody Reservation reservation) {
         resService.updateRes(reservation);
     }
     
-    @RequestMapping(method =RequestMethod.DELETE, value = "/delete/{resId}")
+    @RequestMapping(method =RequestMethod.DELETE, value = "/delete")
     public void deleteReservation(@PathVariable int resId) {
         resService.deleteRes(resId);
     }

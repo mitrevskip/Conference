@@ -6,6 +6,7 @@
 package com.conferencemanagement.conference.service;
 
 import com.conferencemanagement.conference.models.Room;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
 public interface IRoomService {
     
     List<Room> getAllRooms();
-    
+     public List<Room> getAllFreeRooms(Long  meetStarts,Long meetEnds);
     Room getRoomById(int roomId);
     
     boolean addRoom(Room room);
