@@ -28,6 +28,7 @@ public class UserService implements IUserService {
     @Autowired
     private IHashService hashService;
 
+    @Autowired
     public JavaMailSender emailSender;
 
     @Override
