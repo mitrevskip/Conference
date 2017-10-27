@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -23,12 +24,14 @@ public class RoomDAO implements IRoomDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
+    
+    @Autowired
+    IUserRepository iUserRepository;
 
     @Override
     public List<Room> getAllRooms() {
-       String hql = "FROM Room as room1 ORDER BY room1.roomId";
-//         String hql = "SELECT r FROM Room r JOIN r.reservation res JOIN res.user u WHERE r.roomId='2'";
-        return (List<Room>) entityManager.createQuery(hql).getResultList();
+       
+        return iUserRepository.getAllRooms();
     }
     
    

@@ -33,8 +33,8 @@ public interface IUserRepository extends JpaRepository<Role, Long>, JpaSpecifica
     @Query("SELECT r FROM Reservation r WHERE r.room = :roomId and r.meetStarts = :meetStarts")
     public boolean resRoomExists(int roomid, Date meetStarts);
 
-    @Query("SELECT r FROM Reservation r JOIN r.room res WHERE res.roomId='2'")
-    public List<Reservation> getAllRooms2();
+    @Query("SELECT r FROM Reservation r JOIN r.room res WHERE res.roomId=:roomId")
+    public List<Reservation> getAllRooms();
 
     @Query("SELECT u FROM User u  WHERE u.email=:email and u.userName=:userName")
     public User getAllUsersWithMatchingEmail(@Param("email") String email, @Param ("userName")String userName);

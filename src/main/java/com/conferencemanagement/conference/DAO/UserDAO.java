@@ -88,9 +88,9 @@ public class UserDAO implements IUserDAO {
 //        int userId = entityManager.createQuery(hql).setParameter(1, email).getFirstResult();
 //        User user;
 //        user = getUserById(userId);
-        iUserRepository.getAllUsersWithMatchingEmail("mitrevski.pca@gmail.com", "Petar3");
+        User user = iUserRepository.getAllUsersWithMatchingEmail(email, userName);
 
-        return new User();
+        return user;
 
 //        return entityManager.find(User.class, userId);
     }
