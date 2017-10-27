@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -25,6 +26,9 @@ public class UserDAO implements IUserDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
+    
+    @Autowired
+    IUserRepository iUserRepository;
 
     @Override
     public List<User> getAllUsers() {
@@ -79,11 +83,14 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        String hql = "FROM User as user ORDER BY user.userId WHERE user.email = ?";
-        List<User> users = entityManager.createQuery(hql).setParameter(1, email).getResultList();
-        User usersEmail =(User) users.get(0);
-        return usersEmail;
+    public User getUserByEmail(String email, String userName) {
+//        String hql = "FROM User as user ORDER BY user.userId WHERE user.email = ?";
+//        int userId = entityManager.createQuery(hql).setParameter(1, email).getFirstResult();
+//        User user;
+//        user = getUserById(userId);
+iUserRepository.getAllUsersWithMatchingEmail("mitrevski.pca@gmail.com", "Petar3");
+
+        return new User();
                 
                 
         
