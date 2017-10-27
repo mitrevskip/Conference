@@ -26,7 +26,7 @@ public class UserDAO implements IUserDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
-    
+
     @Autowired
     IUserRepository iUserRepository;
 
@@ -83,21 +83,16 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public User getUserByEmail(String email, String userName) {
+    public User getUserByEmail(String email) {
 //        String hql = "FROM User as user ORDER BY user.userId WHERE user.email = ?";
 //        int userId = entityManager.createQuery(hql).setParameter(1, email).getFirstResult();
 //        User user;
 //        user = getUserById(userId);
-iUserRepository.getAllUsersWithMatchingEmail("mitrevski.pca@gmail.com", "Petar3");
+        iUserRepository.getAllUsersWithMatchingEmail("mitrevski.pca@gmail.com");
 
         return new User();
-                
-                
-        
-//        return entityManager.find(User.class, userId);
-        
 
-        
+//        return entityManager.find(User.class, userId);
     }
 
 }
