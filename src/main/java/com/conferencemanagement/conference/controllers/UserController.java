@@ -67,14 +67,14 @@ public class UserController {
 
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/forgotpassword/{email}")
-    public void forgotPassword(@PathVariable String email) {
-       userService.forgotPassword(email);
+    @RequestMapping(method = RequestMethod.PUT, value = "/forgotpassword/{email, userName}")
+    public void forgotPassword(@PathVariable String email, String userName) {
+       userService.forgotPassword(email, userName);
 
     }
     
-    @RequestMapping(method = RequestMethod.GET, value = "/getuserbyemail/{email, userName}")
-    public User getUserByEmail(@PathVariable String email, String userName) {
+    @RequestMapping(method = RequestMethod.GET, value = "/getuserbyemail/{email}/{userName}")
+    public User getUserByEmail(@PathVariable("email") String email, @PathVariable ("userName") String userName) {
        return userService.getUserByEmail(email, userName);
 //        return userService.getUserByEmail(email);
        

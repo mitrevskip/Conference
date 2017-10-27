@@ -178,7 +178,7 @@ public class UserDAOTest {
         u.setEmail("mitrevski.pca@gmail.com");
         userDAO.addUser(u);
 
-        User u2 = userDAO.getUserByEmail("mitrevski.pca@gmail.com");
+        User u2 = userDAO.getUserByEmail("mitrevski.pca@gmail.com", "Petar3");
 
         assertEquals(u.getEmail(), u2.getEmail());
     }

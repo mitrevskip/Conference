@@ -90,14 +90,14 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        User user = userDAO.getUserByEmail(email);
+    public User getUserByEmail(String email, String userName) {
+        User user = userDAO.getUserByEmail(email, userName);
         return user;
     }
 
     @Override
-    public void forgotPassword(String email) {
-        User u = userDAO.getUserByEmail(email);
+    public void forgotPassword(String email, String userName) {
+        User u = userDAO.getUserByEmail(email, userName);
 
         if (u == null) {
             System.out.println("User with email " + email + " not found");

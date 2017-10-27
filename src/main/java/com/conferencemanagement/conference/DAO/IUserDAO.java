@@ -19,7 +19,7 @@ public interface IUserDAO {
     List<User> getAllUsers();
     List<Reservation> getAllReservations(int userId);
     User getUserById(int userId);
-    User getUserByEmail(String email);
+    User getUserByEmail(String email, String userName);
     void addUser(User user);
     void updateUser(User user);
     void deleteUser(int userId);

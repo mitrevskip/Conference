@@ -21,7 +21,7 @@ public interface IUserService {
 
     User getUserById(int userId);
 
-    User getUserByEmail(String email);
+    User getUserByEmail(String email, String userName);
 
     boolean addUser(User user);
 
@@ -31,6 +31,6 @@ public interface IUserService {
 
     boolean userExists(String userName);
 
-    void forgotPassword(String email);
+    void forgotPassword(String email, String userName);
 
 }

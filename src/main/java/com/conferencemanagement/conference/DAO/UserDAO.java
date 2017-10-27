@@ -83,12 +83,12 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public User getUserByEmail(String email) {
+    public User getUserByEmail(String email, String userName) {
 //        String hql = "FROM User as user ORDER BY user.userId WHERE user.email = ?";
 //        int userId = entityManager.createQuery(hql).setParameter(1, email).getFirstResult();
 //        User user;
 //        user = getUserById(userId);
-        iUserRepository.getAllUsersWithMatchingEmail("mitrevski.pca@gmail.com");
+        iUserRepository.getAllUsersWithMatchingEmail("mitrevski.pca@gmail.com", "Petar3");
 
         return new User();
 
