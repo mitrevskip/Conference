@@ -101,7 +101,7 @@ public class UserService implements IUserService {
         User u = userDAO.getUserByEmail(email, userName);
 
         if (u == null) {
-            System.out.println("User with email " + email + " not found");
+            System.out.println("User with email " + email + "and username" + userName + " not found");
 
         } else {
             String randomPassword = RandomStringUtils.randomAlphanumeric(8);
