@@ -35,7 +35,6 @@ public class UserController {
     private IUserService userService;
 
     /*Works through Postman*/
-    
     @RequestMapping("/getall")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
@@ -67,24 +66,16 @@ public class UserController {
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{userId}")
     public void deleteUser(@PathVariable int userId) {
         userService.deleteUser(userId);
-
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/forgotpassword/{email}/{userName}")
-    public void forgotPassword(@PathVariable String email, String userName) {
-       userService.forgotPassword(email, userName);
-
+    public void forgotPassword(@PathVariable String email, @PathVariable String userName) {
+        userService.forgotPassword(email, userName);
     }
-    
-//    @RequestMapping(method = RequestMethod.GET, value = "/getuserbyemail/{email}/{userName}")
-//    public User getUserByEmail(@PathVariable("email") String email, @PathVariable ("userName") String userName) {
-//       return userService.getUserByEmail(email, userName);
-////        return userService.getUserByEmail(email);
-//    }
-    
+
     @RequestMapping(method = RequestMethod.GET, value = "/getuserbyemail/{email}/{userName}")
     @ResponseBody
-    public User getUserByEmail(@PathVariable("email") String email ,@PathVariable("userName") String userName) {
+    public User getUserByEmail(@PathVariable("email") String email, @PathVariable("userName") String userName) {
         return userService.getUserByEmail(email, userName);
- }
+    }
 }

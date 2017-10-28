@@ -100,25 +100,21 @@ public class UserService implements IUserService {
     public void forgotPassword(String email, String userName) {
         User u = userDAO.getUserByEmail(email, userName);
 
-        if (u == null) {
-            System.out.println("User with email " + email + "and username" + userName + " not found");
+        String randomPassword = RandomStringUtils.randomAlphanumeric(8);
+        String text = "You requested that your password should be changed,"
+                + " we changed it and this is it " + randomPassword + ", please login "
+                + "and change it at your earliest convenience";
 
-        } else {
-            String randomPassword = RandomStringUtils.randomAlphanumeric(8);
-            String text = "You requested that your password should be changed,"
-                    + " we changed it and this is it " + randomPassword + ", please login "
-                    + "and change it at your earliest convenience";
+        u.setPassword(hashService.hashPassword(randomPassword));
+        userDAO.updateUser(u);
 
-            u.setPassword(hashService.hashPassword(randomPassword));
-            userDAO.updateUser(u);
-
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(email);
-            message.setSubject("Password reset");
-            message.setText(text);
-            emailSender.send(message);
-            System.out.println("Password sent to email");
-        }
-//        return System.out.println("Your password has been sent to your email");
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("Password reset");
+        message.setText(text);
+        emailSender.send(message);
+        System.out.println("Password sent to email");
     }
+//        return System.out.println("Your password has been sent to your email");
 }
+
