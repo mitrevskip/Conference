@@ -9,10 +9,13 @@ import com.conferencemanagement.conference.DAO.IUserDAO;
 import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.User;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.internet.MimeMessage;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 /**
@@ -29,7 +32,10 @@ public class UserService implements IUserService {
     private IHashService hashService;
 
     @Autowired
-    public JavaMailSender emailSender;
+    public JavaMailSender sender;
+    
+    @Autowired
+    public IUserService userService;
 
     @Override
     public List<User> getAllUsers() {
@@ -97,24 +103,42 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void forgotPassword(String email, String userName) {
+    public void forgotPassword(String email, String userName) throws Exception{
         User u = userDAO.getUserByEmail(email, userName);
-
+        
+        
         String randomPassword = RandomStringUtils.randomAlphanumeric(8);
         String text = "You requested that your password should be changed,"
                 + " we changed it and this is it " + randomPassword + ", please login "
                 + "and change it at your earliest convenience";
 
+//        String subject = "Password reset";
+        try {
+            userService.sendEmail(email, text);
+        } catch (Exception ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         u.setPassword(hashService.hashPassword(randomPassword));
         userDAO.updateUser(u);
-
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(email);
-        message.setSubject("Password reset");
-        message.setText(text);
-        emailSender.send(message);
-        System.out.println("Password sent to email");
+        
     }
-//        return System.out.println("Your password has been sent to your email");
-}
 
+    @Override
+    public void sendEmail(String email, String text) throws Exception {
+
+        MimeMessage message = sender.createMimeMessage();
+
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setTo(email);
+
+        helper.setText(text);
+
+        helper.setSubject("Password reset");
+
+        sender.send(message);
+
+    }
+
+}

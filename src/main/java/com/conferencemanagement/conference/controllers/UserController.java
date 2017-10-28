@@ -68,14 +68,21 @@ public class UserController {
         userService.deleteUser(userId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/forgotpassword/{email}/{userName}")
-    public void forgotPassword(@PathVariable String email, @PathVariable String userName) {
+    @RequestMapping(method = RequestMethod.GET, value = "/forgotpassword/{email}/{userName}")
+    public void forgotPassword(@PathVariable String email, @PathVariable String userName) throws Exception {
         userService.forgotPassword(email, userName);
+        System.out.println("Password reset, email sent");
+        
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getuserbyemail/{email}/{userName}")
     @ResponseBody
     public User getUserByEmail(@PathVariable("email") String email, @PathVariable("userName") String userName) {
         return userService.getUserByEmail(email, userName);
+    }
+    
+    @RequestMapping(method = RequestMethod.GET, value = "/sendemail/{email}/{text}") 
+    public void sendEmal(@PathVariable("email") String email, @PathVariable("text") String text) throws Exception {
+        userService.sendEmail(email, text);
     }
 }

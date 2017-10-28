@@ -31,6 +31,8 @@ public interface IUserService {
 
     boolean userExists(String userName);
 
-    void forgotPassword(String email, String userName);
+    void forgotPassword(String email, String userName) throws Exception;
+    
+    void sendEmail(String email, String text) throws Exception;
 
 }
