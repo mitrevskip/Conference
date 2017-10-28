@@ -9,8 +9,13 @@ import com.conferencemanagement.conference.DAO.IUserDAO;
 import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.User;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.internet.MimeMessage;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,7 +29,13 @@ public class UserService implements IUserService {
     private IUserDAO userDAO;
 
     @Autowired
-    private IEmailService emailService;
+    private IHashService hashService;
+
+    @Autowired
+    public JavaMailSender sender;
+    
+    @Autowired
+    public IUserService userService;
 
     @Override
     public List<User> getAllUsers() {
@@ -86,22 +97,48 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void forgotPassword(String email) {
-        User u = userDAO.getUserByEmail(email);
-        if (userDAO.emailExists(email)) {
+    public User getUserByEmail(String email, String userName) {
+        User user = userDAO.getUserByEmail(email, userName);
+        return user;
+    }
 
-            String randomPassword;
-            randomPassword = new RandomStringUtils().randomAlphanumeric(8);
-            String text = "You requested that your password should be changed,"
+    @Override
+    public void forgotPassword(String email, String userName) throws Exception{
+        User u = userDAO.getUserByEmail(email, userName);
+        
+        
+        String randomPassword = RandomStringUtils.randomAlphanumeric(8);
+        String text = "You requested that your password should be changed,"
                 + " we changed it and this is it " + randomPassword + ", please login "
                 + "and change it at your earliest convenience";
 
-            u.setPassword(randomPassword);
-            emailService.sendPassword(email, "Password Changed", text);
-
-        } else {
-            System.out.println("No such email in database!");
+//        String subject = "Password reset";
+        try {
+            userService.sendEmail(email, text);
+        } catch (Exception ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        u.setPassword(hashService.hashPassword(randomPassword));
+        userDAO.updateUser(u);
+        
+    }
+
+    @Override
+    public void sendEmail(String email, String text) throws Exception {
+
+        MimeMessage message = sender.createMimeMessage();
+
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setTo(email);
+
+        helper.setText(text);
+
+        helper.setSubject("Password reset");
+
+        sender.send(message);
+
     }
 
 }

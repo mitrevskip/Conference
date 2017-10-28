@@ -9,7 +9,7 @@ package com.conferencemanagement.conference.service;
  *
  * @author Petar
  */
-public interface IEmailService {
-    void sendPassword(String to, String subject, String text);
+public interface IHashService {
     
+  String hashPassword(String password);  
 }

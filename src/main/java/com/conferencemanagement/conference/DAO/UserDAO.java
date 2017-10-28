@@ -7,16 +7,13 @@ package com.conferencemanagement.conference.DAO;
 
 import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.User;
-import java.security.SecureRandom;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
-import javax.persistence.EntityGraph;
+import java.util.stream.Stream;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -30,11 +27,14 @@ public class UserDAO implements IUserDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    IUserRepository iUserRepository;
+
     @Override
     public List<User> getAllUsers() {
         String hql = "FROM User as user1 ORDER BY user1.userId";
         return entityManager.createQuery(hql).getResultList();
-//    return (List<User>) entityManager.createQuery(hql).setHint("javax.persistence.loadgraph", postGraph).getResultList();
+
     }
 
     @Override
@@ -79,10 +79,20 @@ public class UserDAO implements IUserDAO {
         int count = entityManager.createQuery(hql).setParameter(1, email)
                 .getResultList().size();
         return count > 0 ? true : false;
+
     }
 
-    public User getUserByEmail(String email) {
-        return entityManager.find(User.class, email);
+    @Override
+    public User getUserByEmail(String email, String userName) {
+//        String hql = "FROM User as user ORDER BY user.userId WHERE user.email = ?";
+//        int userId = entityManager.createQuery(hql).setParameter(1, email).getFirstResult();
+//        User user;
+//        user = getUserById(userId);
+        User user = iUserRepository.getAllUsersWithMatchingEmail(email, userName);
+
+        return user;
+
+//        return entityManager.find(User.class, userId);
     }
 
 }
