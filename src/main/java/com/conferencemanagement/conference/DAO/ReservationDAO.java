@@ -64,6 +64,7 @@ public class ReservationDAO implements IReservationDAO{
         entityManager.persist(reservation);
     }
 
+    @Override
     public boolean resExists(int resId, Date meetStarts) {
         String hql = "FROM Reservation as res1 WHERE res1.resId = ? and res1.meetStarts = ?";
         int count = entityManager.createQuery(hql).setParameter(1, resId)

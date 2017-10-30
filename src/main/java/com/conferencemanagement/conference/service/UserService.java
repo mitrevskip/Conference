@@ -108,8 +108,9 @@ public class UserService implements IUserService {
         
         
         String randomPassword = RandomStringUtils.randomAlphanumeric(8);
+        String hashedPassword = hashService.hashPassword(randomPassword);
         String text = "You requested that your password should be changed,"
-                + " we changed it and this is it " + randomPassword + ", please login "
+                + " we changed it and this is it " + hashedPassword + ", please login "
                 + "and change it at your earliest convenience";
 
 //        String subject = "Password reset";
@@ -118,9 +119,11 @@ public class UserService implements IUserService {
         } catch (Exception ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
 
-        u.setPassword(hashService.hashPassword(randomPassword));
+        u.setPassword(hashedPassword);
         userDAO.updateUser(u);
+        System.out.println("Password reset, check email!");
         
     }
 
