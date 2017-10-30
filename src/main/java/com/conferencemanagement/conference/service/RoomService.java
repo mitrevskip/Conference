@@ -83,11 +83,12 @@ public class RoomService implements IRoomService {
  
     }
     @Override
-    public List<Room> getAllFreeRooms(Long meetStarts, Long meetEnds) {
+    public List<Room> getAllFreeRooms(Date meetS, Date meetE) {
        List<Room> Rooms = roomDAO.getAllRooms();
        List<Room> FreeRooms = new ArrayList<Room>();
     
-                
+        Long meetStarts = meetS.getTime();
+        Long meetEnds = meetE.getTime();
         for (Room r : Rooms) {
             int i= 0;
             

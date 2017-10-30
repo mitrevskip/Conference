@@ -16,7 +16,7 @@ import java.util.List;
 public interface IRoomService {
     
     List<Room> getAllRooms();
-     public List<Room> getAllFreeRooms(Long  meetStarts,Long meetEnds);
+     public List<Room> getAllFreeRooms(Date  meetS,Date meetE);
     Room getRoomById(int roomId);
     
     boolean addRoom(Room room);

@@ -10,13 +10,16 @@ import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Room;
 import com.conferencemanagement.conference.models.User;
 import com.conferencemanagement.conference.service.IRoomService;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -33,8 +36,15 @@ public class RoomController {
     private IUserRepository iuserrep;
     
     @RequestMapping("/getall")
-    public List<Reservation> getAllRooms() {
+    public List<Map<Reservation,Room>> getAllRooms() {
+        
         return iuserrep.getAllRooms2();
+    }
+     @RequestMapping("/getallfreerooms/{meetStarts}/{meetEnds}")
+     @ResponseBody
+    public List<Room> getAllFreeRooms(@PathVariable("meetStarts") @DateTimeFormat(pattern="yyyy-dd-MM HH:mm") Date meetStarts, @PathVariable("meetEnds") @DateTimeFormat(pattern="yyyy-dd-MM HH:mm") Date meetEnds) {
+        
+        return roomService.getAllFreeRooms(meetStarts, meetEnds);
     }
     
     @RequestMapping("/getroombyid")
