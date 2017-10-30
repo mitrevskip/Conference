@@ -40,6 +40,8 @@ public class Reservation implements Serializable{
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date meetEnds;
     
+    private String reservationTitle;
+        
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "ROOM_ID")
    @JsonIgnoreProperties("reservations")
@@ -94,6 +96,14 @@ public class Reservation implements Serializable{
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+    
+    public String getReservationTitle() {
+        return reservationTitle;
+    }
+
+    public void setReservationTitle(String reservationTitle) {
+        this.reservationTitle = reservationTitle;
     }
     
 
