@@ -41,9 +41,9 @@ public class Reservation implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int resId;
     
-//    @Temporal
+
     private Date meetStarts;
-//    @Temporal
+
     private Date meetEnds;
     
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

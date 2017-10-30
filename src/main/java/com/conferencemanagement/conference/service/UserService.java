@@ -123,7 +123,7 @@ public class UserService implements IUserService {
 
         u.setPassword(hashedPassword);
         userDAO.updateUser(u);
-        System.out.println("Password reset, check email.");
+        System.out.println("Password reset, check email!");
         
     }
 
