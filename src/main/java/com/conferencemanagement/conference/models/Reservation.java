@@ -5,17 +5,11 @@
  */
 package com.conferencemanagement.conference.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonView;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,16 +17,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import org.springframework.data.jpa.repository.Temporal;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author Petar
  */
 @Entity
+
 public class Reservation implements Serializable{
     
     private static final long serialVersionUID = 1L;
@@ -42,8 +34,10 @@ public class Reservation implements Serializable{
     private int resId;
     
 
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date meetStarts;
 
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date meetEnds;
     
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
