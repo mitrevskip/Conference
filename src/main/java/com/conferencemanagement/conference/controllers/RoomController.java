@@ -6,12 +6,9 @@
 package com.conferencemanagement.conference.controllers;
 
 import com.conferencemanagement.conference.DAO.IUserRepository;
-import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Room;
-import com.conferencemanagement.conference.models.User;
 import com.conferencemanagement.conference.service.IRoomService;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
