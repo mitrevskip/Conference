@@ -26,6 +26,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.springframework.data.jpa.repository.Temporal;
 
 /**
  *
@@ -40,7 +41,9 @@ public class Reservation implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int resId;
     
+//    @Temporal
     private Date meetStarts;
+//    @Temporal
     private Date meetEnds;
     
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
