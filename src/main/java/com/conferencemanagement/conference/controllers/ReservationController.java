@@ -6,11 +6,13 @@
 package com.conferencemanagement.conference.controllers;
 
 import com.conferencemanagement.conference.models.Reservation;
+import com.conferencemanagement.conference.models.Room;
 import com.conferencemanagement.conference.service.IReservationService;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Petar
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/reservation")
 public class ReservationController {
@@ -32,16 +35,24 @@ public class ReservationController {
     public List<Reservation> getAllReservations() {
         return resService.getAllRes();
     }
+    
+    /*Gets all available room for given time frame*/
+    @RequestMapping("/getAvailableRooms/{meetStarts}, {meetEnds}")
+    public List<Room> getAvailableRooms(@PathVariable("meetStarts") int meetStarts, @PathVariable("meetEnds") int meetEnds) {
+        return resService.getAvailableRooms(meetStarts, meetEnds);
+    }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getresbyid/{resId}")
     public Reservation getResById(@PathVariable int resId) {
         return resService.getResById(resId);
     }
 
+    /*Adds reservation*/
     @RequestMapping(method = RequestMethod.POST, value = "/add")
     public void addReservation(@RequestBody Reservation reservation) {
         resService.addRes(reservation);
     }
+
 
     @RequestMapping(method = RequestMethod.PUT, value = "/update")
     public void updateReservation(@RequestBody Reservation reservation) {
