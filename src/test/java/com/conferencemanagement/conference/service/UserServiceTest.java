@@ -24,8 +24,6 @@ import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -47,9 +45,6 @@ public class UserServiceTest {
     
     @Autowired
     IUserDAO userDAO;
-    @Autowired
-    JavaMailSender javaMailSender;
-    
     
     public UserServiceTest() {
     }
@@ -146,29 +141,6 @@ public class UserServiceTest {
     @Test
     public void testDeleteUser() {
        userSERVICE.deleteUser(3);
-    }
-    
-    @Test
-    public void testSendMail() {
-        User u = new User();
-        String email = "mitrevski.p@gmail.com";
-        u.setEmail(email);
-        String password = "ladflnsasknf"; 
-        u.setPassword(password);
-        String userName = "Petar8";
-        u.setUserName(userName);
-        
-        userSERVICE.addUser(u);
-        
-        SimpleMailMessage message = new SimpleMailMessage();
-        String text = "You requested that your password should be changed,"
-                + " we changed it and this is it " + password + ", please login "
-                + "and change it at your earliest convenience";
-        message.setTo(email);
-        message.setSubject("Password reset");
-        message.setText(text);
-        javaMailSender.send(message);
-        System.out.println("Password sent to email");
     }
     
 }

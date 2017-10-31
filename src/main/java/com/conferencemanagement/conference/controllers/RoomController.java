@@ -7,25 +7,22 @@ package com.conferencemanagement.conference.controllers;
 
 import com.conferencemanagement.conference.DAO.IUserRepository;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 import com.conferencemanagement.conference.DTO.RoomDTO;
 =======
 >>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 import com.conferencemanagement.conference.models.Reservation;
-
-
 import com.conferencemanagement.conference.models.Room;
+import com.conferencemanagement.conference.models.User;
 import com.conferencemanagement.conference.service.IRoomService;
 import java.util.Date;
 import java.util.List;
-
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,19 +34,21 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Petar
  */
-@CrossOrigin
 @RestController
 @RequestMapping("/room")
 public class RoomController {
-
+    
     @Autowired
     private IRoomService roomService;
-    @Autowired
+     @Autowired 
     private IUserRepository iuserrep;
-
+    
     @RequestMapping("/getall")
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
     public  List<RoomDTO>  getAllRooms() {
 =======
     public List<Map<Reservation,Room>> getAllRooms() {
@@ -63,9 +62,8 @@ public class RoomController {
         Date MS = new Date(meetStarts);
         Date ME = new Date(meetEnds);
         return roomService.getAllFreeRooms(MS,ME);
-
     }
-
+    
     @RequestMapping("/{roomId}")
 =======
      @RequestMapping("/getallfreerooms/{meetStarts}/{meetEnds}")
@@ -80,25 +78,19 @@ public class RoomController {
     public Room getRoomById(@PathVariable int roomId) {
         return roomService.getRoomById(roomId);
     }
-
+    
     @RequestMapping(method = RequestMethod.POST, value = "/add")
-    public void addRoom(@RequestBody Room room
-    ) {
+    public void addRoom (@RequestBody Room room) {
         roomService.addRoom(room);
     }
-
     
     @RequestMapping(method = RequestMethod.PUT, value = "/update")
     public void updateRoom(@RequestBody Room room) {
         roomService.updateRoom(room);
     }
-
-
-    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{roomId}")
-    public void deleteRoom(@PathVariable int roomId
-    ) {
-
+    
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete")
+    public void deleteRoom(@PathVariable int roomId) {
         roomService.deleteRoom(roomId);
     }
 }
-

@@ -6,10 +6,12 @@
 package com.conferencemanagement.conference.service;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
  
+=======
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 import com.conferencemanagement.conference.DAO.RoomDAO;
 import com.conferencemanagement.conference.DTO.RoomDTO;
- 
 import com.conferencemanagement.conference.models.Reservation;
 =======
 >>>>>>> parent of a8c0438... DEMO+ ROOM DTO
@@ -24,13 +26,7 @@ import java.util.List;
 public interface IRoomService {
     
     List<Room> getAllRooms();
- 
      public List<Room> getAllFreeRooms(Date  meetS,Date meetE);
- 
-   
-    List<Reservation> getAllReservations(int roomId);
-    
- 
     Room getRoomById(int roomId);
     
     boolean addRoom(Room room);

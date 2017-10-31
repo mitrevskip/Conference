@@ -8,18 +8,15 @@ package com.conferencemanagement.conference.service;
 import com.conferencemanagement.conference.DAO.IReservationDAO;
 import com.conferencemanagement.conference.DAO.IRoomDAO;
 <<<<<<< HEAD
+<<<<<<< HEAD
  
+=======
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 import com.conferencemanagement.conference.DAO.IUserDAO;
 =======
 >>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 import com.conferencemanagement.conference.DAO.IUserRepository;
 import com.conferencemanagement.conference.models.Reservation;
- 
-
-import com.conferencemanagement.conference.models.Reservation;
-
-import com.conferencemanagement.conference.DAO.IUserRepository;
- 
 import com.conferencemanagement.conference.models.Room;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
@@ -52,11 +49,6 @@ public class RoomService implements IRoomService {
     
     
 
-    @Override
-    public List<Reservation> getAllReservations (int roomId) {
-        return roomDAO.getAllReservations(roomId);
-    }
-    
     @Override
     public Room getRoomById(int roomId) {
         Room room = roomDAO.getRoomById(roomId);
