@@ -6,7 +6,12 @@
 package com.conferencemanagement.conference.service;
 
 import com.conferencemanagement.conference.DAO.IUserDAO;
+ 
+import com.conferencemanagement.conference.DAO.IUserRepository;
+import com.conferencemanagement.conference.models.Role;
+ 
 import com.conferencemanagement.conference.models.Reservation;
+ 
 import com.conferencemanagement.conference.models.User;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,8 +40,12 @@ public class UserService implements IUserService {
     public JavaMailSender sender;
     
     @Autowired
+    private IUserRepository iuserrep;
+    
+    @Autowired
     public IUserService userService;
 
+ 
     @Override
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
@@ -57,7 +66,12 @@ public class UserService implements IUserService {
     public synchronized boolean addUser(User user) {
         if (userDAO.userExists(user.getUserName())) {
             return false;
-        } else {
+
+        }else{
+//            Role r = new Role();
+//            r = iuserrep.getRoleByCat(rid);
+//            user.setRole(r);
+
             userDAO.addUser(user);
             return true;
         }

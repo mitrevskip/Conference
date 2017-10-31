@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -50,13 +54,18 @@ public class UserController {
     /*Works through Postman*/
     @RequestMapping(method = RequestMethod.POST, value = "/add", consumes = "application/json")
     public void addUser(@RequestBody User user) {
+        
         userService.addUser(user);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/update/{userId}")
+    
+    @RequestMapping(method = RequestMethod.PUT, value = "/update")
     public void updateUser(@RequestBody User user) {
         userService.updateUser(user);
     }
+    
+  
+
 
     /*Works with Postman*/
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{userId}")

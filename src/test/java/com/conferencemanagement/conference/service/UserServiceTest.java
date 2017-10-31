@@ -116,7 +116,7 @@ public class UserServiceTest {
           System.out.println("NE MOZE DA SE DODADE");
       }
       else {
-          userSERVICE.addUser(u);
+//          userSERVICE.addUser(u);
                     System.out.println("USPESNO DODAVANJE");
 
       }

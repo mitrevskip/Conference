@@ -42,8 +42,7 @@ public class ReservationController {
         return resService.getAvailableRooms(meetStarts, meetEnds);
     }
 
-    /*returns reservation object upon receiving reservation ID*/
-    @RequestMapping("/{resId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/getresbyid/{resId}")
     public Reservation getResById(@PathVariable int resId) {
         return resService.getResById(resId);
     }
@@ -53,14 +52,14 @@ public class ReservationController {
     public void addReservation(@RequestBody Reservation reservation) {
         resService.addRes(reservation);
     }
-    
-    /*Updates reservation upon receiving reservation ID and reservation object*/
-    @RequestMapping(method = RequestMethod.PUT, value = "/update/{resId}")
+
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/update")
     public void updateReservation(@RequestBody Reservation reservation) {
         resService.updateRes(reservation);
     }
-    /*Deletes reservation upon receiving reservation ID*/
-    @RequestMapping(method =RequestMethod.DELETE, value = "/delete/{resId}")
+    
+    @RequestMapping(method =RequestMethod.DELETE, value = "/delete")
     public void deleteReservation(@PathVariable int resId) {
         resService.deleteRes(resId);
     }

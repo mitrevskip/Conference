@@ -72,7 +72,14 @@ public class ReservationDAO implements IReservationDAO{
         return count > 0 ? true : false;
     }
 
-    
+
+    @Override
+    public boolean resExistsInTimeInterval(int resId) {
+        String hql = "FROM Reservation as res1 WHERE res1.room = ?";
+        int count = entityManager.createQuery(hql).setParameter(1, resId).getResultList().size();
+        return count > 0 ? true : false;
+    }
+
 
    
     

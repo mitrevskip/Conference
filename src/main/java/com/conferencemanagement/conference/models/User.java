@@ -5,8 +5,17 @@
  */
 package com.conferencemanagement.conference.models;
 
+ 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+ 
 
+ 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -27,25 +36,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "User")
-//@NamedQueries({
-//    @NamedQuery(name = "User.findAll", query = "FROM User as user1 ORDER BY user1.userId")
-//})
-//@NamedEntityGraphs({
-//    @NamedEntityGraph(
-//    name = "UserReservations",
-//            attributeNodes = {
-//                @NamedAttributeNode("userName")
-//            })
-//            
-//})
-//@FetchProfile(
-//        name = "user",
-//        fetchOverrides = { @FetchProfile.FetchOverride(
-//            entity = User.class,
-//            association = "project",
-//            mode = FetchMode.JOIN
-//        })
-//)
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -70,7 +60,9 @@ public class User implements Serializable {
 
     private String picture;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+    @JsonManagedReference
     @JsonIgnoreProperties("user")
     List<Reservation> reservations;
 

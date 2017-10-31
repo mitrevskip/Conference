@@ -5,8 +5,13 @@
  */
 package com.conferencemanagement.conference.DAO;
 
+
+import com.conferencemanagement.conference.DTO.RoomDTO;
+
 import com.conferencemanagement.conference.models.Reservation;
+
 import com.conferencemanagement.conference.models.Room;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,10 +23,10 @@ public interface IRoomDAO {
     public List<Room> getAllRooms();
     public List<Reservation> getAllReservations(int roomId);
     public Room getRoomById(int roomId);
-//    public Room getRoomByName(String roomName);
+   public List<RoomDTO> getAllRooms2();
     public void updateRoom(Room room);
     public void deleteRoom(int roomid);
     public void addRoom (Room room);
     boolean roomExists(String roomName);
-    
+  
 }
