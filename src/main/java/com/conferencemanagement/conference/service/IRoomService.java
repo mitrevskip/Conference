@@ -5,9 +5,13 @@
  */
 package com.conferencemanagement.conference.service;
 
+import com.conferencemanagement.conference.DAO.RoomDAO;
+import com.conferencemanagement.conference.DTO.RoomDTO;
+import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Room;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -18,7 +22,7 @@ public interface IRoomService {
     List<Room> getAllRooms();
      public List<Room> getAllFreeRooms(Date  meetS,Date meetE);
     Room getRoomById(int roomId);
-    
+    public List<RoomDTO> getAllRoomDTO();
     boolean addRoom(Room room);
     
     boolean updateRoom(Room room);

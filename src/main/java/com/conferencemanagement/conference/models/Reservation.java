@@ -6,10 +6,12 @@
 package com.conferencemanagement.conference.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -43,17 +45,19 @@ public class Reservation implements Serializable{
     private Date meetStarts;
     private Date meetEnds;
     
+    boolean allDay=false;
+    
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "ROOM_ID")
-   @JsonIgnoreProperties("reservations")
-//    @JsonBackReference
+    @JsonManagedReference
+    @JsonIgnoreProperties("room")
     private Room room;
     
     
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name = "USER_ID")
-    @JsonIgnoreProperties("reservations")
-   //@JsonBackReference
+    @JsonBackReference
+    @JsonIgnoreProperties("reservation")
     private User user;
     
     

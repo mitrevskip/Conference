@@ -33,7 +33,7 @@ public class ReservationController {
         return resService.getAllRes();
     }
 
-    @RequestMapping("/getresbyid")
+    @RequestMapping(method = RequestMethod.GET, value = "/getresbyid/{resId}")
     public Reservation getResById(@PathVariable int resId) {
         return resService.getResById(resId);
     }

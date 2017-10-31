@@ -6,6 +6,7 @@
 package com.conferencemanagement.conference.controllers;
 
 import com.conferencemanagement.conference.DAO.IUserRepository;
+import com.conferencemanagement.conference.DTO.RoomDTO;
 import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Room;
 import com.conferencemanagement.conference.models.User;
@@ -13,12 +14,14 @@ import com.conferencemanagement.conference.service.IRoomService;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,18 +39,18 @@ public class RoomController {
     private IUserRepository iuserrep;
     
     @RequestMapping("/getall")
-    public List<Map<Reservation,Room>> getAllRooms() {
+    public  List<RoomDTO>  getAllRooms() {
         
-        return iuserrep.getAllRooms2();
+        return roomService.getAllRoomDTO();
     }
-     @RequestMapping("/getallfreerooms/{meetStarts}/{meetEnds}")
-     @ResponseBody
-    public List<Room> getAllFreeRooms(@PathVariable("meetStarts") @DateTimeFormat(pattern="yyyy-dd-MM HH:mm") Date meetStarts, @PathVariable("meetEnds") @DateTimeFormat(pattern="yyyy-dd-MM HH:mm") Date meetEnds) {
-        
-        return roomService.getAllFreeRooms(meetStarts, meetEnds);
+     @RequestMapping(method = RequestMethod.GET, value = "/getallfreerooms/{meetStarts}/{meetEnds}")
+    public List<Room> getAllFreeRooms(@PathVariable Long meetStarts, @PathVariable Long meetEnds) {
+        Date MS = new Date(meetStarts);
+        Date ME = new Date(meetEnds);
+        return roomService.getAllFreeRooms(MS,ME);
     }
     
-    @RequestMapping("/getroombyid")
+    @RequestMapping("/{roomId}")
     public Room getRoomById(@PathVariable int roomId) {
         return roomService.getRoomById(roomId);
     }

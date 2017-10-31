@@ -6,6 +6,8 @@
 package com.conferencemanagement.conference.service;
 
 import com.conferencemanagement.conference.DAO.IUserDAO;
+import com.conferencemanagement.conference.DAO.IUserRepository;
+import com.conferencemanagement.conference.models.Role;
 import com.conferencemanagement.conference.models.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,8 @@ public class UserService implements IUserService{
     @Autowired
     private IUserDAO userDAO;
     
-    
+    @Autowired
+    private IUserRepository iuserrep;
     
     @Override
     public List<User> getAllUsers() {
@@ -38,6 +41,9 @@ public class UserService implements IUserService{
         if (userDAO.userExists(user.getUserName())) {
             return false;
         }else{
+//            Role r = new Role();
+//            r = iuserrep.getRoleByCat(rid);
+//            user.setRole(r);
             userDAO.addUser(user);
             return true;
         }
