@@ -9,6 +9,7 @@ package com.conferencemanagement.conference.service;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
@@ -19,6 +20,8 @@ package com.conferencemanagement.conference.service;
 import com.conferencemanagement.conference.DAO.RoomDAO;
 import com.conferencemanagement.conference.DTO.RoomDTO;
 import com.conferencemanagement.conference.models.Reservation;
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 =======
 >>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 import com.conferencemanagement.conference.models.Room;

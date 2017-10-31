@@ -9,6 +9,7 @@ package com.conferencemanagement.conference.models;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
@@ -34,6 +35,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;

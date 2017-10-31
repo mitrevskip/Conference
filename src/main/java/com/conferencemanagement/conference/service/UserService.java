@@ -10,6 +10,7 @@ import com.conferencemanagement.conference.DAO.IUserDAO;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 import com.conferencemanagement.conference.DAO.IUserRepository;
 import com.conferencemanagement.conference.models.Role;
@@ -30,6 +31,8 @@ import com.conferencemanagement.conference.models.Role;
 import com.conferencemanagement.conference.DAO.IUserRepository;
 import com.conferencemanagement.conference.models.Role;
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 import com.conferencemanagement.conference.models.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +47,10 @@ public class UserService implements IUserService{
     @Autowired
     private IUserDAO userDAO;
     
+<<<<<<< HEAD
+=======
+    
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
     
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -69,6 +76,7 @@ public class UserService implements IUserService{
             return false;
         }else{
 <<<<<<< HEAD
+<<<<<<< HEAD
 //            Role r = new Role();
 //            r = iuserrep.getRoleByCat(rid);
 //            user.setRole(r);
@@ -84,6 +92,8 @@ public class UserService implements IUserService{
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
             userDAO.addUser(user);
             return true;
         }

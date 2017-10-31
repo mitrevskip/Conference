@@ -11,6 +11,7 @@ import com.conferencemanagement.conference.DAO.IRoomDAO;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
@@ -19,6 +20,8 @@ import com.conferencemanagement.conference.DAO.IRoomDAO;
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 import com.conferencemanagement.conference.DAO.IUserDAO;
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 =======
 >>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 import com.conferencemanagement.conference.DAO.IUserRepository;
@@ -54,12 +57,17 @@ public class RoomService implements IRoomService {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     
     
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
+=======
+    
+    
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 
     @Override
     public Room getRoomById(int roomId) {

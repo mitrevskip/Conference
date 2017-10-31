@@ -10,6 +10,7 @@ import com.conferencemanagement.conference.DAO.IUserRepository;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
@@ -18,6 +19,8 @@ import com.conferencemanagement.conference.DAO.IUserRepository;
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 import com.conferencemanagement.conference.DTO.RoomDTO;
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 =======
 >>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 import com.conferencemanagement.conference.models.Reservation;
@@ -54,6 +57,7 @@ public class RoomController {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
@@ -78,6 +82,20 @@ public class RoomController {
     
     @RequestMapping("/{roomId}")
 =======
+     @RequestMapping("/getallfreerooms/{meetStarts}/{meetEnds}")
+     @ResponseBody
+    public List<Room> getAllFreeRooms(@PathVariable("meetStarts") @DateTimeFormat(pattern="yyyy-dd-MM HH:mm") Date meetStarts, @PathVariable("meetEnds") @DateTimeFormat(pattern="yyyy-dd-MM HH:mm") Date meetEnds) {
+        
+        return roomService.getAllFreeRooms(meetStarts, meetEnds);
+    }
+    
+    @RequestMapping("/getroombyid")
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
+=======
+    public List<Map<Reservation,Room>> getAllRooms() {
+        
+        return iuserrep.getAllRooms2();
+    }
      @RequestMapping("/getallfreerooms/{meetStarts}/{meetEnds}")
      @ResponseBody
     public List<Room> getAllFreeRooms(@PathVariable("meetStarts") @DateTimeFormat(pattern="yyyy-dd-MM HH:mm") Date meetStarts, @PathVariable("meetEnds") @DateTimeFormat(pattern="yyyy-dd-MM HH:mm") Date meetEnds) {

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -26,6 +27,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -63,6 +66,7 @@ public class Reservation implements Serializable{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     boolean allDay=false;
     
@@ -84,6 +88,8 @@ public class Reservation implements Serializable{
     boolean allDay=false;
     
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "ROOM_ID")
    @JsonIgnoreProperties("reservations")

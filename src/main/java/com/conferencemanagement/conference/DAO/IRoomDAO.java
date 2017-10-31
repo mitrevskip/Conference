@@ -9,6 +9,7 @@ package com.conferencemanagement.conference.DAO;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import com.conferencemanagement.conference.DTO.RoomDTO;
 
@@ -25,6 +26,8 @@ import com.conferencemanagement.conference.DTO.RoomDTO;
 =======
 import com.conferencemanagement.conference.DTO.RoomDTO;
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 import com.conferencemanagement.conference.models.Room;
 import java.util.Date;
 import java.util.List;

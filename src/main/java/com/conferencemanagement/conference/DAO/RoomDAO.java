@@ -9,6 +9,7 @@ package com.conferencemanagement.conference.DAO;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
@@ -18,6 +19,8 @@ package com.conferencemanagement.conference.DAO;
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 import com.conferencemanagement.conference.DTO.RoomDTO;
 import com.conferencemanagement.conference.models.Reservation;
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 =======
 >>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 import com.conferencemanagement.conference.models.Room;
@@ -52,6 +55,7 @@ public class RoomDAO implements IRoomDAO {
 //         String hql = "SELECT r FROM Room r JOIN r.reservation res JOIN res.user u WHERE r.roomId='2'";
         return (List<Room>) entityManager.createQuery(hql).getResultList();
     }
+<<<<<<< HEAD
  @Override
     public List<RoomDTO> getAllRooms2() {
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
@@ -59,6 +63,8 @@ public class RoomDAO implements IRoomDAO {
 //         String hql = "SELECT r FROM Room r JOIN r.reservation res JOIN res.user u WHERE r.roomId='2'";
         return (List<Room>) entityManager.createQuery(hql).getResultList();
     }
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 
     @Override
     public Room getRoomById(int roomId) {
@@ -114,10 +120,6 @@ public class RoomDAO implements IRoomDAO {
 
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
-    
-  
-
-   
     
 
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
