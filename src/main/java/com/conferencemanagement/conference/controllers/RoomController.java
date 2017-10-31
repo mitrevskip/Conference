@@ -47,7 +47,6 @@ public class RoomController {
     private IUserRepository iuserrep;
 
     @RequestMapping("/getall")
-
     public  List<RoomDTO>  getAllRooms() {
         
         return roomService.getAllRoomDTO();
