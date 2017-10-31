@@ -7,7 +7,10 @@ package com.conferencemanagement.conference.models;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
  
+=======
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -15,11 +18,14 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 
  
 =======
 >>>>>>> parent of a8c0438... DEMO+ ROOM DTO
+=======
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

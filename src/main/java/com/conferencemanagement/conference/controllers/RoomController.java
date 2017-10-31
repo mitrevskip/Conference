@@ -8,7 +8,10 @@ package com.conferencemanagement.conference.controllers;
 import com.conferencemanagement.conference.DAO.IUserRepository;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 import com.conferencemanagement.conference.DTO.RoomDTO;
@@ -46,7 +49,10 @@ public class RoomController {
     @RequestMapping("/getall")
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
     public  List<RoomDTO>  getAllRooms() {

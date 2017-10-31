@@ -8,6 +8,7 @@ package com.conferencemanagement.conference.service;
 import com.conferencemanagement.conference.DAO.IUserDAO;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 import com.conferencemanagement.conference.DAO.IUserRepository;
 import com.conferencemanagement.conference.models.Role;
@@ -16,6 +17,10 @@ import com.conferencemanagement.conference.models.Reservation;
  
 =======
 >>>>>>> parent of a8c0438... DEMO+ ROOM DTO
+=======
+import com.conferencemanagement.conference.DAO.IUserRepository;
+import com.conferencemanagement.conference.models.Role;
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
 import com.conferencemanagement.conference.DAO.IUserRepository;
 import com.conferencemanagement.conference.models.Role;
@@ -35,7 +40,10 @@ public class UserService implements IUserService{
     private IUserDAO userDAO;
     
     
+<<<<<<< HEAD
     
+=======
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
     @Override
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
@@ -57,9 +65,12 @@ public class UserService implements IUserService{
 //            r = iuserrep.getRoleByCat(rid);
 //            user.setRole(r);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> parent of a8c0438... DEMO+ ROOM DTO
+=======
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
             userDAO.addUser(user);
