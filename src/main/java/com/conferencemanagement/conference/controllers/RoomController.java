@@ -65,8 +65,7 @@ public class RoomController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/add")
-    public void addRoom(@RequestBody Room room
-    ) {
+    public void addRoom(@RequestBody Room room) {
         roomService.addRoom(room);
     }
 

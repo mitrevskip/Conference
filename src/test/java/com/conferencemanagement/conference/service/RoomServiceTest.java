@@ -90,7 +90,7 @@ public class RoomServiceTest {
     public void testAddRoom() {
         Room r = new Room();
         r.setCapacity(14);
-        r.setDesc("NOVA SOBA 22222");
+        r.setDesc("NOVA SOBA 2sdfsdfsdfsd2222");
         r.setRoomName("ROOOMvv2222222222");
         roomService.addRoom(r);
         assertEquals(4, roomService.getAllRooms().size());
