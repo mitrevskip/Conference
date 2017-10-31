@@ -55,7 +55,7 @@ public class ReservationController {
     }
     
     /*Updates reservation upon receiving reservation ID and reservation object*/
-    @RequestMapping(method = RequestMethod.PUT, value = "/update/{resId}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/update")
     public void updateReservation(@RequestBody Reservation reservation) {
         resService.updateRes(reservation);
     }
