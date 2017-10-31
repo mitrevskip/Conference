@@ -10,7 +10,10 @@ import com.conferencemanagement.conference.DAO.IRoomDAO;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
  
+=======
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
@@ -50,8 +53,11 @@ public class RoomService implements IRoomService {
         return roomDAO.getAllRooms();
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     
     
+=======
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 

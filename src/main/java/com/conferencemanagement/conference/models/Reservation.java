@@ -14,11 +14,14 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 =======
 >>>>>>> parent of a8c0438... DEMO+ ROOM DTO
+=======
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
@@ -59,6 +62,7 @@ public class Reservation implements Serializable{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     boolean allDay=false;
     
@@ -68,6 +72,10 @@ public class Reservation implements Serializable{
 
 =======
 >>>>>>> parent of a8c0438... DEMO+ ROOM DTO
+=======
+    boolean allDay=false;
+    
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
     boolean allDay=false;
     

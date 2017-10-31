@@ -8,7 +8,10 @@ package com.conferencemanagement.conference.DAO;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
 >>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
@@ -41,7 +44,10 @@ public class RoomDAO implements IRoomDAO {
     @Override
     public List<Room> getAllRooms() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
        String hql = "FROM Room as room1 ORDER BY room1.roomId";
 //         String hql = "SELECT r FROM Room r JOIN r.reservation res JOIN res.user u WHERE r.roomId='2'";
         return (List<Room>) entityManager.createQuery(hql).getResultList();
@@ -85,11 +91,20 @@ public class RoomDAO implements IRoomDAO {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
    
 =======
     
 
 >>>>>>> parent of a8c0438... DEMO+ ROOM DTO
+=======
+    
+  
+
+   
+    
+
+>>>>>>> parent of 327d884... Merge branch 'In-Development' into Mario-Development
 =======
     
   
