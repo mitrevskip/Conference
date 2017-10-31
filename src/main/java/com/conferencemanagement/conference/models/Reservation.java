@@ -5,7 +5,6 @@
  */
 package com.conferencemanagement.conference.models;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,13 +12,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,14 +25,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Petar
  */
 @Entity
-
 public class Reservation implements Serializable{
     
     private static final long serialVersionUID = 1L;
@@ -43,20 +42,11 @@ public class Reservation implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int resId;
     
-
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date meetStarts;
-
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date meetEnds;
     
-
     boolean allDay=false;
     
-
-    private String reservationTitle;
-        
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "ROOM_ID")
     @JsonManagedReference
@@ -111,14 +101,6 @@ public class Reservation implements Serializable{
 
     public void setRoom(Room room) {
         this.room = room;
-    }
-    
-    public String getReservationTitle() {
-        return reservationTitle;
-    }
-
-    public void setReservationTitle(String reservationTitle) {
-        this.reservationTitle = reservationTitle;
     }
     
 

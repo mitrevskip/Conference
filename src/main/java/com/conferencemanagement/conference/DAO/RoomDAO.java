@@ -5,9 +5,7 @@
  */
 package com.conferencemanagement.conference.DAO;
 
-
 import com.conferencemanagement.conference.DTO.RoomDTO;
-
 import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Room;
 import com.conferencemanagement.conference.models.User;
@@ -18,7 +16,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -31,22 +28,12 @@ public class RoomDAO implements IRoomDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
-    
-    @Autowired
-    IUserRepository iUserRepository;
 
     @Override
     public List<Room> getAllRooms() {
-       
-        return iUserRepository.getAllRooms();
-    }
-    
-   
-    @Override
-    public List<Reservation> getAllReservations(int roomId) {
-        String hql = "FROM Reservation as res ORDER BY meetStarts WHERE res.roomId = ?";
-        return entityManager.createQuery(hql).setParameter(1, roomId).getResultList();
-        
+       String hql = "FROM Room as room1 ORDER BY room1.roomId";
+//         String hql = "SELECT r FROM Room r JOIN r.reservation res JOIN res.user u WHERE r.roomId='2'";
+        return (List<Room>) entityManager.createQuery(hql).getResultList();
     }
  @Override
     public List<RoomDTO> getAllRooms2() {
@@ -82,5 +69,10 @@ public class RoomDAO implements IRoomDAO {
         return count > 0 ? true : false;
     }
 
+    
+  
+
    
+    
+
 }

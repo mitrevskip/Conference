@@ -69,8 +69,6 @@ public class ReservationDAOTest {
 
     /**
      * Test of getAllRes method, of class ReservationDAO.
-     * @throws java.text.ParseException
-     * @throws com.fasterxml.jackson.core.JsonProcessingException
      */
     @Test
     public void testGetAllRes() throws ParseException, JsonProcessingException {

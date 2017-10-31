@@ -5,14 +5,10 @@
  */
 package com.conferencemanagement.conference.models;
 
- 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
- 
-
- 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -39,27 +35,28 @@ import javax.persistence.Table;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @Id
+    
+    @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
     
     private String email;
-
+    
     @Column(unique = true)
     private String userName;
-
+    
+    
     private String password;
-
+    
+    
     private boolean log;
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinColumn(name = "ROLE_ID")
     private Role role;
-
+    
     private String picture;
-
     
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JsonManagedReference
@@ -73,6 +70,8 @@ public class User implements Serializable {
     public void setPicture(String picture) {
         this.picture = picture;
     }
+    
+
 
     public int getUserId() {
         return userId;
@@ -103,9 +102,7 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) {
-
         this.password = password;
-
     }
 
     public boolean isLog() {
@@ -132,4 +129,6 @@ public class User implements Serializable {
         this.reservations = reservations;
     }
 
+    
+    
 }

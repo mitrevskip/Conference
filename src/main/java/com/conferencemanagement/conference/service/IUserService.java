@@ -5,7 +5,6 @@
  */
 package com.conferencemanagement.conference.service;
 
-import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.User;
 import java.util.List;
 
@@ -14,25 +13,16 @@ import java.util.List;
  * @author Petar
  */
 public interface IUserService {
-
-    List<User> getAllUsers();
-
-    List<Reservation> getAllReservations(int userId);
-
-    User getUserById(int userId);
-
-    User getUserByEmail(String email, String userName);
-
-    boolean addUser(User user);
-
-    boolean updateUser(User user);
-
-    boolean deleteUser(int userId);
-
-    boolean userExists(String userName);
-
-    void forgotPassword(String email, String userName) throws Exception;
     
-    void sendEmail(String email, String text) throws Exception;
-
+    List<User> getAllUsers();
+    
+    User getUserById(int userId);
+    
+    boolean addUser(User user);
+    
+    boolean updateUser(User user);
+    
+    boolean deleteUser(int userId);
+    
+    boolean userExists(String userName);
 }

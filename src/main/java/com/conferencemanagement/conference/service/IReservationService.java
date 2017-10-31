@@ -6,7 +6,6 @@
 package com.conferencemanagement.conference.service;
 
 import com.conferencemanagement.conference.models.Reservation;
-import com.conferencemanagement.conference.models.Room;
 import java.util.List;
 
 /**
@@ -16,8 +15,6 @@ import java.util.List;
 public interface IReservationService {
     
     List<Reservation> getAllRes();
-    
-    List<Room> getAvailableRooms(int meetStarts, int meetEnds);
     
     Reservation getResById(int resId);
     

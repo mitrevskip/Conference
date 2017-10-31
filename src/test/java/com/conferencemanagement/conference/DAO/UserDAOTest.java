@@ -81,15 +81,6 @@ public class UserDAOTest {
         System.out.println(json);
         assertEquals(13, u.size());
     }
-    
-//    @Test
-//    public void testGetAllReservations() thrown JsonProcessingException {
-//        List<Reservation> r;
-//        
-//        r = userDAO.getAllReservations(1);
-//        
-//        
-//    }
 
     /**
      * Test of getUserById method, of class UserDAO.
@@ -111,9 +102,9 @@ public class UserDAOTest {
     @Test
     public void testAddUser() {
         User u = new User();
-        u.setUserName("Pero");
-        u.setPassword("petar");
-        u.setEmail("petar@gmail.com");
+        u.setUserName("Mario000000");
+        u.setPassword("aaaaa");
+        u.setEmail("aaa");
 
         Role role = new Role();
         role = iuserrep.getRoleByCat(1);
@@ -121,7 +112,7 @@ public class UserDAOTest {
         u.setRole(role);
         userDAO.addUser(u);
 
-         assertEquals(userDAO.getUserById(6), u.getUserId());
+        // assertEquals(userDAO.getUserById(15), u.toString());
     }
 
     /**
@@ -171,15 +162,4 @@ public class UserDAOTest {
 //        assertEquals(true, userDAO.userExists("bbb", "aaa"));
     }
 
-    @Test
-    public void testGetUserByEmail() {
-        User u = new User();
-        u.setUserName("Petar3");
-        u.setEmail("mitrevski.pca@gmail.com");
-        userDAO.addUser(u);
-
-        User u2 = userDAO.getUserByEmail("mitrevski.pca@gmail.com", "Petar3");
-
-        assertEquals(u.getEmail(), u2.getEmail());
-    }
 }
