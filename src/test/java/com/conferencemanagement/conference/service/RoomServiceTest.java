@@ -133,9 +133,9 @@ public class RoomServiceTest {
         
         Date dateS = format.parse(resStarts);
         Date dateE = format.parse(resEnds);
-//        Long DS = dateS.getTime();
-//        Long DE = dateE.getTime();
-        r = roomService.getAllFreeRooms(dateS,dateE);
+        Long DS = dateS.getTime();
+        Long DE = dateE.getTime();
+        r = roomService.getAllFreeRooms(DS,DE);
           ObjectMapper mapper = new ObjectMapper();
         
         String json = mapper.writeValueAsString(r);

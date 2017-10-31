@@ -6,13 +6,8 @@
 package com.conferencemanagement.conference.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -30,6 +25,7 @@ import javax.persistence.Table;
  * @author Petar
  */
 @Entity
+@Table(name = "Room")
 public class Room implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,7 +45,7 @@ public class Room implements Serializable {
     private String desc;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE,mappedBy = "room")
-    @JsonIgnoreProperties("room")
+ //   @JsonIgnoreProperties("room")
     @JsonBackReference
     private List<Reservation> reservation;
 

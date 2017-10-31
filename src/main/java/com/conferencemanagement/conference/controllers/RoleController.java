@@ -28,7 +28,7 @@ public class RoleController {
     @Autowired
     private IRoleService roleService;
     
-    @RequestMapping("/getall")
+    @RequestMapping("/role")
     public List<Role> getAllRoles() {
         return roleService.getAllRoles();
     }

@@ -6,12 +6,15 @@
 package com.conferencemanagement.conference.service;
 
 import com.conferencemanagement.conference.DAO.IUserDAO;
+<<<<<<< HEAD
  
 import com.conferencemanagement.conference.DAO.IUserRepository;
 import com.conferencemanagement.conference.models.Role;
  
 import com.conferencemanagement.conference.models.Reservation;
  
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 import com.conferencemanagement.conference.models.User;
 import java.util.List;
 import java.util.logging.Level;
@@ -39,8 +42,7 @@ public class UserService implements IUserService {
     @Autowired
     public JavaMailSender sender;
     
-    @Autowired
-    private IUserRepository iuserrep;
+    
     
     @Autowired
     public IUserService userService;
@@ -68,10 +70,13 @@ public class UserService implements IUserService {
             return false;
 
         }else{
+<<<<<<< HEAD
 //            Role r = new Role();
 //            r = iuserrep.getRoleByCat(rid);
 //            user.setRole(r);
 
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
             userDAO.addUser(user);
             return true;
         }

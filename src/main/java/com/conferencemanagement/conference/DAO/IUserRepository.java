@@ -5,12 +5,10 @@
  */
 package com.conferencemanagement.conference.DAO;
 
-import com.conferencemanagement.conference.DTO.RoomDTO;
 import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Role;
 import com.conferencemanagement.conference.models.Room;
 import com.conferencemanagement.conference.models.User;
-import java.lang.annotation.Native;
 import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -41,8 +39,8 @@ public interface IUserRepository extends JpaRepository<Role, Long>, JpaSpecifica
     
 
       
-    @Query("SELECT r FROM Room r")
-    public RoomDTO getAllRooms2();
+    @Query("SELECT r FROM Room r JOIN r.reservation res")
+    public List<Map<Reservation,Room>> getAllRooms2();
 //    
     @Query("SELECT r FROM Reservation r JOIN r.room res WHERE res.roomId = ?")
     public List<Reservation> getAllReservationsByRoom(int roomId);

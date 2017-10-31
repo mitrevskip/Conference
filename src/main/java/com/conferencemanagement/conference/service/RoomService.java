@@ -7,10 +7,12 @@ package com.conferencemanagement.conference.service;
 
 import com.conferencemanagement.conference.DAO.IReservationDAO;
 import com.conferencemanagement.conference.DAO.IRoomDAO;
+<<<<<<< HEAD
  
 import com.conferencemanagement.conference.DAO.IUserDAO;
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 import com.conferencemanagement.conference.DAO.IUserRepository;
-import com.conferencemanagement.conference.DTO.RoomDTO;
 import com.conferencemanagement.conference.models.Reservation;
  
 
@@ -19,7 +21,7 @@ import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.DAO.IUserRepository;
  
 import com.conferencemanagement.conference.models.Room;
-import com.conferencemanagement.conference.models.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,20 +37,20 @@ public class RoomService implements IRoomService {
 
     @Autowired
     private IRoomDAO roomDAO;
-
+    
     @Autowired
     private IReservationDAO resDAO;
-
+    
     @Autowired
-    private IUserRepository iuserrep;
-
-    @Autowired
-    private IUserDAO userDAO;
+    IUserRepository iuserrep;
+   
 
     @Override
     public List<Room> getAllRooms() {
         return roomDAO.getAllRooms();
     }
+    
+    
 
     @Override
     public List<Reservation> getAllReservations (int roomId) {
@@ -79,73 +81,55 @@ public class RoomService implements IRoomService {
             roomDAO.addRoom(room);
             return true;
         }
-
+       
     }
 
     @Override
     public synchronized boolean deleteRoom(int roomid) {
         Room r = roomDAO.getRoomById(roomid);
-        if (roomDAO.roomExists(r.getRoomName())) {
+         if (roomDAO.roomExists(r.getRoomName())) {
             roomDAO.deleteRoom(roomid);
-            return true;
-
+             return true;
+            
         } else {
-
+                   
             return false;
         }
-
+       
+ 
     }
-
     @Override
     public List<Room> getAllFreeRooms(Date meetS, Date meetE) {
-        List<Room> Rooms = roomDAO.getAllRooms();
-        List<Room> FreeRooms = new ArrayList<Room>();
-
+       List<Room> Rooms = roomDAO.getAllRooms();
+       List<Room> FreeRooms = new ArrayList<Room>();
+    
         Long meetStarts = meetS.getTime();
         Long meetEnds = meetE.getTime();
         for (Room r : Rooms) {
-            int i = 0;
-
-            List<Reservation> roomRes = iuserrep.getAllReservationsByRoom(r.getRoomId());
-
-            if (roomRes.isEmpty()) {
+            int i= 0;
+            
+            List<Reservation> roomRes =iuserrep.getAllReservationsByRoom(r.getRoomId()) ;
+                 
+            if(roomRes.isEmpty()){
                 FreeRooms.add(r);
-            } else {
-
-                for (Reservation res : roomRes) {
-                    Long MS = res.getMeetStarts().getTime();
-                    Long ME = res.getMeetEnds().getTime();
-
-                    if (meetEnds <= MS) {
-                        i++;
-                    } else {
-                        if (meetStarts >= ME) {
-                            i++;
-
-                        }
-                    }
-                    if (roomRes.size() == i) {
-                        FreeRooms.add(r);
-                    }
-                }
+            }else{
+                
+               for(Reservation res : roomRes){    
+                   Long MS = res.getMeetStarts().getTime();
+                   Long ME = res.getMeetEnds().getTime();
+                                     
+                   if(meetEnds <= MS){
+                          i++;                              
+                   }else{
+                   if(meetStarts >= ME){
+                             i++;
+        
+           }}
+            if (roomRes.size()==i ) FreeRooms.add(r);    
+        }     
             }
         }
         return FreeRooms;
     }
-
-    @Override
-    public List<RoomDTO> getAllRoomDTO() {
-
-        List<Room> rooms = roomDAO.getAllRooms();
-       
-        List<RoomDTO> listRoomDTO = new ArrayList<>();
-        for (Room r : rooms) {
-            RoomDTO dTO = new RoomDTO();
-            dTO.setRoom(r);
-            dTO.setReservation(r.getReservation());       
-            listRoomDTO.add(dTO);
-        }
-        return listRoomDTO;
-
-    }
 }
+        

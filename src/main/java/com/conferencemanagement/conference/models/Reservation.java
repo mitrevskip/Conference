@@ -7,15 +7,17 @@ package com.conferencemanagement.conference.models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -50,6 +52,7 @@ public class Reservation implements Serializable{
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date meetEnds;
     
+<<<<<<< HEAD
 
     boolean allDay=false;
     
@@ -57,17 +60,19 @@ public class Reservation implements Serializable{
     private String reservationTitle;
         
 
+=======
+>>>>>>> parent of a8c0438... DEMO+ ROOM DTO
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "ROOM_ID")
-    @JsonManagedReference
-    @JsonIgnoreProperties("room")
+   @JsonIgnoreProperties("reservations")
+//    @JsonBackReference
     private Room room;
     
     
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name = "USER_ID")
-    @JsonBackReference
-    @JsonIgnoreProperties("reservation")
+    @JsonIgnoreProperties("reservations")
+   //@JsonBackReference
     private User user;
     
     

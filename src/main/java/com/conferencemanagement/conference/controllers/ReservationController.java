@@ -42,7 +42,7 @@ public class ReservationController {
         return resService.getAvailableRooms(meetStarts, meetEnds);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/getresbyid/{resId}")
+    @RequestMapping("/getresbyid")
     public Reservation getResById(@PathVariable int resId) {
         return resService.getResById(resId);
     }
