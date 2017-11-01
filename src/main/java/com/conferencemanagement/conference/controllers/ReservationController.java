@@ -37,7 +37,7 @@ public class ReservationController {
     }
     
     /*Gets all available room for given time frame*/
-    @RequestMapping("/getAvailableRooms/{meetStarts}, {meetEnds}")
+    @RequestMapping("/getavailablerooms/{meetStarts}/{meetEnds}")
     public List<Room> getAvailableRooms(@PathVariable("meetStarts") int meetStarts, @PathVariable("meetEnds") int meetEnds) {
         return resService.getAvailableRooms(meetStarts, meetEnds);
     }
@@ -55,7 +55,7 @@ public class ReservationController {
     }
     
     /*Updates reservation upon receiving reservation ID and reservation object*/
-    @RequestMapping(method = RequestMethod.PUT, value = "/update")
+    @RequestMapping(method = RequestMethod.PUT, value = "/update", consumes = "application/json")
     public void updateReservation(@RequestBody Reservation reservation) {
         resService.updateRes(reservation);
     }

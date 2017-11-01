@@ -18,25 +18,23 @@ import org.springframework.stereotype.Service;
  * @author Petar
  */
 @Service
-public class ReservationService implements IReservationService{
+public class ReservationService implements IReservationService {
 
     @Autowired
     private IReservationDAO resDAO;
-    
+
     @Autowired
     private IUserRepository iuserrep;
-    
+
     @Override
     public List<Reservation> getAllRes() {
         return resDAO.getAllRes();
     }
-    
+
     @Override
     public List<Room> getAvailableRooms(int meetStarts, int meetEnds) {
         return resDAO.getAvailableRooms(meetStarts, meetEnds);
     }
-    
-    
 
     @Override
     public Reservation getResById(int resId) {
@@ -48,7 +46,7 @@ public class ReservationService implements IReservationService{
     public synchronized boolean addRes(Reservation reservation) {
         if (resDAO.resExists(reservation.getResId(), reservation.getMeetStarts())) {
             return false;
-        }else{
+        } else {
             resDAO.addRes(reservation);
             return true;
         }
@@ -56,34 +54,43 @@ public class ReservationService implements IReservationService{
 
     @Override
     public boolean updateRes(Reservation reservation) {
-        
-         //// Kontrolata da se promeni :D       
-        if(resDAO.resExists(reservation.getResId(), reservation.getMeetStarts())) {
+
+        // Kontrolata da se promeni :D       
+        if (resDAO.resExists(reservation.getResId(), reservation.getMeetStarts())) {
             return false;
-        }
-        else {
+        } else {
             Reservation res = resDAO.getResById(reservation.getResId());
-            reservation.setUser(res.getUser());
-            reservation.setRoom(res.getRoom());
-            
-            resDAO.updateRes(reservation);
+
+            if (reservation.getMeetEnds() != null) {
+                res.setMeetEnds(reservation.getMeetEnds());
+            }
+            if (reservation.getMeetStarts() != null) {
+                res.setMeetStarts(reservation.getMeetStarts());
+            }
+            if (reservation.getReservationTitle() != null) {
+                res.setReservationTitle(reservation.getReservationTitle());
+            }
+            if (reservation.getRoom() != null) {
+                res.setRoom(reservation.getRoom());
+            }
+
+            resDAO.updateRes(res);
             return true;
         }
-        
+
     }
 
     @Override
-    public synchronized boolean deleteRes(int resId) {
+    public synchronized boolean deleteRes(int resId
+    ) {
         Reservation reservation = resDAO.getResById(resId);
         if (resDAO.resExists(reservation.getResId(), reservation.getMeetStarts())) {
-             resDAO.deleteRes(resId);
+            resDAO.deleteRes(resId);
             return true;
-        }else{
+        } else {
             return false;
         }
-        
+
     }
 
-    
-    
 }
