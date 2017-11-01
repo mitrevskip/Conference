@@ -56,10 +56,16 @@ public class ReservationService implements IReservationService{
 
     @Override
     public boolean updateRes(Reservation reservation) {
-        if(iuserrep.resRoomExists(reservation.getRoom().getRoomId(), reservation.getMeetStarts())) {
+        
+         //// Kontrolata da se promeni :D       
+        if(resDAO.resExists(reservation.getResId(), reservation.getMeetStarts())) {
             return false;
         }
         else {
+            Reservation res = resDAO.getResById(reservation.getResId());
+            reservation.setUser(res.getUser());
+            reservation.setRoom(res.getRoom());
+            
             resDAO.updateRes(reservation);
             return true;
         }

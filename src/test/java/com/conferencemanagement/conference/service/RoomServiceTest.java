@@ -6,9 +6,11 @@
 package com.conferencemanagement.conference.service;
 
 import com.conferencemanagement.SpringBoot;
+import com.conferencemanagement.conference.models.Reservation;
 import com.conferencemanagement.conference.models.Room;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -85,8 +87,9 @@ public class RoomServiceTest {
     public void testAddRoom() {
         Room r = new Room();
         r.setCapacity(14);
-        r.setDesc("NOVA SOBA 22222");
+        r.setDescript("NOVA SOBA 22222");
         r.setRoomName("ROOOMvv2222222222");
+       
         roomService.addRoom(r);
         assertEquals(4, roomService.getAllRooms().size());
         
@@ -98,10 +101,12 @@ public class RoomServiceTest {
     @Test
     public void testUpdateRoom() {
      Room r = new Room();
-     r = roomService.getRoomById(3);
+     r = roomService.getRoomById(1);
      r.setRoomName("Conference 5");
-     r.setDesc("Large video");
+     r.setDescript("Large video");
      r.setCapacity(17);
+      List<Reservation> reservation = new ArrayList();
+     r.setReservation(reservation);
      roomService.updateRoom(r);
     }
 

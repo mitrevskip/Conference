@@ -117,18 +117,18 @@ public class ReservationServiceTest {
         res.setMeetEnds(dateE);
        
         Room room = new Room();
-        room = roomService.getRoomById(2);
+        room = roomService.getRoomById(1);
         res.setRoom(room);
         
-        User u = new User();
-        u = userService.getUserById(1);
-        res.setUser(u);
+//        User u = new User();
+//        u = userService.getUserById(1);
+//        res.setUser(u);
         List<Reservation> resv= new ArrayList<>();
         
         resv.add(res);
-        u.setReservations(resv);
-        res.setUser(u);
-        userService.updateUser(u);
+//        u.setReservations(resv);
+////        res.setUser(u);
+//        userService.updateUser(u);
         
         resService.addRes(res);
         
@@ -139,15 +139,22 @@ public class ReservationServiceTest {
      * Test of updateRes method, of class ReservationService.
      */
     @Test
-    public void testUpdateRes() {
-        System.out.println("updateRes");
-        Reservation reservation = null;
-        ReservationService instance = new ReservationService();
-        boolean expResult = false;
-        boolean result = instance.updateRes(reservation);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testUpdateRes() throws ParseException {
+     Reservation res = new Reservation();
+        res = resService.getResById(3);
+        String resStarts = "03-12-2017 15:30";
+        String resEnds = "03-12-2017 17:30";
+        
+        String reservationTitle;
+        reservationTitle = "New Reservation";
+
+        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        
+        Date dateS = format.parse(resStarts);
+        Date dateE = format.parse(resEnds);
+        res.setMeetStarts(dateS);
+        res.setMeetEnds(dateE);
+        resService.updateRes(res);
     }
 
     /**

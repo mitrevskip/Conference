@@ -31,12 +31,17 @@ public interface IUserRepository extends JpaRepository<Role, Long>, JpaSpecifica
     @Query("SELECT r FROM Reservation r WHERE r.meetEnds = ?")
     public List<Reservation> getResByMeetEnds(Date meetEnds);
 
-    @Query("SELECT r FROM Reservation r WHERE r.room = :roomId and r.meetStarts = :meetStarts")
-    public boolean resRoomExists(int roomid, Date meetStarts);
+//    @Query("SELECT r FROM Reservation r WHERE r.room = :roomId and r.meetStarts = :meetStarts")
+//    public boolean resRoomExists(int roomId, Date meetStarts);
 
-    @Query("SELECT r FROM Reservation r JOIN r.room res WHERE res.roomId=:roomId")
+     @Query("SELECT r FROM Reservation r WHERE r.room.roomId = ?")
+    public Reservation resRoomExists(int roomId);
+    
+    @Query("SELECT r FROM Room r")
     public List<Room> getAllRooms();
     
+    @Query("SELECT r FROM Reservation r JOIN r.room res WHERE res.roomId = ?")
+    public List<Reservation> getAllReservationsByRoom(int roomId);
    
 
     @Query("SELECT u FROM User u  WHERE u.email=:email and u.userName=:userName")

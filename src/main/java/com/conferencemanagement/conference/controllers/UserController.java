@@ -53,7 +53,7 @@ public class UserController {
         userService.addUser(user);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/update")
+    @RequestMapping(method = RequestMethod.PUT, value = "/update", consumes = "application/json")
     public void updateUser(@RequestBody User user) {
         userService.updateUser(user);
     }
@@ -64,7 +64,7 @@ public class UserController {
         userService.deleteUser(userId);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/forgotpassword/{email}/{userName}")
+    @RequestMapping(method = RequestMethod.POST, value = "/forgotpassword/{email}/{userName}")
     public void forgotPassword(@PathVariable String email, @PathVariable String userName) throws Exception {
         userService.forgotPassword(email, userName);
         System.out.println("Password reset, email sent");

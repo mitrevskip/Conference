@@ -49,7 +49,7 @@ public class ReservationController {
     }
 
     /*Adds reservation*/
-    @RequestMapping(method = RequestMethod.POST, value = "/add")
+    @RequestMapping(method = RequestMethod.POST, value = "/add", consumes = "application/json")
     public void addReservation(@RequestBody Reservation reservation) {
         resService.addRes(reservation);
     }

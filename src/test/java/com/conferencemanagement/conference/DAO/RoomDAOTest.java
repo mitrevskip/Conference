@@ -90,7 +90,7 @@ public class RoomDAOTest {
     public void testUpdateRoom() {
        Room r = new Room();
        r.setCapacity(15);
-       r.setDesc("Big Hall");
+       r.setDescript("Big Hall");
        r.setRoomName("Big Bang");
        roomDAO.addRoom(r);
        
@@ -98,7 +98,7 @@ public class RoomDAOTest {
        
        
        roomDAO.updateRoom(r);
-        assertEquals(roomDAO.getRoomById(1).getDesc(), "Big Hall");
+        assertEquals(roomDAO.getRoomById(1).getDescript(), "Big Hall");
     }
 
     /**
@@ -108,7 +108,7 @@ public class RoomDAOTest {
     public void testDeleteRoom() {
        Room r = new Room();
        r.setCapacity(15);
-       r.setDesc("Big Hall");
+       r.setDescript("Big Hall");
        r.setRoomName("Big Bang");
        roomDAO.addRoom(r);
        
@@ -125,7 +125,7 @@ public class RoomDAOTest {
 
         r.setRoomName("Conference 4");
         r.setCapacity(25);
-        r.setDesc("Large video conferencing room (air conditioned)");
+        r.setDescript("Large video conferencing room (air conditioned)");
 
         
         roomDAO.addRoom(r);
@@ -142,7 +142,7 @@ public class RoomDAOTest {
         Room r = new Room();
         r.setRoomName("Conference 2");
         r.setCapacity(30);
-        r.setDesc("Large video conferencing room (air conditioned)");
+        r.setDescript("Large video conferencing room (air conditioned)");
         
         roomDAO.addRoom(r);
         

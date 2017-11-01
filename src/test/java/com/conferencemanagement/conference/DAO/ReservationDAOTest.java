@@ -169,7 +169,7 @@ public class ReservationDAOTest {
     public void testUpdateRes() throws ParseException {
         Reservation res = new Reservation();
         
-        res = resDAO.getResById(5);
+        res = resDAO.getResById(1);
         
         String resStarts = "04-12-2017 10:30";
         String resEnds = "04-12-2017 11:30";
@@ -232,7 +232,7 @@ public class ReservationDAOTest {
         
         Room room = new Room();
         
-        room = roomDAO.getRoomById(2);
+        room = roomDAO.getRoomById(1);
         res.setRoom(room);
         
         User u = new User();

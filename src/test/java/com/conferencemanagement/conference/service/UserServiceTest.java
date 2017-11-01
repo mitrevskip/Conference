@@ -129,15 +129,15 @@ public class UserServiceTest {
     @Test
     public void testUpdateUser() {
        User u = new User();
-       u = userSERVICE.getUserById(2);
-       u.setUserName("MarioB");
+       u = userSERVICE.getUserById(1);
+       u.setEmail("novmail");
        
-       if(userSERVICE.userExists(u.getUserName())){
-           System.out.println("Postoi USER so takov username");
-       }
-       else{
+//       if(userSERVICE.userExists(u.getUserName())){
+//           System.out.println("Postoi USER so takov username");
+//       }
+//       else{
            userSERVICE.updateUser(u);
-       }
+//       }
     }
 
     /**

@@ -25,14 +25,12 @@ import javax.persistence.Table;
  * @author Petar
  */
 @Entity
-@Table(name = "Room")
 public class Room implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ROOM_ID")
     private int roomId;
 
     
@@ -41,8 +39,8 @@ public class Room implements Serializable {
     @Column(unique = true)
     private String roomName;
 
-    @Column(name = "DESCRIPTION")
-    private String desc;
+    
+    private String descript;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE,mappedBy = "room")
  //   @JsonIgnoreProperties("room")
@@ -73,20 +71,25 @@ public class Room implements Serializable {
         this.roomName = roomName;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescript() {
+        return descript;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescript(String descript) {
+        this.descript = descript;
     }
-    
+
+  
     public List<Reservation> getReservation() {
         return reservation;
     }
 
     public void setReservation(List<Reservation> reservation) {
         this.reservation = reservation;
+    }
+
+    public void setReservation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
