@@ -14,10 +14,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author User-DM
- */
+
 public class CORSFilter implements Filter {
 
     @Override
